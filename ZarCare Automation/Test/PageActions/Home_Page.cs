@@ -1,4 +1,6 @@
-﻿namespace ZarCare_Automation.Test.PageActions
+﻿using OpenQA.Selenium.DevTools.V124.Runtime;
+
+namespace ZarCare_Automation.Test.PageActions
 {
     public class Home_Page : WebdriverSession
     {
@@ -16,6 +18,11 @@
         public static void NavigateToConsultNow()
         {
             HomePage.Web_ConsultNow_Button.Click();
+        }
+
+        public static void NavigateToAboutUs()
+        {
+            HomePage.Web_AboutUs_Link.Click();
         }
     }
 }

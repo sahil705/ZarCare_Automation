@@ -8,7 +8,7 @@
             {
                 case "chrome":
 
-                    new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
+                   // new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                     driver = new ChromeDriver();
                     break;
 
@@ -144,6 +144,12 @@
             DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss").Trim();
         }
 
+        public static string getTitle()
+        {
+            string Title = driver.Title;
+            return Title;
+        }
+
     }
 
     public class Wait : WebdriverSession
@@ -189,5 +195,7 @@
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
             wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
+
+       
     }
 }
