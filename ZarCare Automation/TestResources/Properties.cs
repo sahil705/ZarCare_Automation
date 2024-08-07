@@ -4,7 +4,7 @@
     {
         public static string environment = "Preprod";
         public static string browser = "Chrome";
-        public static string QA = "Piyush Sharma";
-        public static string report = "C:\\ZarCare_Automation_Reports\\";
+        public static string QA = "Madhuri";
+        public static string report = "C:\\Users\\madhuri\\Zarcare-Automation\\Report\\";
     }
 }

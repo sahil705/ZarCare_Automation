@@ -31,6 +31,7 @@
             string url = Json_Reader.ReadJsonText(Generic_Utils.getDataPath("TestResources") + "\\URL.json")[environment][urlType].ToString();
             Generic_Utils.NavigateToURL(url);
             Wait.implicitWait(3);
+
         }
 
         public static string getDataPath(string foldername)

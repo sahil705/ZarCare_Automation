@@ -24,5 +24,20 @@ namespace ZarCare_Automation.Test.PageActions
         {
             HomePage.Web_AboutUs_Link.Click();
         }
+
+        public static void NavigateToFaq()
+        {
+            HomePage.Web_Faq_Link.Click();
+        }
+
+        public static void NavigateToSpecialtyCard()
+        {
+            HomePage.Web_Speciality_Card.Click();
+        }
+
+        public static void NavigateToWorkWithUs()
+        {
+            HomePage.Web_WorkWithUs_Link.Click();
+        }
     }
 }
