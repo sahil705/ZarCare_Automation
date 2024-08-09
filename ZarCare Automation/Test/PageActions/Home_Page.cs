@@ -37,6 +37,7 @@ namespace ZarCare_Automation.Test.PageActions
 
         public static void NavigateToWorkWithUs()
         {
+            Wait.GenericWait(2000);
             HomePage.Web_WorkWithUs_Link.Click();
         }
     }

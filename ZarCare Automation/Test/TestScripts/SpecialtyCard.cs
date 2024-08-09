@@ -17,6 +17,8 @@
 
             Reports.childLog = Reports.CreateNode("Step 2: Navigate to Our Providers Page");
             Home_Page.NavigateToSpecialtyCard();
+            Our_Providers_Page.Validate_OurProviderPage();
+            Our_Providers_Page.Get_and_Validate_Doctor_Specialty(SpecialtyName);       
         }
     }
 }

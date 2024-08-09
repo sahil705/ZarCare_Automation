@@ -16,7 +16,7 @@ namespace ZarCare_Automation.Test.PageElements
         public By By_Faq_Link = By.LinkText("FAQ");
         public IWebElement Web_Faq_Link => driver.FindElement(By_Faq_Link);
 
-        public By By_WorkWithUs_Link = By.LinkText("Work With Us");
+        public By By_WorkWithUs_Link = By.XPath("(//ul[@class='top-menu']/li)[3]");
         public IWebElement Web_WorkWithUs_Link => driver.FindElement(By_WorkWithUs_Link);
 
         public By By_Specialty_List = By.XPath("//div[@class='owl-item active']/div");

@@ -17,5 +17,6 @@
         public By By_BookingSlot_Currentday = By.XPath("//div[@class='owl-item active'] //div[@class='c-day-session-slot-blue']");
         public IWebElement Web_BookingSlot_Currentday => driver.FindElement(By_BookingSlot_Currentday);
 
+        
     }
 }

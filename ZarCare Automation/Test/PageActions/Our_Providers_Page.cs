@@ -36,6 +36,12 @@
                 }
             }
         }
-        
+
+        public static void Get_and_Validate_Doctor_Specialty(string Original_Text)
+        {
+            string DoctorSpecialty = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Specialty);
+            Assert.That(Original_Text, Is.EqualTo(DoctorSpecialty));
+        }
+
     }
 }

@@ -151,6 +151,11 @@
             return Title;
         }
 
+        public static string getText(IWebElement element)
+        {
+            return element.Text;
+        }
+
     }
 
     public class Wait : WebdriverSession

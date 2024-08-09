@@ -5,7 +5,7 @@
         public By By_Work_With_Us_Text = By.XPath("//div[@class='heading']/h1");
         public IWebElement Web_Work_With_Us_Text => driver.FindElement(By_Work_With_Us_Text);
 
-        public By By_Submit_Button = By.Id("//*[@id='btnSubmit']");
+        public By By_Submit_Button = By.XPath("//*[@id='btnSubmit']");
         public IWebElement Web_Submit_Button => driver.FindElement(By_Submit_Button);
 
         public By By_FirstName_Textbox = By.Id("//input[@id='txtFName']");
@@ -31,5 +31,29 @@
 
         public By By_WorkPlace_List = By.Id("//select[@id='txtCurrentP']");
         public IWebElement Web_WorkPlace_List => driver.FindElement(By_WorkPlace_List);
+
+        public By By_FirstName_Error = By.XPath("//span[@id='firstNameError']");
+        public IWebElement Web_FirstName_Error => driver.FindElement(By_FirstName_Error);
+
+        public By By_SurName_Error = By.XPath("//span[@id='lastNameError']");
+        public IWebElement Web_SurName_Error => driver.FindElement(By_SurName_Error);
+
+        public By By_CellPhone_Error = By.XPath("//span[@id='phoneNoError']");
+        public IWebElement Web_CellPhone_Error => driver.FindElement(By_CellPhone_Error);
+
+        public By By_Email_Error = By.XPath("//span[@id='emailError']");
+        public IWebElement Web_Email_Error => driver.FindElement(By_Email_Error);
+
+        public By By_Profession_Error = By.XPath("//span[@id='drpspecializationError']");
+        public IWebElement Web_Profession_Error => driver.FindElement(By_Profession_Error);
+
+        public By By_Province_Error = By.XPath("//span[@id='provinceError']");
+        public IWebElement Web_Province_Error => driver.FindElement(By_Province_Error);
+
+        public By By_City_Error = By.XPath("//span[@id='cityError']");
+        public IWebElement Web_City_Error => driver.FindElement(By_City_Error);
+
+        public By By_Current_WorkPlace_Error = By.XPath("//span[@id='CurrentWorkPlaceError']");
+        public IWebElement Web_Current_WorkPlace_Error => driver.FindElement(By_Current_WorkPlace_Error);
     }
 }

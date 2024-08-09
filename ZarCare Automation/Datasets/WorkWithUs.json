@@ -1,3 +1,11 @@
 {
-  "WorkWithUs_Heading": "Work with us"
+  "WorkWithUs_Heading": "Work with us",
+  "FirstName_Error": "First Name is required",
+  "SurName_Error": "Surname is required",
+  "CellPhone_Error": "Enter valid cellphone number",
+  "Email_Error": "Email is required",
+  "Profession_Error": "Profession is required",
+  "Province_Error": "Province is required",
+  "City_Error": "City is required",
+  "WorkPlace_Error": "Current services is required"
 }

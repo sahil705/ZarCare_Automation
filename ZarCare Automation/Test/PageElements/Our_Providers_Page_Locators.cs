@@ -19,5 +19,7 @@
 
         public By By_Doctor_Specialty = By.XPath("//div[@class='doc-info-cont doc-info-count-new']/h5");
         public IWebElement Web_Doctor_Specialty => driver.FindElement(By_Doctor_Specialty);
+    
+        
     }
 }
