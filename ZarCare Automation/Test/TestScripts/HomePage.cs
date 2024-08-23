@@ -2,7 +2,7 @@
 {
     public class HomePage : Base
     {
-        public string classname = "AboutUs";
+        public string classname = "HomePage";
 
         [Test]
         public void Validate_Redirection_To_AboutUs()

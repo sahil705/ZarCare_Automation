@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium.DevTools.V85.Profiler;
-
-namespace ZarCare_Automation.Test.PageElements
+﻿namespace ZarCare_Automation.Test.PageElements
 {
     public class Home_Page_Locators : WebdriverSession
     {
@@ -25,6 +23,15 @@ namespace ZarCare_Automation.Test.PageElements
         public By By_Speciality_Card = By.XPath("//div[@class='owl-item active']/div //div[@class='horizontal-list-card']/a");
         public IWebElement Web_Speciality_Card => driver.FindElement(By_Speciality_Card);
 
-    }
+        public By By_OurProviders_Link = By.LinkText("OUR PROVIDERS");
+        public IWebElement Web_OurProviders_Link => driver.FindElement(By_OurProviders_Link);
 
+        public By By_ConnectNow_Popup = By.XPath("//a[@id='connect-pop-link']");
+        public IWebElement Web_ConnectNow_Popoup => driver.FindElement(By_ConnectNow_Popup);
+
+        public By By_ConnctNow_Popup_Close = By.XPath("//div[@class='modal-connect-image']//button[@class='connect-pop-close']/i");
+        public IWebElement Web_ConnectNow_Popup_Close => driver.FindElement(By_ConnctNow_Popup_Close);
+
+    }
+   
 }

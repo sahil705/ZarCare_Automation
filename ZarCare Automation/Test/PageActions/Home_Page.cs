@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium.DevTools.V124.Runtime;
-
-namespace ZarCare_Automation.Test.PageActions
+﻿namespace ZarCare_Automation.Test.PageActions
 {
     public class Home_Page : WebdriverSession
     {
@@ -39,6 +37,23 @@ namespace ZarCare_Automation.Test.PageActions
         {
             Wait.GenericWait(2000);
             HomePage.Web_WorkWithUs_Link.Click();
+        }
+
+        public static void NavigateToOurProviders()
+        {
+            HomePage.Web_OurProviders_Link.Click();
+        }
+
+        public static void NavigateToConnectNowPopup()
+        {
+            Wait.GenericWait(5000);
+            HomePage.Web_ConnectNow_Popoup.Click();
+        }
+
+        public static void NavigateToConnectNowPopupClose()
+        {
+            Wait.GenericWait(6000);
+            HomePage.Web_ConnectNow_Popup_Close.Click();
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class SpecialtyCard : Base
     {
-        public string classname = "SpecialtyCard";
+        public string classname = "HomePage";
 
         [Test]
         public void Validate_Redirection_To_Specialty_Card()

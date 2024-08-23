@@ -2,7 +2,7 @@
 {
     public class FaqPage : Base
     {
-        public string classname = "Faq";
+        public string classname = "HomePage";
 
         [Test]
         public void Validate_Redirection_To_Faq()
