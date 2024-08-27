@@ -16,5 +16,24 @@
 
         public By By_Doctor_Name = By.XPath("//div[@class='card mb-4 history-list']/div //h4[@class='doc-name']/a");
         public IWebElement Web_Doctor_Name => driver.FindElement(By_Doctor_Name);
-    }
+
+        public By By_DrJashanKumr= By.XPath("//a[contains(text(),'Madhuri Satya')]");
+
+        public IWebElement Web_DrJashan_kumar_Ele=> driver.FindElement(By_DrJashanKumr);
+
+        public By By_BookOppntbtn = By.XPath("//a[@class='apt-btn book-appointment']");
+        public IWebElement Web_BookOptn_ele => driver.FindElement(By_BookOppntbtn);
+
+
+        public IList<IWebElement> BookOtpbtnList = driver.FindElements(By.XPath("//a[@class='apt-btn book-appointment']"));
+
+        public By By_MorningSlot = By.XPath("(//a[normalize-space()='10:10'])[16]");
+
+        public IWebElement Web_OneMorSlotText=>driver.FindElement(By_MorningSlot);
+
+        public IList<IWebElement> Web_Mor_SlotList = driver.FindElements(By.XPath("//div[@class='c-day-session ']"));
+
+
+      
+    } 
 }

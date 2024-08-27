@@ -36,6 +36,44 @@
                 }
             }
         }
+        public static void ValidateBookoptmOpen(string Doctorsname)
+        {
+           Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(OurProvidersPage.By_SearchHeader);
 
+            //Generic_Utils.ScrollToElement(OurProvidersPage.Web_DrMadhuri_Satya_Ele);
+            //OurProvidersPage.Web_BookOptn_ele.Click();
+
+            int DrList = driver.FindElements(OurProvidersPage.By_Doctor_List).Count;
+
+            for (int i = 0; i < DrList; i++)
+            {
+                string dr_name = driver.FindElements(OurProvidersPage.By_Doctor_Name)[i].Text;
+                
+                if (dr_name.Contains(Doctorsname))
+                {
+                   
+                    IWebElement BookOptbtnfnl = (OurProvidersPage.BookOtpbtnList)[i];
+                    BookOptbtnfnl.Click();
+                    break;
+                }
+            }
+
+            Reports.childLog.Log(Status.Info, "Our Provider Page displayed");
+            Generic_Utils.GetScreenshot("Our Provider Page screenshot");
+
+            // Next capture all element from time slot and from json provide date & time then click
+
+        }
+        public static void BookOptClickAndSelectSlotNavigateToLoginPage()
+        {
+
+            Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(OurProvidersPage.By_MorningSlot);
+
+            OurProvidersPage.Web_OneMorSlotText.Click();
+
+
+        }
     }
 }
