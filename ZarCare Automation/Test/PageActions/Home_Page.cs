@@ -4,6 +4,7 @@
     {
         public static Home_Page_Locators HomePage = new Home_Page_Locators();
 
+
         public static void Validate_HomePage()
         {
             Wait.WaitTillPageLoad();

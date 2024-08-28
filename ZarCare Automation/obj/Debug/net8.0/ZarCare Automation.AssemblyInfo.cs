@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZarCare Automation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+098bd5f6ed5a276c4659202f231b9b4f83a1a4ad")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05dc6d8b48984fddef632b9201e19b0795988870")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZarCare Automation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZarCare Automation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
