@@ -17,5 +17,21 @@
         {
             HomePage.Web_ConsultNow_Button.Click();
         }
+
+        public static void NavigateToOurProvider()
+        {
+            HomePage.Web_OurProvider_Text.Click();  
+            
+        }
+
+       public static void NavigateToLoginPage()
+        {
+            HomePage.Web_LoginSignUp_Button.Click();    
+        }
+
+        public static void NavigateToWorkWithUsPage()
+        {
+            HomePage.Web_WorkWithUs_Text.Click();
+        }
     }
 }

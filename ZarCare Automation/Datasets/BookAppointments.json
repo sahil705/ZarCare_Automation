@@ -1,5 +1,14 @@
 ﻿{
   "Doctor_Name": "Jashan Kumar",
-  "Appointment_Date": "21/07/2024",
-  "Appointment_Time": "17:00"
+  "Appointment_Date": "Tomorrow",
+  "Appointment_Time": "16:30",
+  "Email": "danielsam@gmail.com",
+  "Password": "Sahil@1993",
+  "Provider_Name": "Provider Test",
+  "Provider_Appointment_Date": "09/08/2024",
+  "Provider_Appointment_Time": "21:00",
+  "Voucher_Code": "Voucher50",
+  "Voucher_Success_Message": "Voucher applied successfully",
+  "Confirmation_Capture_Text": "Appointment Booked Successfully!"
+
 }
