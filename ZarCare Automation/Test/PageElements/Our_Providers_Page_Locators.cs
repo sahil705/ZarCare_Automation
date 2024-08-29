@@ -27,13 +27,14 @@
 
         public IList<IWebElement> BookOtpbtnList = driver.FindElements(By.XPath("//a[@class='apt-btn book-appointment']"));
 
-        public By By_MorningSlot = By.XPath("(//a[normalize-space()='10:10'])[16]");
+        //public By By_MorningSlot = By.XPath("(//a[normalize-space()='10:10'])[16]");
 
-        public IWebElement Web_OneMorSlotText=>driver.FindElement(By_MorningSlot);
+       // public IWebElement Web_OneMorSlotText=>driver.FindElement(By_MorningSlot);
 
         public IList<IWebElement> Web_Mor_SlotList = driver.FindElements(By.XPath("//div[@class='c-day-session ']"));
 
-        // adding new xpath
-      
+              // (//h4[contains(text(),'Today')])[4]
+
+
     } 
 }

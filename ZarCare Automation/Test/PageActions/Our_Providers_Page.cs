@@ -3,6 +3,8 @@
     public class Our_Providers_Page : WebdriverSession
     {
         public static Our_Providers_Page_Locators OurProvidersPage = new Our_Providers_Page_Locators();
+        public static Doctor_Profile_Page_Locators DoctorProfilePage = new Doctor_Profile_Page_Locators();
+        public static LoginPage_Locators LoginPage = new LoginPage_Locators();
 
         public static void Validate_OurProviderPage()
         {
@@ -41,8 +43,6 @@
            Wait.WaitTillPageLoad();
             Generic_Utils.IsElementDisplayed(OurProvidersPage.By_SearchHeader);
 
-            //Generic_Utils.ScrollToElement(OurProvidersPage.Web_DrMadhuri_Satya_Ele);
-            //OurProvidersPage.Web_BookOptn_ele.Click();
 
             int DrList = driver.FindElements(OurProvidersPage.By_Doctor_List).Count;
 
@@ -62,16 +62,31 @@
             Reports.childLog.Log(Status.Info, "Our Provider Page displayed");
             Generic_Utils.GetScreenshot("Our Provider Page screenshot");
 
-            // Next capture all element from time slot and from json provide date & time then click
-
+           
         }
-        public static void BookOptClickAndSelectSlotNavigateToLoginPage()
+        public static void BookOptClickAndSelectSlotNavigateToLoginPage(string appointm_Time)
         {
 
-            Wait.WaitTillPageLoad();
-            Generic_Utils.IsElementDisplayed(OurProvidersPage.By_MorningSlot);
+            int slot_count = driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday).Count;
 
-            OurProvidersPage.Web_OneMorSlotText.Click();
+            for (int a = 0; a < slot_count; a++)
+            {
+                string slot_time = driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday)[a].Text;
+
+                if (slot_time.Equals(appointm_Time))
+                {
+                    driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday)[a].Click();
+                    break;
+                }
+            }
+
+            Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(LoginPage.By_LogPageheaderText);
+
+            Generic_Utils.GetScreenshot("Appointment Date and Time Selected");
+
+
+
 
 
         }
