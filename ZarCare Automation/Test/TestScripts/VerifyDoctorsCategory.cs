@@ -14,7 +14,7 @@
             string OriginalCategoryTitle = json["OriginalCategoryTitle"].ToString();
             Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
-            Reports.childLog = Reports.CreateNode("Step 1: Validate Home Page and Navigate to Our Providesr Page");
+            Reports.childLog = Reports.CreateNode("Step 1: Validate Home Page and Navigate to Our Providesr Page.");
             Home_Page.Validate_HomePage();
             Home_Page.NavigateToOurProvidersPage();
             Reports.FlushNode(Reports.childLog);
