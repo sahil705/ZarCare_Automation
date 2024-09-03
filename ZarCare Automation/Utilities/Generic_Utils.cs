@@ -117,6 +117,11 @@
             driver.Close();
         }
 
+        public static void RefreshPage(string url)
+        {
+            driver.Navigate().Refresh();
+        }
+
         public static bool IsElementDisplayed(By locator)
         {
             try
@@ -144,6 +149,56 @@
             DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss").Trim();
         }
 
+        public static string getTitle()
+        {
+            return driver.Title;
+        }
+
+        public static string getText(IWebElement element)
+        {
+            return element.Text;
+        }
+
+        public static void winHandle()
+        {
+            var current_window = driver.CurrentWindowHandle;
+            var all_windows = driver.WindowHandles;
+            foreach (string windows in all_windows)
+            {
+                if (windows != current_window)
+                {
+                    driver.SwitchTo().Window(current_window);
+                }
+            }
+        }
+
+        public static void getUrl()
+        {
+            string url = driver.Url;
+        }
+
+        public static void Dropdown_Handle_With_Value(IWebElement element, string value)
+        {
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByValue(value);
+        }
+
+        public static void Dropdown_Handle_With_Index(IWebElement element, int value)
+        {
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByIndex(6);
+        }
+
+        public static void Dropdown_Handle_With_Text(IWebElement element, string value)
+        {
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByText(value);
+        }
+
+        protected static bool IsElementDisplayed(object by_Category_Title)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class Wait : WebdriverSession
