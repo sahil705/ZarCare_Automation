@@ -25,6 +25,6 @@
 
         public By By_Clear_Search_Icon = By.XPath("//button[@class='btn-search-clear']");
         public IWebElement Web_Clear_Search_Icon => driver.FindElement(By_Clear_Search_Icon);
-
+        
     }
 }

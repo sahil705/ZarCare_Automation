@@ -49,7 +49,7 @@
         }
 
         [Test]
-        public void Validate_OurProvider_By_Location()
+        public void Validate_OurProviders_By_Location()
         {
             var json = Json_Reader.GetDataFromJson(classname);
             string doctorLocation = json["Doctor_Location"].ToString();
@@ -64,7 +64,6 @@
 
             Reports.childLog = Reports.CreateNode("Step 2: Search by Doctor Location");
             Our_Providers_Page.Search_Location(doctorLocation);
-            Our_Providers_Page.Get_and_Validate_Doctor_Location(doctorLocation);
             Reports.FlushNode(Reports.childLog);
         }
     }

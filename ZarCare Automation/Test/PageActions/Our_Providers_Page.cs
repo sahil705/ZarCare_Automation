@@ -36,7 +36,7 @@
 
         public static void Search_Category(string doctorCategory)
         {
-            OurProvidersPage.Web_Doctor_SearchBox.SendKeys(doctorCategory); 
+            OurProvidersPage.Web_Doctor_SearchBox.SendKeys(doctorCategory);
             Wait.GenericWait(1000);
             OurProvidersPage.Web_Doctor_SearchButton.Click();
         }
@@ -87,3 +87,5 @@
         }
     }
 }
+
+        

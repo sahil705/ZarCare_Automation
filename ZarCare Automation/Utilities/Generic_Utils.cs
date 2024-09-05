@@ -155,7 +155,6 @@
         {
             return element.Text;
         }
-
     }
 
     public class Wait : WebdriverSession

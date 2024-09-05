@@ -46,13 +46,15 @@
 
         public static void NavigateToConnectNowPopup()
         {
-            Wait.GenericWait(5000);
+            Wait.GenericWait(6000);
+            Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
             HomePage.Web_ConnectNow_Popoup.Click();
         }
 
         public static void NavigateToConnectNowPopupClose()
         {
             Wait.GenericWait(6000);
+            Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
             HomePage.Web_ConnectNow_Popup_Close.Click();
         }
     }
