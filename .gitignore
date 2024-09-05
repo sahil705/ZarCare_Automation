@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.AssemblyInfo.cs
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.AssemblyInfoInputs.cache
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.csproj.FileListAbsolute.txt
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.dll
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.genruntimeconfig.cache
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.pdb
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.sourcelink.json
+/ZarCare Automation/bin/Debug/net8.0/ZarCare Automation.pdb
+/ZarCare Automation/bin/Debug/net8.0/ZarCare Automation.dll
+/ZarCare Automation/bin/Debug/net8.0/nunit_random_seed.tmp
+/ZarCare Automation/obj/Debug/net8.0/ref/ZarCare Automation.dll
