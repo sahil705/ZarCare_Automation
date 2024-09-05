@@ -31,5 +31,13 @@
 
         public By By_AboutUs_Link = By.LinkText("About Us");        
         public IWebElement Web_AboutUs_Link => driver.FindElement(By_AboutUs_Link);
+        public By By_OurProvider_Text = By.XPath("(//ul[@class='top-menu']//a)[1]");
+        public IWebElement Web_OurProvider_Text => driver.FindElement(By_OurProvider_Text);
+
+        public By By_LoginSignUp_Button = By.XPath("(//a[@class='btn-loginsignup'])[1]");
+        public IWebElement Web_LoginSignUp_Button => driver.FindElement(By_LoginSignUp_Button);
+
+        public By By_WorkWithUs_Text = By.XPath("(//ul[@class='top-menu']/li)[3]");
+        public IWebElement Web_WorkWithUs_Text => driver.FindElement(By_WorkWithUs_Text);
     }
 }

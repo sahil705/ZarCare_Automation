@@ -2,7 +2,7 @@
 {
     public class Our_Providers_Page_Locators : WebdriverSession
     {
-        public By By_SearchHeader = By.Id("//div[@class='card-header open-search']/h4");
+        public By By_SearchHeader = By.XPath("//div[@class='card-header open-search']/h4");
         public IWebElement Web_SearchHeader => driver.FindElement(By_SearchHeader);
         
         public By By_Doctor_SearchBox = By.Id("txtSearchString");

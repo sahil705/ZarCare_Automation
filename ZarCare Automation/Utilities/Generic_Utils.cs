@@ -1,4 +1,7 @@
-﻿namespace ZarCare_Automation.Utilities
+﻿using AngleSharp.Dom;
+using OpenQA.Selenium.Interactions;
+
+namespace ZarCare_Automation.Utilities
 {
     public class Generic_Utils : WebdriverSession
     {
@@ -8,7 +11,6 @@
             {
                 case "chrome":
 
-                   // new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                     driver = new ChromeDriver();
                     break;
 
@@ -117,6 +119,29 @@
             driver.Close();
         }
 
+        public static string getTitle()
+        {
+            return driver.Title;
+        }
+
+        public static String waitForTitleContains(String titleFraction, int timeOut)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOut));
+
+            try
+            {
+                if (wait.Until(ExpectedConditions.TitleContains(titleFraction)))
+                {
+                    return driver.Title;
+                }
+            }
+            catch (TimeoutException e)
+            {
+               Console.WriteLine("title not found");
+            }
+            return driver.Title;
+        }
+
         public static bool IsElementDisplayed(By locator)
         {
             try
@@ -129,11 +154,25 @@
             }
         }
 
-        public static void ScrollToBottom()
+        public static string getText(IWebElement element)
         {
-            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollBy(0, document.body.scrollHeight)");
+            return element.Text;    
         }
 
+        public static void ScrollPageDown(String height)
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, '" + height + "');");
+        }
+
+        public static void ScrollToMiddle()
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight/2);");
+        }
+        public static void ScrollToBottom()
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+        }
+        
         public static void ScrollToElement(IWebElement element)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView()", element);
@@ -149,22 +188,44 @@
             DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss").Trim();
         }
 
+        public static void WindowHandle()
+        {
+            string parentWindowHandle = driver.CurrentWindowHandle;
+            IList<string> allWindowHandle = driver.WindowHandles;
+            foreach (string wHandle in allWindowHandle)
+            {
+                if (wHandle != parentWindowHandle)
+                {
+                    driver.SwitchTo().Window(wHandle);
+                }
+            }
+
+        }
         public static void Dropdown_Handle_With_Value(IWebElement element, string value)
         {
-            SelectElement selectElement = new SelectElement(element);
+           SelectElement selectElement = new SelectElement(element);
             selectElement.SelectByValue(value);
         }
-        public static void DropwoenHandle_with_text(IWebElement element, string text)
+
+        public static void Dropdown_Handle_With_Index(IWebElement element, string index)
         {
-            SelectElement selectElementtext = new SelectElement(element);
-            selectElementtext.SelectByText(text);
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByValue(index);
         }
-        public static void DropDownHandle_with_index(IWebElement element, int index)
+
+        public static void Dropdown_Handle_With_Text(IWebElement element, string text)
         {
-            SelectElement selectelementIndex = new SelectElement(element);
-            selectelementIndex.SelectByIndex(index);
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByValue(text);
+        }
+
+        public static void Action_For_Double_Click(IWebElement element)
+        {
+            Actions action = new Actions(driver);
+            action.DoubleClick(element).Build().Perform();
         }
     }
+
 
     public class Wait : WebdriverSession
     {
@@ -180,7 +241,7 @@
 
         public static void WaitTillPageLoad()
         {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            WebDriverWait webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
             try
             {
@@ -204,10 +265,15 @@
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
         }
 
-        public static void ElementIsVisible(By locator, int second)
+        public static IWebElement ElementIsVisible(By locator, int second)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            return wait.Until(ExpectedConditions.ElementIsVisible(locator));
+        }
+        public static IWebElement ElementIsClickable(IWebElement element, int second)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+            return wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
     }
 }

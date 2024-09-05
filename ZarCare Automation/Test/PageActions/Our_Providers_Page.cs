@@ -91,5 +91,11 @@
             Generic_Utils.GetScreenshot("Navigated to Register page");
 
         }
+        public static void Get_and_Validate_OurProvider_Title(string Original_Title)
+        {
+            string Capture_Title = Generic_Utils.getTitle();
+            Assert.That(Original_Title, Is.EqualTo(Capture_Title));
+        }
+
     }
 }

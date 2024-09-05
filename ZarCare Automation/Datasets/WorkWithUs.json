@@ -1,8 +1,10 @@
-{
-  "First_Name": "Automation",
-  "Last_Name": "Tester",
-  "Cellphone_Number": "768009231",
-  "Email_Address": "Autotest32@gmail.com",
+﻿{
+  "First_Name": "Test",
+  "Sur_Name": "Data",
+  "Cellphone_Number": "402402402",
+  "Email": "publicbook18@gmail.com",
+  "Profession_Description": "15",
+  "Province": "Limpopo",
   "City": "Cape Town",
-  "Expected_SuccMessage": "Thank you. We have received your request to work with us. We shall get back to you soon."
+  "Service_Area": "Online"
 }
