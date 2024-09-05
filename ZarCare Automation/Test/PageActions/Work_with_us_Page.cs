@@ -1,69 +1,76 @@
-﻿using AventStack.ExtentReports.Gherkin.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZarCare_Automation.Test.PageActions
+﻿namespace ZarCare_Automation.Test.PageActions
 {
-    public class Work_with_us_Pagecs : WebdriverSession
+    public class Work_With_Us_Page : WebdriverSession
     {
-        public static Work_with_Us_pageLocators WorkWithUs = new Work_with_Us_pageLocators();
+        public static Work_With_Us_Locators Work_With_Us = new Work_With_Us_Locators();
 
-        public static void Validate_Work_with_Us()
+        public static void Validate_WorkWithUs()
         {
             Wait.WaitTillPageLoad();
-            Generic_Utils.IsElementDisplayed(WorkWithUs.By_PageHeader_element);
-
-            Reports.childLog.Log(Status.Info, "Work with us page displayed");
-            Generic_Utils.GetScreenshot("Work with us page screenshot");
+            Generic_Utils.IsElementDisplayed(Work_With_Us.By_Work_With_Us_Text);
+            
+            Reports.childLog.Log(Status.Info, "WorkWithUs Page is displayed");
+            Generic_Utils.GetScreenshot("WorkWithUs page screenshot");
         }
 
-        public static void WorkWithUsFormFill(string FirstName,string LastName, string CellPhoneNumber,string EmailAddress,string CityName, string ExpeSuccMesssage)
+        public static void Get_and_Validate_WorkWithUs_Text(string Original_Text)
         {
-            Wait.WaitTillPageLoad();
-            Generic_Utils.IsElementDisplayed(WorkWithUs.By_PageHeader_element);
-
-            Reports.childLog.Log(Status.Info, "Work with us form displayed");
-            Generic_Utils.GetScreenshot("Work with us form screenshot");
-
-            WorkWithUs.Web_FirstName_Ele.SendKeys(FirstName);
-
-            WorkWithUs.Web_Surname_ele.SendKeys(LastName);
-
-            WorkWithUs.Web_CellPhone_Ele.SendKeys(CellPhoneNumber);
-
-           WorkWithUs.Web_EmailFiled_ele.SendKeys(EmailAddress);
-
-            WorkWithUs.Web_CityName_ele.SendKeys(CityName);
-
-            Generic_Utils.DropwoenHandle_with_text(WorkWithUs.Web_SpecilizationDrpDown_ele, "Dentist");
-
-            Thread.Sleep(1000);
-
-            Generic_Utils.Dropdown_Handle_With_Value(WorkWithUs.Web_provinceDrpDown_ele, "Western Cape");
-
-            Thread.Sleep(1000);
-
-            Generic_Utils.DropDownHandle_with_index(WorkWithUs.Web_CurrentLocation_ele, 1);
-
-            Thread.Sleep(1000);
-
-            WorkWithUs.Web_SubBtn_ele.Click();
-            
-
-            Wait.WaitTillPageLoad();
-            Wait.ElementIsVisible(WorkWithUs.By_workIwthUsFormSuccessMessage, 4);
-
-            string ActualSuccMessage= WorkWithUs.Web_WorkIwthUsFormSuccessMessage_ele.Text;
-
-            Assert.AreEqual(ExpeSuccMesssage, ActualSuccMessage);
-
-            
-            Reports.childLog.Log(Status.Info, "Work with us form displayed");
-            Generic_Utils.GetScreenshot("Work with us form fill filled");
+            string Capture_Title = Generic_Utils.getText(Work_With_Us.Web_Work_With_Us_Text);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title));
         }
 
+
+        public static void NavigateToSubmitButton()
+        {
+            Work_With_Us.Web_Submit_Button.Click();
+        }
+
+        public static void Get_and_Validate_FirstName_Error(string FirstNameError)
+        {
+            string Capture_Title1 = Generic_Utils.getText(Work_With_Us.Web_FirstName_Error);
+            Assert.That(FirstNameError, Is.EqualTo(Capture_Title1));
+        }
+
+        public static void Get_and_Validate_SurName_Error(string Original_Text)
+        {
+            string Capture_Title2 = Generic_Utils.getText(Work_With_Us.Web_SurName_Error);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title2));
+        }
+
+        public static void Get_and_Validate_Web_CellPhone_Error(string Original_Text)
+        {
+            string Capture_Title3 = Generic_Utils.getText(Work_With_Us.Web_CellPhone_Error);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title3));
+        }
+
+        public static void Get_and_Validate_Email_Error(string Original_Text)
+        {
+            string Capture_Title4 = Generic_Utils.getText(Work_With_Us.Web_Email_Error);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title4));
+        }
+
+        public static void Get_and_Validate_Profession_Error(string Original_Text)
+        {
+            string Capture_Title5 = Generic_Utils.getText(Work_With_Us.Web_Profession_Error);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title5));
+        }
+
+        public static void Get_and_Validate_Province_Error(string Original_Text)
+        {
+            string Capture_Title6 = Generic_Utils.getText(Work_With_Us.Web_Province_Error);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title6));
+        }
+
+        public static void Get_and_Validate_City_Error(string Original_Text)
+        {
+            string Capture_Title7 = Generic_Utils.getText(Work_With_Us.Web_City_Error);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title7));
+        }
+
+        public static void Get_and_Validate_Current_WorkPlace_Error(string Original_Text)
+        {
+            string Capture_Title8 = Generic_Utils.getText(Work_With_Us.Web_Current_WorkPlace_Error);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Title8));
+        }
     }
 }
