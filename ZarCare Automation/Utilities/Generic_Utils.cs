@@ -33,6 +33,7 @@ namespace ZarCare_Automation.Utilities
             string url = Json_Reader.ReadJsonText(Generic_Utils.getDataPath("TestResources") + "\\URL.json")[environment][urlType].ToString();
             Generic_Utils.NavigateToURL(url);
             Wait.implicitWait(3);
+
         }
 
         public static string getDataPath(string foldername)
@@ -223,6 +224,15 @@ namespace ZarCare_Automation.Utilities
         {
             Actions action = new Actions(driver);
             action.DoubleClick(element).Build().Perform();
+        public static string getTitle()
+        {
+            string Title = driver.Title;
+            return Title;
+        }
+
+        public static string getText(IWebElement element)
+        {
+            return element.Text;
         }
     }
 
@@ -275,5 +285,7 @@ namespace ZarCare_Automation.Utilities
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
             return wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
+
+       
     }
 }

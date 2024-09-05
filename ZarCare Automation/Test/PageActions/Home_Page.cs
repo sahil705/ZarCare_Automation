@@ -96,6 +96,44 @@ namespace ZarCare_Automation.Test.PageActions
         public static void NavigateToWorkWithUsPage()
         {
             HomePage.Web_WorkWithUs_Text.Click();
+        public static void NavigateToAboutUs()
+        {
+            HomePage.Web_AboutUs_Link.Click();
+        }
+
+        public static void NavigateToFaq()
+        {
+            HomePage.Web_Faq_Link.Click();
+        }
+
+        public static void NavigateToSpecialtyCard()
+        {
+            HomePage.Web_Speciality_Card.Click();
+        }
+
+        public static void NavigateToWorkWithUs()
+        {
+            Wait.GenericWait(2000);
+            HomePage.Web_WorkWithUs_Link.Click();
+        }
+
+        public static void NavigateToOurProviders()
+        {
+            HomePage.Web_OurProviders_Link.Click();
+        }
+
+        public static void NavigateToConnectNowPopup()
+        {
+            Wait.GenericWait(6000);
+            Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
+            HomePage.Web_ConnectNow_Popoup.Click();
+        }
+
+        public static void NavigateToConnectNowPopupClose()
+        {
+            Wait.GenericWait(6000);
+            Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
+            HomePage.Web_ConnectNow_Popup_Close.Click();
         }
     }
 }

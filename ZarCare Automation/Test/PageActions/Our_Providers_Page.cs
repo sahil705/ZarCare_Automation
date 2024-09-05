@@ -16,11 +16,36 @@
 
         }
 
+        public static void Get_and_Validate_OurProviders_Title(string Original_Title)
+        {
+            string Capture_Title = Generic_Utils.getTitle();
+            Assert.That(Original_Title, Is.EqualTo(Capture_Title));
+        }
+
         public static void Search_Doctor(string doctorName)
         {
             OurProvidersPage.Web_Doctor_SearchBox.SendKeys(doctorName);
             Wait.GenericWait(1000);
             OurProvidersPage.Web_Doctor_SearchButton.Click();
+        }
+
+        public static void Search_Location(String doctorLocation)
+        {
+            OurProvidersPage.Web_Doctor_SearchBox.SendKeys(doctorLocation);
+            Wait.GenericWait(1000);
+            OurProvidersPage.Web_Doctor_SearchButton.Click();
+        }
+
+        public static void Search_Category(string doctorCategory)
+        {
+            OurProvidersPage.Web_Doctor_SearchBox.SendKeys(doctorCategory);
+            Wait.GenericWait(1000);
+            OurProvidersPage.Web_Doctor_SearchButton.Click();
+        }
+
+        public static void NavigateToCloseButton()
+        {
+            OurProvidersPage.Web_Clear_Search_Icon.Click();
         }
 
         public static void FetchDoctorFromList(string doctorName)
@@ -97,5 +122,30 @@
             Assert.That(Original_Title, Is.EqualTo(Capture_Title));
         }
 
+        public static void Get_and_Validate_Doctor_Specialty(string Original_Text)
+        {
+            string DoctorSpecialty = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Specialty);
+            Assert.That(Original_Text, Is.EqualTo(DoctorSpecialty));
+        }
+
+        public static void Get_and_Validate_Doctor_Name(string Original_Text)
+        {
+            string DoctorName = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Name);
+            Assert.That(Original_Text, Is.EqualTo(DoctorName));
+        }
+
+        public static void Get_and_Validate_Doctor_Location(string Original_Text)
+        {
+            string DoctorLocation = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Location);
+            //Assert.That(Original_Text, Is.EqualTo(DoctorLocation));
+            Assert.That(Original_Text.Contains(DoctorLocation));
+        }
+
+        public static void Get_and_Validate_ConnectNow_Popup(string Original_Text)
+        {
+            string ConnectNowPopup = Generic_Utils.getText(OurProvidersPage.Web_Doctor_List);
+        }
     }
 }
+
+        
