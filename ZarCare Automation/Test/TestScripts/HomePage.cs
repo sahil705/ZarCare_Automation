@@ -1,5 +1,4 @@
-﻿namespace TestScripts
-
+﻿namespace ZarCare_Automation.Test.TestScripts
 {
     public class HomePage:Base
     {

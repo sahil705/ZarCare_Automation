@@ -1,4 +1,4 @@
-namespace TestScripts
+namespace ZarCare_Automation.Test.TestScripts
 {
     public class BookAppointments : Base
     {

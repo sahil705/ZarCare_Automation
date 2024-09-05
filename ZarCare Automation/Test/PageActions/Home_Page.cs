@@ -12,7 +12,7 @@ namespace ZarCare_Automation.Test.PageActions
 
         public static ContactUsPageLocatores ContactUs = new ContactUsPageLocatores();
 
-        public static Our_Providers_Page_Locators OurProvPage= new Our_Providers_Page_Locators();
+        public static Our_Providers_Page_Locators OurProvPage = new Our_Providers_Page_Locators();
 
         public static void Validate_HomePage()
         {
@@ -32,32 +32,32 @@ namespace ZarCare_Automation.Test.PageActions
         {
             HomePage.Web_Work_with_Us_Btn.Click();
 
-            
+
         }
 
         public static void ConstactUsLinkClick()
         {
             Generic_Utils.ScrollToBottom();
-               
-             HomePage.Web_Contact_us_link.Click();
-  
+
+            HomePage.Web_Contact_us_link.Click();
+
         }
 
         public static void LoginBtnClick()
         {
             HomePage.Web_login_Btn.Click();
 
-            var Windows= driver.WindowHandles;
+            var Windows = driver.WindowHandles;
 
             driver.SwitchTo().Window(Windows[1]);
-            
+
         }
 
-        public static void EnterNewslatterEmail(string NewsLatterEmail) 
+        public static void EnterNewslatterEmail(string NewsLatterEmail)
         {
             Generic_Utils.ScrollToElement(HomePage.Web_NewLatterEmailEle);
 
-            HomePage.Web_NewLatterEmailEle.SendKeys(NewsLatterEmail);  
+            HomePage.Web_NewLatterEmailEle.SendKeys(NewsLatterEmail);
 
             HomePage.Web_NewsLatterSubBtnEle.Click();
             Thread.Sleep(1000);
@@ -65,7 +65,7 @@ namespace ZarCare_Automation.Test.PageActions
         }
         public static void Validate_NewLatterEmailMessage(string ActualMessage)
         {
-           
+
 
             string ExpectedMessage = driver.FindElement(HomePage.by_NewsEmailSuccessMessage).Text;
 
@@ -80,60 +80,61 @@ namespace ZarCare_Automation.Test.PageActions
 
             Wait.WaitTillPageLoad();
             Generic_Utils.IsElementDisplayed(OurProvPage.By_SearchHeader);
-
+        }
 
         public static void NavigateToOurProvider()
         {
-            HomePage.Web_OurProvider_Text.Click();  
-            
+            HomePage.Web_OurProvider_Text.Click();
+
         }
 
-       public static void NavigateToLoginPage()
+        public static void NavigateToLoginPage()
         {
-            HomePage.Web_LoginSignUp_Button.Click();    
+            HomePage.Web_LoginSignUp_Button.Click();
         }
 
         public static void NavigateToWorkWithUsPage()
         {
             HomePage.Web_WorkWithUs_Text.Click();
-        public static void NavigateToAboutUs()
-        {
-            HomePage.Web_AboutUs_Link.Click();
-        }
+            public static void NavigateToAboutUs()
+            {
+                HomePage.Web_AboutUs_Link.Click();
+            }
 
-        public static void NavigateToFaq()
-        {
-            HomePage.Web_Faq_Link.Click();
-        }
+            public static void NavigateToFaq()
+            {
+                HomePage.Web_Faq_Link.Click();
+            }
 
-        public static void NavigateToSpecialtyCard()
-        {
-            HomePage.Web_Speciality_Card.Click();
-        }
+            public static void NavigateToSpecialtyCard()
+            {
+                HomePage.Web_Speciality_Card.Click();
+            }
 
-        public static void NavigateToWorkWithUs()
-        {
-            Wait.GenericWait(2000);
-            HomePage.Web_WorkWithUs_Link.Click();
-        }
+            public static void NavigateToWorkWithUs()
+            {
+                Wait.GenericWait(2000);
+                HomePage.Web_WorkWithUs_Link.Click();
+            }
 
-        public static void NavigateToOurProviders()
-        {
-            HomePage.Web_OurProviders_Link.Click();
-        }
+            public static void NavigateToOurProviders()
+            {
+                HomePage.Web_OurProviders_Link.Click();
+            }
 
-        public static void NavigateToConnectNowPopup()
-        {
-            Wait.GenericWait(6000);
-            Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
-            HomePage.Web_ConnectNow_Popoup.Click();
-        }
+            public static void NavigateToConnectNowPopup()
+            {
+                Wait.GenericWait(6000);
+                Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
+                HomePage.Web_ConnectNow_Popoup.Click();
+            }
 
-        public static void NavigateToConnectNowPopupClose()
-        {
-            Wait.GenericWait(6000);
-            Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
-            HomePage.Web_ConnectNow_Popup_Close.Click();
+            public static void NavigateToConnectNowPopupClose()
+            {
+                Wait.GenericWait(6000);
+                Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
+                HomePage.Web_ConnectNow_Popup_Close.Click();
+            }
         }
     }
 }
