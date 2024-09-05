@@ -42,13 +42,15 @@
         {
            Wait.WaitTillPageLoad();
             Generic_Utils.IsElementDisplayed(OurProvidersPage.By_SearchHeader);
-
+            //Generic_Utils.ScrollToMidOfPage();
+             Generic_Utils.ScrollToBottom();  
+            //Generic_Utils.ScrollToElement(OurProvidersPage.Web_DrJashan_kumar_Ele);
 
             int DrList = driver.FindElements(OurProvidersPage.By_Doctor_List).Count;
 
             for (int i = 0; i < DrList; i++)
             {
-                string dr_name = driver.FindElements(OurProvidersPage.By_Doctor_Name)[i].Text;
+                string dr_name = (OurProvidersPage.Web_Doctor_Name)[i].Text;
                 
                 if (dr_name.Contains(Doctorsname))
                 {
@@ -59,35 +61,34 @@
                 }
             }
 
-            Reports.childLog.Log(Status.Info, "Our Provider Page displayed");
-            Generic_Utils.GetScreenshot("Our Provider Page screenshot");
+            Reports.childLog.Log(Status.Info, "doctor Detail Page displayed");
+            Generic_Utils.GetScreenshot("doctor Detail Page screenshot");
 
            
         }
-        public static void BookOptClickAndSelectSlotNavigateToLoginPage(string appointm_Time)
+        public static void BookOptClickAndSelectSlotNavigateToLoginPage(string appointment_Time)
         {
-
-            int slot_count = driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday).Count;
+            
+            int slot_count = DoctorProfilePage.Web_BookingSlot_Currentday.Count;
 
             for (int a = 0; a < slot_count; a++)
             {
-                string slot_time = driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday)[a].Text;
+                string slot_time = DoctorProfilePage.Web_BookingSlot_Currentday[a].Text;
 
-                if (slot_time.Equals(appointm_Time))
+                if (slot_time.Equals(appointment_Time))
                 {
-                    driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday)[a].Click();
+                    DoctorProfilePage.Web_BookingSlot_Currentday[a].Click();
                     break;
                 }
+               
             }
+
+            Generic_Utils.GetScreenshot("Appointment Date and Time Selected ");
 
             Wait.WaitTillPageLoad();
             Generic_Utils.IsElementDisplayed(LoginPage.By_LogPageheaderText);
-
-            Generic_Utils.GetScreenshot("Appointment Date and Time Selected");
-
-
-
-
+            Reports.childLog.Log(Status.Info, "Register Page displayed");
+            Generic_Utils.GetScreenshot("Navigated to Register page");
 
         }
     }

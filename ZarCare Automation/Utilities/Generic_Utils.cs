@@ -138,6 +138,11 @@
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView()", element);
         }
+        public static void ScrollToMidOfPage()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight / 2);");
+        }
 
         public static void GetCurrentDate()
         {

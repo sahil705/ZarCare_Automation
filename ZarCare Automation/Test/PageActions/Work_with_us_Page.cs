@@ -54,7 +54,7 @@ namespace ZarCare_Automation.Test.PageActions
             
 
             Wait.WaitTillPageLoad();
-            Wait.ElementIsVisible(WorkWithUs.By_workIwthUsFormSuccessMessage, 2);
+            Wait.ElementIsVisible(WorkWithUs.By_workIwthUsFormSuccessMessage, 4);
 
             string ActualSuccMessage= WorkWithUs.Web_WorkIwthUsFormSuccessMessage_ele.Text;
 
