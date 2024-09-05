@@ -12,7 +12,6 @@ namespace ZarCare_Automation.Test.TestScripts
         //public static Blog_Page_Locators Test_Locator = new Blog_Page_Locators();
 
         [Test]
-
         public void Blog_Page1()
         {
             var json = Json_Reader.GetDataFromJson(classname);
