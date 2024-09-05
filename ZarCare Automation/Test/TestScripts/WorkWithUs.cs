@@ -1,8 +1,5 @@
 ﻿namespace ZarCare_Automation.Test.TestScripts
 {
-    public class WorkWithUs:Base
-﻿namespace TestScripts
-{
     public class WorkWithUs : Base
     {
         public string classname = "WorkWithUs";
