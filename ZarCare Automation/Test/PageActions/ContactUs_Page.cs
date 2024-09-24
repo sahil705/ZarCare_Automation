@@ -8,11 +8,9 @@ namespace ZarCare_Automation.Test.PageActions
 {
     public class ContactUs_Page : WebdriverSession
     {
-       
-    
         public static ContactUsPageLocatores contact_Us= new ContactUsPageLocatores();
 
-        public static void Validate_contact_Us_link()
+        public static void Validate_Contact_Us_Page()
         {
             Wait.WaitTillPageLoad();
             Generic_Utils.IsElementDisplayed(contact_Us.By_PageHeaderElement);
@@ -20,7 +18,5 @@ namespace ZarCare_Automation.Test.PageActions
             Reports.childLog.Log(Status.Info, "Contact us page displayed");
             Generic_Utils.GetScreenshot("Contact us page screenshot");
         }
-
-
     }
 }

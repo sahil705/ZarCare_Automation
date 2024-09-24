@@ -1,4 +1,13 @@
 {
-  "doc_category": "Physiotherapist",
-  "OriginalCategoryTitle": "Physiotherapist list is not displayed"
+  "Doctor_Name": "Jashan Kumar",
+  "Doctor_Location": "Helderberg",
+  "Get_Doctor_Location": "Capetown",
+  "Doctor_Specialty": "General Practitioner",
+  "Slot_Rate": "100",
+  "Slot_Time": "21-00",
+  "Slot_Date": "05-09-2024",
+  "doc_category": "Dermatologist",
+  "Doctor_Top_Category": "Alternative Healer",
+  "OriginalCategoryTitle": "Dermatologist"
+
 }

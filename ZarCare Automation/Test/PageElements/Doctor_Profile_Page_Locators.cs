@@ -15,7 +15,6 @@
         public IWebElement Web_BookingDate_ForwardButton => driver.FindElement(By_BookingDate_ForwardButton);
 
         public By By_BookingSlot_Currentday = By.XPath("//div[@class='owl-item active'] //div[@class='c-day-session-slot-blue']");
-
         public IList<IWebElement> Web_BookingSlot_Currentday => driver.FindElements(By_BookingSlot_Currentday);
 
 

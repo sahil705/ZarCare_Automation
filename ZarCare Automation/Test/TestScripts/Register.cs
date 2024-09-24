@@ -1,4 +1,4 @@
-﻿namespace ZarCare_Automation.Test.TestScripts
+﻿namespace TestScripts
 {
     public class Register:Base
     {

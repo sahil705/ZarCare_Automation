@@ -17,5 +17,10 @@
         {
             PatientProfilePage.Web_Find_Provider_Link.Click();
         }
+
+        public static void NavigateToActiveAppointment()
+        {
+            PatientProfilePage.Web_Active_Appointment_View_All_Link.Click();    
+        }
     }
 }

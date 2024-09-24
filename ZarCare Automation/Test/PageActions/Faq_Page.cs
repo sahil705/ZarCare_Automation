@@ -7,7 +7,6 @@
         public static void Validate_Faq()
         {
             Wait.WaitTillPageLoad();
-
             Generic_Utils.IsElementDisplayed(Faq.By_Faq_Text);
 
             Reports.childLog.Log(Status.Info, "Faq page is displayed");

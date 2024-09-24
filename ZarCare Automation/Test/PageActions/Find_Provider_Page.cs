@@ -1,6 +1,4 @@
-﻿using TestScripts;
-
-namespace ZarCare_Automation.Test.PageActions
+﻿namespace ZarCare_Automation.Test.PageActions
 {
     public class Find_Provider_Page:WebdriverSession
     {

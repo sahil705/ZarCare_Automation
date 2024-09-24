@@ -1,17 +1,9 @@
-﻿using AngleSharp.Dom;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Linq;
-
-namespace ZarCare_Automation.Test.PageActions
+﻿namespace ZarCare_Automation.Test.PageActions
 {
     public class Home_Page : WebdriverSession
     {
         public static Home_Page_Locators HomePage = new Home_Page_Locators();
-
-        public static Work_with_Us_pageLocators WorkWith_us = new Work_with_Us_pageLocators();
-
         public static ContactUsPageLocatores ContactUs = new ContactUsPageLocatores();
-
         public static Our_Providers_Page_Locators OurProvPage = new Our_Providers_Page_Locators();
 
         public static void Validate_HomePage()
@@ -28,59 +20,30 @@ namespace ZarCare_Automation.Test.PageActions
             HomePage.Web_ConsultNow_Button.Click();
         }
 
-        public static void ValidateWork_with_us_Click()
-        {
-            HomePage.Web_Work_with_Us_Btn.Click();
-
-
-        }
-
-        public static void ConstactUsLinkClick()
+        public static void NavigateToContactUs()
         {
             Generic_Utils.ScrollToBottom();
-
             HomePage.Web_Contact_us_link.Click();
-
-        }
-
-        public static void LoginBtnClick()
-        {
-            HomePage.Web_login_Btn.Click();
-
-            var Windows = driver.WindowHandles;
-
-            driver.SwitchTo().Window(Windows[1]);
 
         }
 
         public static void EnterNewslatterEmail(string NewsLatterEmail)
         {
             Generic_Utils.ScrollToElement(HomePage.Web_NewLatterEmailEle);
-
             HomePage.Web_NewLatterEmailEle.SendKeys(NewsLatterEmail);
-
             HomePage.Web_NewsLatterSubBtnEle.Click();
-            Thread.Sleep(1000);
-
+       
         }
         public static void Validate_NewLatterEmailMessage(string ActualMessage)
         {
-
-
-            string ExpectedMessage = driver.FindElement(HomePage.by_NewsEmailSuccessMessage).Text;
-
-            Assert.AreEqual(ActualMessage, ExpectedMessage);
+            Wait.GenericWait(2000);
+            string ExpectedMessage = Generic_Utils.getText(HomePage.Web_newsEmailSucMessageEle);
+            Assert.That(ExpectedMessage, Is.EqualTo(ActualMessage));
             Reports.childLog.Log(Status.Info, "success message displayed");
             Generic_Utils.GetScreenshot("Success Message screenshot");
 
         }
-        public static void OurProviderBtnClick()
-        {
-            HomePage.Web_Our_providerBtn.Click();
-
-            Wait.WaitTillPageLoad();
-            Generic_Utils.IsElementDisplayed(OurProvPage.By_SearchHeader);
-        }
+        
 
         public static void NavigateToOurProvider()
         {
@@ -93,68 +56,54 @@ namespace ZarCare_Automation.Test.PageActions
             HomePage.Web_LoginSignUp_Button.Click();
         }
 
-        public static void NavigateToWorkWithUsPage()
+       
+        public static void NavigateToAboutUs()
         {
-            HomePage.Web_WorkWithUs_Text.Click();
-            public static void NavigateToAboutUs()
-            {
-                HomePage.Web_AboutUs_Link.Click();
-            }
+            HomePage.Web_AboutUs_Link.Click();
+        }
 
-            public static void NavigateToFaq()
-            {
-                HomePage.Web_Faq_Link.Click();
-            }
+        public static void NavigateToFaq()
+        {
+             HomePage.Web_Faq_Link.Click();
+        }
 
-            public static void NavigateToSpecialtyCard()
-            {
-                HomePage.Web_Speciality_Card.Click();
-            }
+        public static void ClickToSpecialtyCard()
+        {
+             HomePage.Web_Speciality_Card.Click();
+        }
 
-            public static void NavigateToWorkWithUs()
-            {
-                Wait.GenericWait(2000);
-                HomePage.Web_WorkWithUs_Link.Click();
-            }
+        public static void NavigateToConnectNowPopup()
+        {
+            Wait.GenericWait(2000); 
+            Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
+            HomePage.Web_ConnectNow_Popoup.Click();
+        }
 
-            public static void NavigateToOurProviders()
-            {
-                HomePage.Web_OurProviders_Link.Click();
-            }
-
-            public static void NavigateToConnectNowPopup()
-            {
-                Wait.GenericWait(6000);
-                Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
-                HomePage.Web_ConnectNow_Popoup.Click();
-            }
-
-            public static void NavigateToConnectNowPopupClose()
-            {
-                Wait.GenericWait(6000);
-                Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
-                HomePage.Web_ConnectNow_Popup_Close.Click();
-            }
-        //VideoConsultPage Actions
+        public static void NavigateToConnectNowPopupClose()
+        {              
+              Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
+              HomePage.Web_ConnectNow_Popup_Close.Click();
+        }
+       
         public static void NavigateToVideoConsultPage()
         {
             HomePage.Video_Consult_Link.Click();
         }
 
-        //SubscribeToNewletter Actions
+        
 
         public static void ValidateNewsletterSection()
         {
-            Wait.WaitTillPageLoad();
-            Generic_Utils.ScrollToBottom(); // How to use scroll to element here 
+            
+            Generic_Utils.ScrollToBottom(); 
             Generic_Utils.IsElementDisplayed(HomePage.By_SubscribeToNewsletter_h2);
 
             Reports.childLog.Log(Status.Info, "Newsletter Section is displayed");
             Generic_Utils.GetScreenshot("Newsletter Section screenshot");
         }
-        public static void EnterEmailToSubscibe()
+        public static void Enter_InvalidEmail_To_Subscribe_Textbox(string invalidEmail)
         {
-            HomePage.Web_EmailInputBox.SendKeys("myemail@....");
+            HomePage.Web_EmailInputBox.SendKeys(invalidEmail);
 
             Reports.childLog.Log(Status.Info, "Entering the Invalid Email Id");
             Generic_Utils.GetScreenshot("Invalid Email screenshot");
@@ -174,24 +123,17 @@ namespace ZarCare_Automation.Test.PageActions
             Generic_Utils.GetScreenshot("Error message screenshot");
         }
 
-        //BlogPageVerification
+        
         public static void NavigateToBlogPage()
         {
             HomePage.Web_BlogPage_Link.Click();
         }
-
-        //WorkWithUs
 
         public static void NavigateToWorkWithUsPage()
         {
             HomePage.Web_WorkWithUs.Click();
         }
 
-        //Our Providers Page
-
-        public static void NavigateToOurProvidersPage()
-        {
-            HomePage.Web_OurProvidersPage.Click();
-        }
+      
     }
 }

@@ -10,8 +10,10 @@ namespace ZarCare_Automation.Utilities
             switch (browser)
             {
                 case "chrome":
-
-                    driver = new ChromeDriver();
+                    ChromeOptions options = new ChromeOptions();
+                    options.AddUserProfilePreference("profile.default_content_setting_values.media_stream_mic", 1); 
+                    options.AddUserProfilePreference("profile.default_content_setting_values.media_stream_camera", 1);
+                    driver = new ChromeDriver(options);
                     break;
 
                 case "firefox":
@@ -141,6 +143,8 @@ namespace ZarCare_Automation.Utilities
                 Console.WriteLine("title not found");
             }
             return driver.Title;
+        }
+
         public static void RefreshPage(string url)
         {
             driver.Navigate().Refresh();
@@ -192,26 +196,17 @@ namespace ZarCare_Automation.Utilities
             DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss").Trim();
         }
 
+
         public static void WindowHandle()
-        public static string getTitle()
-        {
-            return driver.Title;
-        }
-
-        public static string getText(IWebElement element)
-        {
-            return element.Text;
-        }
-
-        public static void winHandle()
         {
             var current_window = driver.CurrentWindowHandle;
             var all_windows = driver.WindowHandles;
-            foreach (string windows in all_windows)
+            foreach (string window in all_windows)
             {
-                if (windows != current_window)
+                if (window != current_window)
                 {
-                    driver.SwitchTo().Window(current_window);
+                    driver.SwitchTo().Window(window);
+                    break;
                 }
             }
         }
@@ -221,45 +216,7 @@ namespace ZarCare_Automation.Utilities
             string url = driver.Url;
         }
 
-        public static void Dropdown_Handle_With_Value(IWebElement element, string value)
-        {
-            SelectElement selectElement = new SelectElement(element);
-            selectElement.SelectByValue(value);
-        }
-
-        public static void Dropdown_Handle_With_Index(IWebElement element, int value)
-        {
-            SelectElement selectElement = new SelectElement(element);
-            selectElement.SelectByIndex(6);
-        }
-
-        public static void Dropdown_Handle_With_Text(IWebElement element, string value)
-        {
-            SelectElement selectElement = new SelectElement(element);
-            selectElement.SelectByText(value);
-        }
-
-        protected static bool IsElementDisplayed(object by_Category_Title)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class Wait : WebdriverSession
-    {
-        public static void GenericWait(int milliseconds)
-        {
-            string parentWindowHandle = driver.CurrentWindowHandle;
-            IList<string> allWindowHandle = driver.WindowHandles;
-            foreach (string wHandle in allWindowHandle)
-            {
-                if (wHandle != parentWindowHandle)
-                {
-                    driver.SwitchTo().Window(wHandle);
-                }
-            }
-
-        }
+  
         public static void Dropdown_Handle_With_Value(IWebElement element, string value)
         {
             SelectElement selectElement = new SelectElement(element);
@@ -282,16 +239,19 @@ namespace ZarCare_Automation.Utilities
         {
             Actions action = new Actions(driver);
             action.DoubleClick(element).Build().Perform();
-            public static string getTitle()
-            {
-                string Title = driver.Title;
-                return Title;
-            }
+           
+        }
+        public static void Action_For_Click(IWebElement element)
+        {
+            Actions action = new Actions(driver);
+            action.MoveToElement(element).Click().Build().Perform();
 
-            public static string getText(IWebElement element)
-            {
-                return element.Text;
-            }
+        }
+
+        public static int ParseSlotCount(string slotCountText)
+        {
+            string[] splittedText = slotCountText.Split(" ");
+            return int.Parse(splittedText[0].Trim());
         }
 
 
@@ -344,7 +304,15 @@ namespace ZarCare_Automation.Utilities
                 return wait.Until(ExpectedConditions.ElementToBeClickable(element));
             }
 
+            public static void ElementsAreClickable(IList<IWebElement> elements, int timeoutInSeconds)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
 
+                foreach (IWebElement element in elements)
+                {
+                    wait.Until(ExpectedConditions.ElementToBeClickable(element));
+                }
+            }
         }
     }
 }

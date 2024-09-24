@@ -20,7 +20,7 @@
         public By By_NewsLatterEmailField = By.XPath("//input[@id='emailNewsLetter']");
         public IWebElement Web_NewLatterEmailEle => driver.FindElement(By_NewsLatterEmailField);
 
-        public By by_NewsEmailSuccessMessage = By.XPath("//div[@class='alert-successnewsletter']");
+        public By by_NewsEmailSuccessMessage = By.CssSelector(".alert-successnewsletter");
         public IWebElement Web_newsEmailSucMessageEle=> driver.FindElement(by_NewsEmailSuccessMessage);
 
         public By by_NewLatterSubsBtn = By.XPath("//button[@class='newsletter-button']");
@@ -31,6 +31,7 @@
 
         public By By_AboutUs_Link = By.LinkText("About Us");        
         public IWebElement Web_AboutUs_Link => driver.FindElement(By_AboutUs_Link);
+
         public By By_OurProvider_Text = By.XPath("(//ul[@class='top-menu']//a)[1]");
         public IWebElement Web_OurProvider_Text => driver.FindElement(By_OurProvider_Text);
 
@@ -39,8 +40,7 @@
 
         public By By_WorkWithUs_Text = By.XPath("(//ul[@class='top-menu']/li)[3]");
         public IWebElement Web_WorkWithUs_Text => driver.FindElement(By_WorkWithUs_Text);
-        public By By_AboutUs_Link = By.LinkText("About Us");
-        public IWebElement Web_AboutUs_Link => driver.FindElement(By_AboutUs_Link);
+       
 
         public By By_Faq_Link = By.LinkText("FAQ");
         public IWebElement Web_Faq_Link => driver.FindElement(By_Faq_Link);

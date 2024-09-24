@@ -20,10 +20,10 @@
         public By By_Symptoms_Dropdown = By.XPath("//div[@class='btn-group']/button");
         public IWebElement Web_Symptoms_Dropdown => driver.FindElement(By_Symptoms_Dropdown);
 
-        public By By_Symptoms_Name = By.CssSelector("input[value='Anxiety']");
+        public By By_Symptoms_Name = By.CssSelector("input[value='Back Pain']");
         public IWebElement Web_Symptoms_Name =>driver.FindElement(By_Symptoms_Name);
 
-        public By By_Public_Checkout_Symptoms_Name = By.CssSelector("input[value='Anxiet']");
+        public By By_Public_Checkout_Symptoms_Name = By.CssSelector("input[value='Back Pain']");
         public IWebElement Web_Public_Checkout_Symptoms_Name => driver.FindElement(By_Public_Checkout_Symptoms_Name);
 
         public By By_Continue_Payment_Button = By.XPath("//div[@class='mt-3 continue_button']/button");

@@ -2,9 +2,9 @@
 {
     public class Properties
     {
-        public static string environment = "dev";
+        public static string environment = "preprod";
         public static string browser = "Chrome";
-        public static string QA = "Abhinav Singh";
-        public static string report = "E:\\ZarCare_Automation\\Reports\\";
+        public static string QA = "Sahil Sharma";
+        public static string report = "C:\\Zarcare_New_Automation_Project\\Report\\";
     }
 }

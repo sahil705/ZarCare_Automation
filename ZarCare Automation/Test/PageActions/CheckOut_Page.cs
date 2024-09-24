@@ -39,7 +39,6 @@
         }
         public static void Public_Booking_Continue_Button()
         {
-            CheckoutPage.Web_Symptoms_Dropdown.Click();
             Generic_Utils.ScrollToBottom();
             Wait.GenericWait(2000);
            
