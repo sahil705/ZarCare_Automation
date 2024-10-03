@@ -20,7 +20,7 @@
         }
 
         [TearDown]
-        public void close()
+        public void quit()
         {
             try
             {
@@ -40,7 +40,7 @@
             }
 
             Wait.GenericWait(3000);
-            Generic_Utils.CloseDriver();
+            Generic_Utils.QuitDriver();
         }
 
         [OneTimeTearDown]

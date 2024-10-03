@@ -1,4 +1,7 @@
-﻿namespace ZarCare_Automation.Utilities
+﻿using AngleSharp.Dom;
+using OpenQA.Selenium.Interactions;
+
+namespace ZarCare_Automation.Utilities
 {
     public class Generic_Utils : WebdriverSession
     {
@@ -7,9 +10,10 @@
             switch (browser)
             {
                 case "chrome":
-
-                    new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                    driver = new ChromeDriver();
+                    ChromeOptions options = new ChromeOptions();
+                    options.AddUserProfilePreference("profile.default_content_setting_values.media_stream_mic", 1); 
+                    options.AddUserProfilePreference("profile.default_content_setting_values.media_stream_camera", 1);
+                    driver = new ChromeDriver(options);
                     break;
 
                 case "firefox":
@@ -31,6 +35,7 @@
             string url = Json_Reader.ReadJsonText(Generic_Utils.getDataPath("TestResources") + "\\URL.json")[environment][urlType].ToString();
             Generic_Utils.NavigateToURL(url);
             Wait.implicitWait(3);
+
         }
 
         public static string getDataPath(string foldername)
@@ -117,6 +122,34 @@
             driver.Close();
         }
 
+        public static string getTitle()
+        {
+            return driver.Title;
+        }
+
+        public static String waitForTitleContains(String titleFraction, int timeOut)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOut));
+
+            try
+            {
+                if (wait.Until(ExpectedConditions.TitleContains(titleFraction)))
+                {
+                    return driver.Title;
+                }
+            }
+            catch (TimeoutException e)
+            {
+                Console.WriteLine("title not found");
+            }
+            return driver.Title;
+        }
+
+        public static void RefreshPage(string url)
+        {
+            driver.Navigate().Refresh();
+        }
+
         public static bool IsElementDisplayed(By locator)
         {
             try
@@ -129,14 +162,33 @@
             }
         }
 
+        public static string getText(IWebElement element)
+        {
+            return element.Text;
+        }
+
+        public static void ScrollPageDown(String height)
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, '" + height + "');");
+        }
+
+        public static void ScrollToMiddle()
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight/2);");
+        }
         public static void ScrollToBottom()
         {
-            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollBy(0, document.body.scrollHeight)");
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
         }
 
         public static void ScrollToElement(IWebElement element)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView()", element);
+        }
+        public static void ScrollToMidOfPage()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight / 2);");
         }
 
         public static void GetCurrentDate()
@@ -144,50 +196,129 @@
             DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss").Trim();
         }
 
-    }
 
-    public class Wait : WebdriverSession
-    {
-        public static void GenericWait(int milliseconds)
+        public static void WindowHandle()
         {
-            Thread.Sleep(milliseconds);
-        }
-
-        public static void implicitWait(int seconds)
-        {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
-        }
-
-        public static void WaitTillPageLoad()
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-
-            try
+            var current_window = driver.CurrentWindowHandle;
+            var all_windows = driver.WindowHandles;
+            foreach (string window in all_windows)
             {
-                webDriverWait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                if (window != current_window)
+                {
+                    driver.SwitchTo().Window(window);
+                    break;
+                }
             }
         }
 
-        public static void WaitForURLMatching(string url)
+        public static void getUrl()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-            wait.Until(ExpectedConditions.UrlMatches(url));
+            string url = driver.Url;
         }
 
-        public static void InvisibilityOfElementLocated(By locator, int second)
+  
+        public static void Dropdown_Handle_With_Value(IWebElement element, string value)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByValue(value);
         }
 
-        public static void ElementIsVisible(By locator, int second)
+        public static void Dropdown_Handle_With_Index(IWebElement element, string index)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
-            wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByValue(index);
+        }
+
+        public static void Dropdown_Handle_With_Text(IWebElement element, string text)
+        {
+            SelectElement selectElement = new SelectElement(element);
+            selectElement.SelectByValue(text);
+        }
+
+        public static void Action_For_Double_Click(IWebElement element)
+        {
+            Actions action = new Actions(driver);
+            action.DoubleClick(element).Build().Perform();
+           
+        }
+        public static void Action_For_Click(IWebElement element)
+        {
+            Actions action = new Actions(driver);
+            action.MoveToElement(element).Click().Build().Perform();
+
+        }
+
+        public static int ParseSlotCount(string slotCountText)
+        {
+            string[] splittedText = slotCountText.Split(" ");
+            return int.Parse(splittedText[0].Trim());
+        }
+
+        public static void NavigateBack()
+        {
+            driver.Navigate().Back();
+            Wait.GenericWait(2000);
+        }
+
+
+        public class Wait : WebdriverSession
+        {
+            public static void GenericWait(int milliseconds)
+            {
+                Thread.Sleep(milliseconds);
+            }
+
+            public static void implicitWait(int seconds)
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
+            }
+
+            public static void WaitTillPageLoad()
+            {
+                WebDriverWait webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+
+                try
+                {
+                    webDriverWait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            public static void WaitForURLMatching(string url)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+                wait.Until(ExpectedConditions.UrlMatches(url));
+            }
+
+            public static void InvisibilityOfElementLocated(By locator, int second)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+            }
+
+            public static IWebElement ElementIsVisible(By locator, int second)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                return wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            }
+            public static IWebElement ElementIsClickable(IWebElement element, int second)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                return wait.Until(ExpectedConditions.ElementToBeClickable(element));
+            }
+
+            public static void ElementsAreClickable(IList<IWebElement> elements, int timeoutInSeconds)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+
+                foreach (IWebElement element in elements)
+                {
+                    wait.Until(ExpectedConditions.ElementToBeClickable(element));
+                }
+            }
         }
     }
 }

@@ -52,5 +52,45 @@
             Generic_Utils.GetScreenshot("Appointment Date and Time Selected");
 
         }
+
+        public static void Verify_Slot_Availability_On_Doctor_Profile(string appointmentDate, string appointmentTime)
+        {
+            //Select Appointment Date
+
+            string Appointment_Currentdate = DoctorProfilePage.Web_BookingDateHeader_CurrentDate.Text;
+
+            if (!Appointment_Currentdate.Equals(appointmentDate))
+            {
+                DoctorProfilePage.Web_BookingDate_ForwardButton.Click();
+                Wait.GenericWait(1000);
+
+                string Appointment_Nextdate = DoctorProfilePage.Web_BookingDateHeader_NextDate.Text;
+
+                while (!Appointment_Nextdate.Equals(appointmentDate))
+                {
+                    DoctorProfilePage.Web_BookingDate_ForwardButton.Click();
+                    Wait.GenericWait(1000);
+                    Appointment_Nextdate = DoctorProfilePage.Web_BookingDateHeader_NextDate.Text;
+                }
+            }
+
+            //Select Appointment Timeslot
+
+            int slot_count = driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday).Count;
+
+            for (int a = 0; a < slot_count; a++)
+            {
+                string slot_time = driver.FindElements(DoctorProfilePage.By_BookingSlot_Currentday)[a].Text;
+
+                if (slot_time.Equals(appointmentTime))
+                {
+                    Console.WriteLine("Slot is present in Doctor Profile page");
+                    break;
+                }
+            }
+
+            Generic_Utils.GetScreenshot("Slot is visible on the Doctor Profile page ");
+
+        }
     }
 }

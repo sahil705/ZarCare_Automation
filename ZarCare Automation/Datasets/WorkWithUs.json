@@ -1,0 +1,23 @@
+﻿{
+  "First_Name": "Test",
+  "Sur_Name": "Data",
+  "Cellphone_Number": "412413414",
+  "Email": "publicbook27@gmail.com",
+  "Profession_Description": "15",
+  "Province": "Limpopo",
+  "City": "Cape Town",
+  "Service_Area": "Online",
+  "Existing_Cell": "405405405",
+  "Existing_Email": "publicbook20@gmail.com",
+  "WorkWithUs_Heading": "Work with us",
+  "FirstName_Error": "First Name is required",
+  "SurName_Error": "Surname is required",
+  "CellPhone_Error": "Enter valid cellphone number",
+  "Email_Error": "Email is required",
+  "Profession_Error": "Profession is required",
+  "Province_Error": "Province is required",
+  "City_Error": "City is required",
+  "WorkPlace_Error": "Current services is required",
+  "Success_Message": "Thank you. We have received your request to work with us. We shall get back to you soon.",
+  "WorkWithUsErrorMessage": "We have already received your request and it is being reviewed. We shall get back to you very soon."
+}
