@@ -20,6 +20,8 @@
 
         public static void NavigateToActiveAppointment()
         {
+            Generic_Utils.ScrollToMiddle();
+            Generic_Utils.ScrollToElement(PatientProfilePage.Web_Active_Appointment_View_All_Link);
             PatientProfilePage.Web_Active_Appointment_View_All_Link.Click();    
         }
     }

@@ -43,7 +43,7 @@
             Generic_Utils.GetScreenshot("Success Message screenshot");
 
         }
-        
+       
 
         public static void NavigateToOurProvider()
         {
@@ -74,7 +74,7 @@
 
         public static void NavigateToConnectNowPopup()
         {
-            Wait.GenericWait(2000); 
+            Wait.ElementIsVisible(HomePage.By_ConnectNow_Popup, 10); 
             Generic_Utils.IsElementDisplayed(HomePage.By_ConnectNow_Popup);
             HomePage.Web_ConnectNow_Popoup.Click();
         }
@@ -89,8 +89,6 @@
         {
             HomePage.Video_Consult_Link.Click();
         }
-
-        
 
         public static void ValidateNewsletterSection()
         {

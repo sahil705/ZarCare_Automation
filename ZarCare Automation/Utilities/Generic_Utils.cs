@@ -254,6 +254,12 @@ namespace ZarCare_Automation.Utilities
             return int.Parse(splittedText[0].Trim());
         }
 
+        public static void NavigateBack()
+        {
+            driver.Navigate().Back();
+            Wait.GenericWait(2000);
+        }
+
 
         public class Wait : WebdriverSession
         {

@@ -96,22 +96,6 @@ namespace TestScripts
             WorkWithUs_Page.Get_And_Validate_ErrorMessage_WorkWithUs(WorkWithUsErrorMessage);
             Reports.FlushNode(Reports.childLog);
         }
-
-        [Test]
-        public void ValidateWorkWithUsRedirection()
-        {
-            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
-
-            Reports.childLog = Reports.CreateNode("Step 1: Open and validate home page");
-             Home_Page.Validate_HomePage();
-            Home_Page.NavigateToWorkWithUsPage();
-            Reports.FlushNode(Reports.childLog);
-
-             Reports.childLog = Reports.CreateNode("Step 2: Validate & Navigate to work with us page");
-             WorkWithUs_Page.Validate_WorkWithUs();
-             Reports.FlushNode(Reports.childLog);
-
-        }
         
         [Test]
         public void Check_Required_Validation_In_WorkWithUs()

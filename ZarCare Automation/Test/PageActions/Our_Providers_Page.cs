@@ -95,43 +95,7 @@ namespace ZarCare_Automation.Test.PageActions
             Generic_Utils.GetScreenshot("doctor Detail Page screenshot");
    
         }
-        /* public static void GetSlotCountAndValidateWithTotalCount(string appointmentDate)
-         {
-             string TodaysDate = DoctorProfilePage.Web_BookingDateHeader_CurrentDate.Text;
-
-             if (TodaysDate.Equals(appointmentDate))
-             {
-                 string Todays_Slots_Available_Text = Generic_Utils.getText(OurProvidersPage.Web_Total_Slot_Count_Current_Date);
-                 string[] splitted_text = Todays_Slots_Available_Text.Split(" ");
-                 string Todays_Slots_Count = splitted_text[0].Trim();
-                 int current_day_slots_count = DoctorProfilePage.Web_BookingSlot_Currentday.Count;
-                 string current_day_slots = Convert.ToString(current_day_slots_count);
-                 Assert.That(Todays_Slots_Count, Is.EqualTo(current_day_slots));
-             }
-             else
-             {
-                 int NextDateSlot = driver.FindElements(OurProvidersPage.By_NextDateHeaderText).Count;
-
-
-                 for (int b = 0; b < NextDateSlot; b++)
-                 {
-                     string NextDateSlotText = driver.FindElements(OurProvidersPage.By_NextDateHeaderText)[b].Text;
-
-                     if (NextDateSlotText.Contains(appointmentDate))
-                     {
-                         IWebElement NextDateSlotEle = driver.FindElements(OurProvidersPage.By_NextDateHeaderText)[b];
-                         NextDateSlotEle.Click();
-                         break;
-                     }
-                 }
-                 string Future_Slots_Available_Text = Generic_Utils.getText(OurProvidersPage.Web_Total_Slot_Count_Current_Date);
-                 string[] splitted_text = Future_Slots_Available_Text.Split(" ");
-                 string Futures_Slots_Count = splitted_text[0].Trim();
-                 int current_day_slots_count = DoctorProfilePage.Web_BookingSlot_Currentday.Count;
-                 string Future_day_slots = Convert.ToString(current_day_slots_count);
-                 Assert.That(Futures_Slots_Count, Is.EqualTo(Future_day_slots));
-             }
-         }*/
+      
 
         // Main method to validate slots based on the appointment date
         public static void GetSlotCountAndValidateWithTotalCount(string appointmentDate)
@@ -144,6 +108,10 @@ namespace ZarCare_Automation.Test.PageActions
             }
 
             ValidateSlotCount();
+
+            Reports.childLog.Log(Status.Info, "Validate Slot Count with Total Slot");
+            Generic_Utils.GetScreenshot("Provider Slot Div Screenshot");
+
         }
 
         // Method to click on the future date slot if it does not match the current date
@@ -238,12 +206,20 @@ namespace ZarCare_Automation.Test.PageActions
         {
             string DoctorName = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Name_List);
             Assert.That(Original_Text, Is.EqualTo(DoctorName));
+
+            Reports.childLog.Log(Status.Info, "Searched Provider List is displayed");
+            Generic_Utils.GetScreenshot("Provider Name Screenshot");
+
+
         }
 
         public static void Get_and_Validate_Doctor_Specialty(string Original_Text)
         {
             string DoctorSpecialty = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Specialty);
             Assert.That(Original_Text, Is.EqualTo(DoctorSpecialty));
+            
+            Reports.childLog.Log(Status.Info, "Searched Provider Speciality List is displayed");
+            Generic_Utils.GetScreenshot("Provider Speciality Screenshot");
         }
 
       
@@ -253,6 +229,9 @@ namespace ZarCare_Automation.Test.PageActions
             string[] splitText = DoctorLocation.Split(',');
             string getLocation = splitText[1].Trim();
             Assert.That(Original_Text.Contains(getLocation));
+
+            Reports.childLog.Log(Status.Info, "Searched Provider Location List is displayed");
+            Generic_Utils.GetScreenshot("Provider Location Screenshot");
         }
 
         public static void Get_and_Validate_ConnectNow_Popup(string Original_Text)
