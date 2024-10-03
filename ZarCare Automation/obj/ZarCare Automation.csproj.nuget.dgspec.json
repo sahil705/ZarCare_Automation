@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Zarcare_New_Automation_Project\\ZarCare_Automation\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj": {}
+    "C:\\Zarcare_New_Automation_Project\\Zarcare_Automation_Project\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj": {}
   },
   "projects": {
-    "C:\\Zarcare_New_Automation_Project\\ZarCare_Automation\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj": {
+    "C:\\Zarcare_New_Automation_Project\\Zarcare_Automation_Project\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Zarcare_New_Automation_Project\\ZarCare_Automation\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj",
+        "projectUniqueName": "C:\\Zarcare_New_Automation_Project\\Zarcare_Automation_Project\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj",
         "projectName": "ZarCare Automation",
-        "projectPath": "C:\\Zarcare_New_Automation_Project\\ZarCare_Automation\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj",
+        "projectPath": "C:\\Zarcare_New_Automation_Project\\Zarcare_Automation_Project\\ZarCare_Automation\\ZarCare Automation\\ZarCare Automation.csproj",
         "packagesPath": "C:\\Users\\Ajay-LNG\\.nuget\\packages\\",
-        "outputPath": "C:\\Zarcare_New_Automation_Project\\ZarCare_Automation\\ZarCare_Automation\\ZarCare Automation\\obj\\",
+        "outputPath": "C:\\Zarcare_New_Automation_Project\\Zarcare_Automation_Project\\ZarCare_Automation\\ZarCare Automation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ajay-LNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
