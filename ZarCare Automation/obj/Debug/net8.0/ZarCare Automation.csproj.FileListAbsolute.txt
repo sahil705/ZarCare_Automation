@@ -378,3 +378,12 @@ C:\Zarcare_New_Automation_Project\ZarCare_Automation\ZarCare_Automation\ZarCare 
 C:\Zarcare_New_Automation_Project\ZarCare_Automation\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare .8A71826A.Up2Date
 C:\Zarcare_New_Automation_Project\ZarCare_Automation\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.genruntimeconfig.cache
 C:\Zarcare_New_Automation_Project\ZarCare_Automation\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ref\ZarCare Automation.dll
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.csproj.AssemblyReference.cache
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.AssemblyInfoInputs.cache
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.AssemblyInfo.cs
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.csproj.CoreCompileInputs.cache
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.sourcelink.json
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.dll
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\refint\ZarCare Automation.dll
+D:\Git\ZarCare\ZarCare_Automation\ZarCare Automation\obj\Debug\net8.0\ZarCare Automation.pdb
