@@ -170,8 +170,8 @@
             Login_Page.Patient_Login(email, password);
            
             Reports.childLog.Log(Status.Info, "Step 3: Navigate the Patient Profile page and Validate the page");
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.NavigateToActiveAppointment();
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+            Patient_Dashboard_Page.NavigateToActiveAppointment();
 
             Reports.childLog.Log(Status.Info, "Step 4: Navigate the Active Appointment page and Validate the page");
             ActiveAppointment_Page.Validate_Active_Appointment_Page();

@@ -1,0 +1,13 @@
+﻿{
+  "First_Name": "Sam",
+  "Last_Name": "Curran",
+  "Weight": "85",
+  "Height": "168",
+  "Gender": "Male",
+  "Address": "108 MarshMellow Road",
+  "Suburb": "Skyland",
+  "City": "Johanesberg",
+  "Province": "Western Cape",
+  "PostalCode": "7430",
+  "Success_Message": "Profile saved successfully"
+}

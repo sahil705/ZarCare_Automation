@@ -31,8 +31,9 @@
             Reports.FlushNode(Reports.childLog);
 
             Reports.childLog = Reports.CreateNode("Step 3: Navigate the Patient Profile page and Validate the page");
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.NavigateToFindProviderPage();
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();    
+            Patient_Dashboard_Page.NavigateToFindProviderPage();
             Reports.FlushNode(Reports.childLog);
 
             Reports.childLog = Reports.CreateNode("Step 4: Validate the Find Provider page and Search Provider and Select slot");
