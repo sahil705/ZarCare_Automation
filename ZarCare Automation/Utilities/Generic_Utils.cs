@@ -191,6 +191,12 @@ namespace ZarCare_Automation.Utilities
             js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight / 2);");
         }
 
+        public static void JavaScriptElementClick(IWebElement element)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].click();", element);
+        }
+
         public static void GetCurrentDate()
         {
             DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss").Trim();
@@ -216,8 +222,14 @@ namespace ZarCare_Automation.Utilities
             string url = driver.Url;
         }
 
-  
-        public static void Dropdown_Handle_With_Value(IWebElement element, string value)
+        public static void ClearTextBox(IWebElement element)
+        {
+            
+            element.Clear();
+
+        }
+
+            public static void Dropdown_Handle_With_Value(IWebElement element, string value)
         {
             SelectElement selectElement = new SelectElement(element);
             selectElement.SelectByValue(value);
@@ -318,6 +330,12 @@ namespace ZarCare_Automation.Utilities
                 {
                     wait.Until(ExpectedConditions.ElementToBeClickable(element));
                 }
+            }
+
+            public static IWebElement InvisibleOfElement(By locator, int second)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                return wait.Until(ExpectedConditions.ElementIsVisible(locator));
             }
         }
     }
