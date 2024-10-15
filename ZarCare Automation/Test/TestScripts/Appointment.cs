@@ -1,6 +1,6 @@
 ﻿namespace TestScripts
 {
-    public class Appointment : Base
+    public class Appointment() : Base
     {
         public string classname = "BookAppointments";
         public string registerFile = "Register";
