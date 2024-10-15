@@ -3,31 +3,8 @@
 ################################################################################
 
 /.vs
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.AssemblyInfo.cs
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.AssemblyInfoInputs.cache
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.csproj.FileListAbsolute.txt
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.dll
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.genruntimeconfig.cache
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.pdb
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.sourcelink.json
-/ZarCare Automation/bin/Debug/net8.0/ZarCare Automation.pdb
-/ZarCare Automation/bin/Debug/net8.0/ZarCare Automation.dll
-/ZarCare Automation/bin/Debug/net8.0/nunit_random_seed.tmp
-/ZarCare Automation/obj/Debug/net8.0/ref/ZarCare Automation.dll
-/ZarCare Automation/bin/Debug/net8.0/nunit_random_seed.tmp
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.AssemblyInfoInputs.cache
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.assets.cache
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.GeneratedMSBuildEditorConfig.editorconfig
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.AssemblyInfo.cs
-/ZarCare Automation/obj/project.assets.json
-/ZarCare Automation/obj/project.nuget.cache
-/ZarCare Automation/bin/Debug/net8.0/ZarCare Automation.dll
-/ZarCare Automation/bin/Debug/net8.0/ZarCare Automation.pdb
-/ZarCare Automation/obj/Debug/net8.0/ref/ZarCare Automation.dll
-/ZarCare Automation/obj/Debug/net8.0/refint/ZarCare Automation.dll
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.csproj.CoreCompileInputs.cache
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.csproj.FileListAbsolute.txt
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.dll
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.genruntimeconfig.cache
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.pdb
-/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.sourcelink.json
+/ZarCare Automation/obj/*
+/ZarCare Automation/bin/Debug/*
+/ZarCare Automation/obj/Debug/net8.0/ZarCare Automation.csproj.AssemblyReference.cache
+/ZarCare Automation/obj/ZarCare Automation.csproj.nuget.dgspec.json
+/ZarCare Automation/obj/ZarCare Automation.csproj.nuget.g.props
