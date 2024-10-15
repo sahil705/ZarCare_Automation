@@ -16,7 +16,7 @@
 
             public static void Get_and_Validate_AboutUs_Title(string Original_Title)
             {
-               int i = 2;
+               
                string Capture_Title = Generic_Utils.getTitle();
                Assert.That(Original_Title, Is.EqualTo(Capture_Title));
                
