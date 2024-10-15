@@ -1,7 +1,7 @@
 ﻿namespace TestScripts
 {
-   public class Appointment():Base
-   {
+    public class Appointment() : Base
+    {
         public string classname = "BookAppointments";
         public string registerFile = "Register";
 
@@ -32,7 +32,7 @@
 
             Reports.childLog = Reports.CreateNode("Step 3: Navigate the Patient Profile page and Validate the page");
             Patient_Dashboard_Page.ValidatePatientDashboard();
-            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();    
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
             Patient_Dashboard_Page.NavigateToFindProviderPage();
             Reports.FlushNode(Reports.childLog);
 
