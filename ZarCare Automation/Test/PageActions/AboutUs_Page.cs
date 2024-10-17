@@ -16,13 +16,14 @@
 
             public static void Get_and_Validate_AboutUs_Title(string Original_Title)
             {
-
+               
                string Capture_Title = Generic_Utils.getTitle();
                Assert.That(Original_Title, Is.EqualTo(Capture_Title));
                
                Reports.childLog.Log(Status.Info, "AboutUs Page is displayed");
                Generic_Utils.GetScreenshot("AboutUs page screenshot");
             }
+        
     }
 }
 
