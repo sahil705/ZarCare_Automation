@@ -275,6 +275,74 @@ namespace ZarCare_Automation.Test.PageActions
             Assert.True(Generic_Utils.IsElementDisplayed(OurProvidersPage.By_Doctor_Specialty), OriginalCategoryTitle);
         }
 
+        public static void Get_Provider_From_List(string providerName)
+        {
+            int provider_List = OurProvidersPage.Web_Provider_List.Count;
+            for (int i = 0; i < provider_List; i++)
+            {
+                string provider_Name = OurProvidersPage.Web_Provider_Name.Text;
+                if (provider_Name.Contains(providerName))
+                {
+                    OurProvidersPage.Web_Book_Appointment_Button.Click();
+                    break;
+                }
+            }
+        }
+            public static void Hover_To_Appointment_Slot(string SlotDate, string SlotTime)
+        {
+            string TodaysDate = OurProvidersPage.Web_Slot_Today.Text;
+
+            if (TodaysDate.Equals(SlotDate))
+            {
+                int slot_Count = OurProvidersPage.Web_Slot_List.Count;
+                for (int a = 0; a < slot_Count; a++)
+                {
+                    string slot_time = OurProvidersPage.Web_Slot_List[a].Text;
+
+                    if (slot_time.Equals(SlotTime))
+                    {
+                        Generic_Utils.HoverElement(OurProvidersPage.Web_Slot_List[a]);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // next date
+                int NextDates = driver.FindElements(OurProvidersPage.By_Slot_Next_Days).Count;
+
+                for (int b = 0; b < NextDates; b++)
+                {
+                    string NextDateText = driver.FindElements(OurProvidersPage.By_Slot_Next_Days)[b].Text;
+
+                    if (NextDateText.Contains(SlotDate))
+                    {
+                        IWebElement NextDate = driver.FindElements(OurProvidersPage.By_Slot_Next_Days)[b];
+                        NextDate.Click();
+
+                        int slot_Count = OurProvidersPage.Web_Slot_List.Count;
+                        for (int a = 0; a < slot_Count; a++)
+
+                        {
+                            string slot_time = OurProvidersPage.Web_Slot_List[a].Text;
+
+                            if (slot_time.Equals(SlotTime))
+                            {
+                                Generic_Utils.HoverElement(OurProvidersPage.Web_Slot_List[a]);
+                                break;
+                            }
+
+                        }
+                        Wait.GenericWait(2000);
+                    }
+                }
+            }
+            string getText = driver.FindElement(OurProvidersPage.By_Slot_Tool_Tip).Text;
+            Console.WriteLine(getText);
+            Generic_Utils.GetScreenshot("Slot rate displayed.");
+        }
+
+
     }
 }
 
