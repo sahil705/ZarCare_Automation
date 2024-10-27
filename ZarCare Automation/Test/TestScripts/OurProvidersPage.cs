@@ -51,5 +51,13 @@
             Reports.FlushNode(Reports.childLog);
         }
 
+        [Test]
+        public void Verify_Doctor_Slot_Tooltip()
+        {
+            Reports.childLog = Reports.CreateNode("Step 1: Validate the Tooltip on the Doctor Slot by Hover Over it ");
+            OurProviderWorkflow.Verify_Doctor_Slot_Fee_Tooltip_On_Hover();
+            Reports.FlushNode(Reports.childLog);
+        }
+
     }
 }

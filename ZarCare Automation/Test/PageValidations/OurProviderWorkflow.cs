@@ -194,6 +194,32 @@
 
         }
 
+        public static void Verify_Doctor_Slot_Fee_Tooltip_On_Hover()
+        {
+            var json = Json_Reader.GetDataFromJson(appointmentDetail);
+            string doctorName = json["Doctor_Name"].ToString();
+            string appointmentDate = json["Appointment_Date"].ToString();
+            string appointmentTime = json["Appointment_Time"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Validate the Tooltip on the Doctor Slot by Hover Over it ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Search and Validate Provider List By Name");
+            Home_Page.NavigateToOurProvider();
+            Our_Providers_Page.Validate_OurProviderPage();
+            Our_Providers_Page.Search_Doctor(doctorName);
+            Our_Providers_Page.Get_Provider_From_List(doctorName);
+
+            Reports.childLog.Log(Status.Info, "Step 3: Validate Tooltip on the After Hover Over the Doctor Slot ");
+            Our_Providers_Page.Hover_To_Appointment_Slot(appointmentDate, appointmentTime);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
+
         public void Verify_And_Clear_Top_Provider_Category()
         {
             var json = Json_Reader.GetDataFromJson(classname);
