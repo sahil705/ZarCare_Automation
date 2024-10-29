@@ -54,6 +54,10 @@
         public static void NavigateToLoginPage()
         {
             HomePage.Web_LoginSignUp_Button.Click();
+            var Windows = driver.WindowHandles;
+
+            driver.SwitchTo().Window(Windows[1]);
+            Wait.WaitTillPageLoad();
         }
 
        

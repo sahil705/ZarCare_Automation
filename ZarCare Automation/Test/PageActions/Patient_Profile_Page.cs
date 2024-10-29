@@ -95,6 +95,7 @@
             string postalCode = PatientProfile.Web_PostalCode_Textbox.GetAttribute("value");
             string fullAddress = " " + address + " " + suburb + " " + city + " " + province + " " + postalCode;
             return fullAddress; 
-        } 
+        }
+       
     }
 }
