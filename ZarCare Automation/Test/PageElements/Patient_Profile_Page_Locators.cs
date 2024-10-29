@@ -2,6 +2,8 @@
 {
     public class Patient_Profile_Page_Locators:WebdriverSession
     {
+        
+
         public By By_FirstName_Textbox = By.Id("txtFirstName");
         public IWebElement Web_FirstName_Textbox => driver.FindElement(By_FirstName_Textbox);
 
@@ -16,6 +18,10 @@
 
         public By By_Gender_Dropdown = By.Id("drpGender");
         public IWebElement Web_Gender_Dropdown => driver.FindElement(By_Gender_Dropdown);
+
+        public By By_RelationList = By.XPath("//select[@id='RelationId']");
+
+        public IWebElement Web_RelationList => driver.FindElement(By_RelationList);
 
         public By By_Address_Textbox = By.Id("txtAddress");
         public IWebElement Web_Address_Textbox => driver.FindElement(By_Address_Textbox);
@@ -38,11 +44,30 @@
         public By By_ProfilePicture_Text = By.XPath("//div[@class='make_visible']/label");
         public IWebElement Web_ProfilePicture_Text => driver.FindElement(By_ProfilePicture_Text);
 
+        public By By_UploadPhoto = By.XPath("//input[@id='file']");
+
+        public IWebElement Web_UploadPhoto => driver.FindElement(By_UploadPhoto);
+
         public By By_Success_Message = By.CssSelector("#message");
         public IWebElement Web_Success_Message => driver.FindElement(By_Success_Message);
 
+        //DKS
+        public By By_MemFullName = By.XPath("//div[@class='profile-det-info']/h3");
+       
+        public IList<IWebElement> Web_MemFullName => driver.FindElements(By_MemFullName);
+
+        public By By_FamilyMembertab = By.XPath("//a[@href='/Patient/FamilyMemberProfile']");
+
+        public IWebElement Web_FamilyMemberTab => driver.FindElement(By_FamilyMembertab);
+
         public By By_LeftMenu_Dashboard_Link = By.CssSelector("li[id='liDashboard'] a");
         public IWebElement Web_LeftMenu_Dashboard_Link => driver.FindElement(By_LeftMenu_Dashboard_Link);
+
+        public By By_RightMenu_FamilyMember_link = By.CssSelector("li[id='liFamilyProfile'] a");
+
+        public IWebElement Web_RightMenu_FamilyMember_link=>driver.FindElement(By_RightMenu_FamilyMember_link);
+
+
     }
 }
 
