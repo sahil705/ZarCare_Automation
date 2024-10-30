@@ -9,5 +9,9 @@
   "City": "Johanesberg",
   "Province": "Western Cape",
   "PostalCode": "7430",
-  "Success_Message": "Profile saved successfully"
+  "Success_Message": "Profile saved successfully",
+  "FirstName_Validation": "Enter Valid Firstname",
+  "LastName_Validation": "Enter Valid Lastname",
+  "Weight_Validation": "Enter value greater than 0",
+  "Height_Validation": "Enter value greater than 0"
 }
