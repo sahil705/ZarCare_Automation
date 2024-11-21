@@ -68,6 +68,18 @@
         public IWebElement Web_RightMenu_FamilyMember_link=>driver.FindElement(By_RightMenu_FamilyMember_link);
 
 
+
+        public By By_FirstName_Validation = By.XPath("//span[@id='spnFirstName']");
+        public IWebElement Web_FirstName_Validation => driver.FindElement(By_FirstName_Validation);
+
+        public By By_LastName_Validation = By.XPath("//span[@id='spnLastName']");
+        public IWebElement Web_LastName_Validation => driver.FindElement(By_LastName_Validation);
+
+        public By By_Weight_Validation = By.XPath("//span[@id='spnErrorWeight']");
+        public IWebElement Web_Weight_Validation => driver.FindElement(By_Weight_Validation);
+
+        public By By_Height_Validation = By.XPath("//span[@id='spnErrorHeight']");
+        public IWebElement Web_Height_Validation => driver.FindElement(By_Height_Validation);
     }
 }
 
