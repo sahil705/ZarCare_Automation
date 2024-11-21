@@ -36,11 +36,12 @@
             Login_Page.Patient_Login(patientEmail, patientPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Submit Patient Profile ");
+            Reports.childLog.Log(Status.Info, "Step 3: Submit Patient Profile and verify diplay in family member ");
             Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
             Patient_Dashboard_Page.NavigateToPatientProfile();
             Patient_Profile_Page.ValidatePatientProfile();
             Patient_Profile_Page.SubmitPatientProfileInfo(firstName, lastName, patientWeight, patientHeight, patientGender, patientAddress, patientSuburb, patientCity, patientProvince, postalCode, successMessage);
+           
 
             Reports.childLog.Log(Status.Info, "=================================================");
         }

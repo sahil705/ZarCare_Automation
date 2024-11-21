@@ -2,6 +2,7 @@
 {
     public class PatientDashboard:Base
     {
+        public string classname = "PatientProfile";
         [Test]
         public void ValidatePatientDetailsInDashboard()
         {
@@ -17,7 +18,6 @@
             PatientDashboardValidations.ValidateRedirectionToPatientProfile();
             Reports.FlushNode(Reports.childLog);
         }
-
-
+        
     }
 }

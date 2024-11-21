@@ -6,7 +6,7 @@
         public void SubmitAndVerifyPatientProfile()
         {
             Reports.childLog = Reports.CreateNode("Submit the Patient Profile Form ");
-            PatientProfileValidations.SubmitPatientProfileDetails();
+            PatientProfileValidations.SubmitPatientProfileDetails();           
             Reports.FlushNode(Reports.childLog);
         }
 

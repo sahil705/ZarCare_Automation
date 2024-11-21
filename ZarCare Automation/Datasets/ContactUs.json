@@ -1,15 +1,43 @@
 ﻿{
   "ContactUs_Text": "Contact Us for Doctor Consultation in South Africa - Zarcare",
   "ContactUs_Heading": "Contact Us",
-  "Contact_Name": "Madhuri",
-  "Contact_Email": "madhuri@lng-consultancy.com",
-  "Contact_Enquiry": "Please suggest best Neuro Surgeon in Capetown",
-  "Success_Message": "Thank you",
-  "Contact_Name_Error": "Name is required",
-  "Contact_Email_Error": "Email is required",
-  "Contact_Enquiry_Error": "Enquiry is required",
-  "Contact_Invalid_Name": "123@abc",
-  "Contact_Invalid_Email": "madhuri#1234",
-  "Contact_Inavalid_Name_Error": "Please enter a valid name",
-  "Contact_Invalid_Email_Error": "Enter valid email"
+  "successMessages": [
+    {
+      "Success_Message": "Thank you"
+    }
+  ],
+  "errorMessages": [
+    {
+      "Contact_Name_Error": "Name is required"
+    },
+    {
+      "Contact_Email_Error": "Email is required"
+    },
+    {
+      "Contact_Enquiry_Error": "Enquiry is required"
+    },
+    {
+      "Contact_Inavalid_Name_Error": "Please enter a valid name"
+    },
+    {
+      "Contact_Invalid_Email_Error": "Enter valid email"
+    }
+  ],
+  "validContactUsData": [
+    {
+      "Contact_Name": "Madhuri",
+      "Contact_Email": "madhuri@lng-consultancy.com",
+      "Contact_Enquiry": "Please suggest best Neuro Surgeon in Capetown"
+    }
+  ],
+  "invalidContactFormData": [
+    {
+      "Contact_Invalid_Name": "Te$t@",
+      "Contact_Invalid_Email": "madhuri#1234"
+    },
+    {
+      "Contact_Invalid_Name": "Test12",
+      "Contact_Invalid_Email": "@gmail.com"
+    }
+  ]
 }
