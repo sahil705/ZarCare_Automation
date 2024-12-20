@@ -16,5 +16,22 @@
             JObject jsonobj = JObject.Parse(jsonString);
             return jsonobj;
         }
+
+        public static JArray GetArrayFromJson(string classname, string arrayKey)
+        {
+            string path = Generic_Utils.getDataPath("Datasets");
+            string jsonString = File.ReadAllText(path + "\\" + classname + ".json");
+            JObject jsonobj = JObject.Parse(jsonString);
+
+            if (jsonobj[arrayKey] != null && jsonobj[arrayKey] is JArray)
+            {
+                JArray jsonArray = (JArray)jsonobj[arrayKey];
+                return jsonArray;
+            }
+            else
+            {
+                throw new Exception($"Array not found for the specified key '{arrayKey}'.");
+            }
+        }
     }
 }

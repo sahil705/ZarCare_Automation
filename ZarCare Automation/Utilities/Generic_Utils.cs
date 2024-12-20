@@ -1,7 +1,4 @@
-﻿using AngleSharp.Dom;
-using OpenQA.Selenium.Interactions;
-
-namespace ZarCare_Automation.Utilities
+﻿namespace ZarCare_Automation.Utilities
 {
     public class Generic_Utils : WebdriverSession
     {
@@ -205,17 +202,23 @@ namespace ZarCare_Automation.Utilities
 
         public static void WindowHandle()
         {
-            var current_window = driver.CurrentWindowHandle;
-            var all_windows = driver.WindowHandles;
-            foreach (string window in all_windows)
+            string current_window = driver.CurrentWindowHandle;
+            ICollection<string> windowHandles = driver.WindowHandles;
+            foreach (string window in windowHandles)
             {
                 if (window != current_window)
                 {
                     driver.SwitchTo().Window(window);
-                    break;
+
+                    if (driver.Url.Contains("PrintInvoice"))
+                    {
+                        Console.WriteLine("Switched to the invoice window.");
+                        break;
+                    }
                 }
             }
         }
+
 
         public static void getUrl()
         {
@@ -229,7 +232,7 @@ namespace ZarCare_Automation.Utilities
 
         }
 
-            public static void Dropdown_Handle_With_Value(IWebElement element, string value)
+        public static void Dropdown_Handle_With_Value(IWebElement element, string value)
         {
             SelectElement selectElement = new SelectElement(element);
             selectElement.SelectByValue(value);
@@ -258,6 +261,12 @@ namespace ZarCare_Automation.Utilities
             Actions action = new Actions(driver);
             action.MoveToElement(element).Click().Build().Perform();
 
+        }
+
+        public static void HoverElement(IWebElement element)
+        {
+            Actions actions = new Actions(driver);
+            actions.MoveToElement(element).Perform();
         }
 
         public static int ParseSlotCount(string slotCountText)
@@ -336,6 +345,12 @@ namespace ZarCare_Automation.Utilities
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
                 return wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            }
+
+            public static IWebElement ElementExist(By locator , int second)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                return wait.Until(ExpectedConditions.ElementExists(locator));   
             }
         }
     }

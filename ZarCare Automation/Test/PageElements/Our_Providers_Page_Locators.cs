@@ -56,7 +56,27 @@
         public By By_Total_Slot_Count_Current_Date = By.XPath("//div[@class='owl-item active current'] //p[@class='color-green sub-heading mb-1']");
         public IWebElement Web_Total_Slot_Count_Current_Date => driver.FindElement(By_Total_Slot_Count_Current_Date);
 
-       
+        public By By_Slot_Today = By.XPath("//div[@class='owl-item active current']/div/h4");
+        public IWebElement Web_Slot_Today => driver.FindElement(By_Slot_Today);
+
+        public By By_Slot_List = By.XPath("//div[@class='owl-item active'] //div[@class='c-day-session-slot-blue']");
+        public IList<IWebElement> Web_Slot_List => driver.FindElements(By_Slot_List);
+
+        public By By_Slot_Next_Days = By.XPath("//div[@class='owl-item active']/div/h4");
+        public IList<IWebElement> Web_Slot_Next_Days => driver.FindElements(By_Slot_Next_Days);
+
+        public By By_Slot_Tool_Tip = By.XPath("//div[@class='tooltip-inner']");
+        public IWebElement Web_Slot_Tool_Tip => driver.FindElement(By_Slot_Tool_Tip);
+
+        public By By_Provider_List = By.XPath("//div[@class='card mb-4 history-list']");
+        public IList<IWebElement> Web_Provider_List => driver.FindElements(By_Provider_List);
+
+        public By By_Book_Appointment_Button = By.XPath(".//div[@class='doc-info-right'] //div[@class='clinic-booking']");
+        public IWebElement Web_Book_Appointment_Button => driver.FindElement(By_Book_Appointment_Button);
+
+        public By By_Provider_Name = By.XPath("//div[@class='card mb-4 history-list']/div //h4[@class='doc-name']/a");
+        public IWebElement Web_Provider_Name => driver.FindElement(By_Provider_Name);
+
     }
 
 }
