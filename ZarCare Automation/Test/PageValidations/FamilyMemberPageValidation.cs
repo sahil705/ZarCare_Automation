@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Metrics;
+﻿
 
 namespace ZarCare_Automation.Test.PageValidations
 {
@@ -31,7 +31,8 @@ namespace ZarCare_Automation.Test.PageValidations
 
             Reports.childLog = Reports.CreateNode("Step 1: Validate Home Page and Navigate to Login Page");
             Home_Page.NavigateToLoginPage();
-            FamilyMember_Page.Enter_Patient_login_Detail(EmailId, PassWord);
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(EmailId, PassWord);
 
             Reports.FlushNode(Reports.childLog);
 

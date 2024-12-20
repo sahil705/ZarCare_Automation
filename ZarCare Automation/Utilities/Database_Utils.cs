@@ -52,7 +52,7 @@ namespace ZarCare_Automation.Utilities
 
         public static void Check_WorkWithUs_Table_ForMultipleEntries(string email)
         {
-            string connectionString = "Server =tcp:preprodzarcaredb.database.windows.net,1433;Database = Zarcare;User = PreProdSqlAdmin;Password =NDH&u3ur\\/C[Y{7txpZ; ";
+            string connectionString = "Server=tcp:devzarcaredb.database.windows.net;Database=Zarcare;User Id=DevSqlAdmin;Password=NDH&u3ur\\/C[Y{7txpZ;";
 
             try
             {
