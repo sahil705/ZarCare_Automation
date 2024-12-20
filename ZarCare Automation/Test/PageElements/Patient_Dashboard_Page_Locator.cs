@@ -1,4 +1,6 @@
-﻿namespace ZarCare_Automation.Test.PageElements
+﻿using static System.Collections.Specialized.BitVector32;
+
+namespace ZarCare_Automation.Test.PageElements
 {
     public class Patient_Dashboard_Page_Locator:WebdriverSession
     {
@@ -47,19 +49,34 @@
         // Dashboard element
 
         public By By_DashboardHeader = By.XPath("//h4[@class='card-title']");
-
         public IWebElement Web_DashboardHeader => driver.FindElement(By_DashboardHeader);
 
         public By By_FamilyMembertab = By.XPath("//a[@href='/Patient/FamilyMemberProfile']");
-
         public IWebElement Web_FamilyMemberTab => driver.FindElement(By_FamilyMembertab);
 
         public By By_AddMemberBtn = By.XPath("//a[@href='/Patient/FamilyMemberProfile/Add']");
-
         public IWebElement Web_AddMemberBtn => driver.FindElement(By_AddMemberBtn);
 
-        
+        public By By_UpcomingAppointmentHeader = By.XPath("//div[@class='card mb-4']//div[@class='card-body']//h4[@class='card-title']");
+        public IWebElement Web_UpcomingAppointmentHeader => driver.FindElement(By_UpcomingAppointmentHeader);
 
+        public By By_DashboardAppointmentList = By.CssSelector("table tr td:nth-child(1)");
+        public IList <IWebElement> Web_DashboardAppointmentList =>driver.FindElements(By_DashboardAppointmentList);
+
+        public By By_AppointmentRecords = By.CssSelector(".patient-widget.mb-4.position-relative");
+        public IList<IWebElement> Web_AppointmentRecords => driver.FindElements(By_AppointmentRecords);
+
+        public By By_ReferenceNumber = By.XPath(".//div[@class='history-info']/span[last()]");
+       
+        public By By_ViewInvoiceButton = By.XPath(".//a[text()='View Invoice']");
+       
+        public By By_InvoiceHeaderText = By.CssSelector("section.container h3");
+        public IWebElement Web_InvoiceHeaderText => driver.FindElement(By_InvoiceHeaderText);
+
+        public By By_InvoiceNumber = By.XPath("//div/p[contains(text(), 'Invoice Number')]");
+        public IWebElement Web_InvoiceNumber => driver.FindElement(By_InvoiceNumber);
+
+        
 
 
 
