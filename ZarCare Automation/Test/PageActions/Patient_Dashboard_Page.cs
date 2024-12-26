@@ -122,8 +122,8 @@ namespace ZarCare_Automation.Test.PageActions
         }
         public static void ValidateInvoiceDetailsForPastAppointments(string ReferenceNumber)
         {
-            Generic_Utils.ScrollToBottom();
-            Wait.GenericWait(2000);
+            Generic_Utils.ScrollToBottoms();
+            
             IList<IWebElement> getAppointmentRecords = PatientDashboardPage.Web_AppointmentRecords;
 
             foreach(IWebElement appointment in getAppointmentRecords)
@@ -151,5 +151,57 @@ namespace ZarCare_Automation.Test.PageActions
             Reports.childLog.Log(Status.Info, "Invoice page is displayed");
             Generic_Utils.GetScreenshot("Invoice Page Screenshot");
         }
+
+        public static void VerifyRatingsForPastAppointments(string ReferenceNumber, string rateValue, string ratingComment, string ratingExistMessage,string ratingSavedMessage)
+        {
+            Generic_Utils.ScrollToBottoms();
+            
+            
+            IList<IWebElement> getAppointmentRecords = PatientDashboardPage.Web_AppointmentRecords;
+
+
+            foreach (IWebElement appointment in getAppointmentRecords)
+            {
+                IWebElement appointmentReferenceNumber = appointment.FindElement(PatientDashboardPage.By_ReferenceNumber);
+                string refNumber = appointmentReferenceNumber.Text;
+                
+
+                if(refNumber.Equals(ReferenceNumber))
+                {
+                    IWebElement ratingButton = appointment.FindElement(PatientDashboardPage.By_RatingButton);
+                    ratingButton.Click();
+                }
+            }
+            Wait.GenericWait(3000);
+            
+            string getRatingAlreadyExistText = PatientDashboardPage.Web_RatingExistText.Text;
+
+            if (getRatingAlreadyExistText.Equals(ratingExistMessage))
+            {
+                Console.WriteLine("Rating already exist for this appointment ");
+                Reports.childLog.Log(Status.Info, "Rating already exist popup is displayed");
+                Generic_Utils.GetScreenshot("Rating already exist popup Screenshot");
+            }
+            else
+            {
+                IWebElement ratingStar = PatientDashboardPage.Web_StarRatings(rateValue);
+                ratingStar.Click();
+
+                PatientDashboardPage.Web_RatingComment.SendKeys(ratingComment);
+                PatientDashboardPage.Web_RatingSaveButton.Click();
+
+                Wait.ElementIsVisible(PatientDashboardPage.By_RatingExistText, 10);
+                string getRatingSavedMessage = PatientDashboardPage.Web_RatingExistText.Text;
+                Assert.That(ratingSavedMessage, Is.EqualTo(getRatingSavedMessage));
+
+                Reports.childLog.Log(Status.Info, "Rating saved popup is displayed");
+                Generic_Utils.GetScreenshot("Rating saved popup Screenshot");
+            }
+        }
+
+       
     }
+
+
 }
+

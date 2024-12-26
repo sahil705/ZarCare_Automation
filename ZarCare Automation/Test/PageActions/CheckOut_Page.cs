@@ -18,7 +18,7 @@
         {
             CheckoutPage.Web_Voucher_TextBox.SendKeys(voucherCode); 
             CheckoutPage.Web_Voucher_Consent_Checkbox.Click();
-            IWebElement Apply_Button = Wait.ElementIsClickable(CheckoutPage.Web_Voucher_Apply_Button, 5);
+            IWebElement Apply_Button = Wait.ElementIsClickable(CheckoutPage.Web_Voucher_Apply_Button, 10);
             Apply_Button.Click();
             IWebElement Capture_Success_Element = Wait.ElementIsVisible(CheckoutPage.By_Voucher_Success_Message, 5);
             string Capture_Success_Message_Text = Generic_Utils.getText(Capture_Success_Element);
@@ -27,7 +27,7 @@
 
         public static void Add_Symptom_And_Click_On_Continue_Button()
         {
-            Generic_Utils.ScrollToBottom();
+            Generic_Utils.ScrollToBottoms();
             Wait.GenericWait(2000);
             CheckoutPage.Web_Symptoms_Dropdown.Click();
             IWebElement Dropdown = CheckoutPage.Web_Symptoms_Dropdown;
@@ -39,7 +39,7 @@
         }
         public static void Public_Booking_Continue_Button()
         {
-            Generic_Utils.ScrollToBottom();
+            Generic_Utils.ScrollToBottoms();
             Wait.GenericWait(2000);
            
             IWebElement Dropdown = CheckoutPage.Web_Symptoms_Dropdown;

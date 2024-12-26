@@ -1,9 +1,12 @@
-﻿namespace ZarCare_Automation.Test.PageActions
+﻿using WebDriverManager.Clients;
+
+namespace ZarCare_Automation.Test.PageActions
 {
     public class Patient_Profile_Page : WebdriverSession
     {
 
         public static Patient_Profile_Page_Locators PatientProfile = new Patient_Profile_Page_Locators();
+        public static Patient_Dashboard_Page_Locator PatientDashboard = new Patient_Dashboard_Page_Locator();
         public static void ValidatePatientProfile()
         {
             Wait.WaitTillPageLoad();
@@ -139,5 +142,37 @@
             string Capture_Text4 = Generic_Utils.getText(PatientProfile.Web_Height_Validation);
             Assert.That(Original_Text4 , Is.EqualTo(Capture_Text4));
         }
+
+        public static void UploadBankDetail(string filePath, string successMessage)
+        {
+
+            Generic_Utils.ScrollToBottoms();
+            
+            IWebElement bankDetailSection  = PatientProfile.Web_BankDetailSection;
+            Generic_Utils.ScrollToElement(bankDetailSection);
+
+            IWebElement fileInput = PatientProfile.Web_ChooseFileTextbox;
+            string file = filePath;
+            fileInput.SendKeys(file);
+
+            IWebElement consentCheckbox = PatientProfile.Web_ConsentCheckBox;
+            if (!consentCheckbox.Selected)
+            {
+                consentCheckbox.Click();
+            }
+            
+            IWebElement uploadButton = PatientProfile.Web_UploadButton; 
+            uploadButton.Click();
+
+            Wait.ElementIsVisible(PatientProfile.By_BankDetailSuccessMessage, 5);
+            string getSuccessMessage = PatientProfile.Web_BankDetailSuccessMessage.Text;
+            
+            Assert.That(getSuccessMessage, Is.EqualTo(successMessage));
+        }
+        
+        
+        
+
+
     }
 }

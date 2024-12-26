@@ -1,6 +1,4 @@
-﻿using static System.Collections.Specialized.BitVector32;
-
-namespace ZarCare_Automation.Test.PageElements
+﻿namespace ZarCare_Automation.Test.PageElements
 {
     public class Patient_Dashboard_Page_Locator:WebdriverSession
     {
@@ -76,7 +74,34 @@ namespace ZarCare_Automation.Test.PageElements
         public By By_InvoiceNumber = By.XPath("//div/p[contains(text(), 'Invoice Number')]");
         public IWebElement Web_InvoiceNumber => driver.FindElement(By_InvoiceNumber);
 
+        public By By_RatingButton = By.XPath(".//a[starts-with(@id, 'btnRatethisDoctor')]");
+        public IWebElement Web_RatingButton => driver.FindElement(By_RatingButton);
+
+        public By By_RatingExistText = By.XPath("//span[@id='spnModalSuccessMessage']");
+        public IWebElement Web_RatingExistText => driver.FindElement(By_RatingExistText);
+
+        public By By_RatingPopup = By.XPath("(//h4[@id='myModalLabel'])[2]");
+        public IWebElement Web_RatingPopup => driver.FindElement(By_RatingPopup);
+        public By By_StarRatings(string starValue) => By.XPath($"//ul[@id='stars']/li[@class='star' and @data-value='{starValue}']");
+        public IWebElement Web_StarRatings(string starValue) => driver.FindElement(By_StarRatings(starValue));
         
+        public By By_RatingComment = By.Id("txtComment");
+        public IWebElement Web_RatingComment => driver.FindElement(By_RatingComment);
+
+        public By By_RatingSaveButton = By.Id("btnSaveRating");
+        public IWebElement Web_RatingSaveButton => driver.FindElement(By_RatingSaveButton);
+
+        public By By_Last3AppointmentSectionHeader = By.XPath("//h4[contains(text(), 'Last 3 Appointment')]/a[@class='viewall']");
+        public IWebElement Web_Last3AppointmentSectionHeader =>driver.FindElement(By_Last3AppointmentSectionHeader);
+
+
+
+
+
+
+
+
+
 
 
 

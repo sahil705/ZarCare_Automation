@@ -34,5 +34,13 @@
             PatientDashboardValidations.ValidateInvoiceFromDashboard();
             Reports.FlushNode(Reports.childLog);
         }
+        
+        [Test]
+        public void ValidatePatientRatingToDoctor()
+        {
+            Reports.childLog = Reports.CreateNode("Validate the Patient Rating to Doctor for Post Appointments ");
+            PatientDashboardValidations.PatientRateToDoctorAfterAppointment();
+            Reports.FlushNode(Reports.childLog);
+        }
     }
 }

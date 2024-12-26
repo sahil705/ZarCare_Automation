@@ -178,6 +178,34 @@
             ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
         }
 
+        public static void ScrollToBottoms()
+        {
+            try
+            {
+                long lastHeight = (long)((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+
+                while (true)
+                {
+                    // Scroll down
+                    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+                    Wait.GenericWait(2000); 
+
+                    // Check if the height has changed
+                    long newHeight = (long)((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+                    if (newHeight == lastHeight)
+                    {
+                        break; // Scrolling complete
+                    }
+                    lastHeight = newHeight;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ScrollToBottom failed: " + ex.Message);
+            }
+        }
+    
+
         public static void ScrollToElement(IWebElement element)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView()", element);

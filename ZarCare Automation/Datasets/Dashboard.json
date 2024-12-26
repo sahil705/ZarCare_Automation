@@ -1,3 +1,7 @@
 ﻿{
-  "AppointmentReferenceCode": "#24121721006"
+  "AppointmentReferenceCode": "#24121721006",
+  "RateValue": "2",
+  "RatingComment": "Bad Experience.",
+  "RatingExistMessage": "Rating already exists",
+  "RatingSavedMessage": "Provider's rating saved successfully"
 }
