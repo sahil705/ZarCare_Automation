@@ -35,6 +35,49 @@
         public By By_RegisterButton = By.Id("btnSubmit");
         public IWebElement Web_RegisterButton => driver.FindElement(By_RegisterButton);
 
+        //Invalid registration detail error messages
+
+        public By By_InvalidCellPhoneError = By.Id("phoneNoError");
+
+        public IWebElement Web_InvalidCellPhone=>driver.FindElement(By_InvalidCellPhoneError);
+
+        public By By_InvalidEmailError = By.Id("emailError");
+
+        public IWebElement Web_InvalidEmailError=>driver.FindElement(By_InvalidEmailError);
+
+        public By By_InvalidPasswordError = By.Id("newpasswordval");
+
+        public IWebElement Web_InvalidPasswordError => driver.FindElement(By_InvalidPasswordError);
+
+        public By By_InavlidConfPassError = By.Id("confirmpasswordval");
+
+        public IWebElement Web_InvalidConfPassError=>driver.FindElement(By_InavlidConfPassError);
+
+        //No input validation error message
+
+        public By by_FnameReqMessage = By.Id("firstNameError");
+
+        public IWebElement Web_FnameReqMessage => driver.FindElement(by_FnameReqMessage);
+
+        public By by_SurNameReqMessage = By.Id("lastNameError");
+
+         public IWebElement Web_SurNameReMessage => driver.FindElement(by_SurNameReqMessage);
+
+        public By by_CellPhoneReqMessage = By.Id("phoneNoError");
+
+        public IWebElement Web_CellPhoneReqMessage => driver.FindElement(by_CellPhoneReqMessage);
+
+        //public By by_PassReMessage = By.Id("newpasswordval");
+
+        //public IWebElement Web_PassReqMessage=>driver.FindElement(by_PassReMessage);
+
+        public By by_ConfPassRegMessage = By.Id("confirmpasswordval");
+
+        public IWebElement Web_ConfPassReqMessage => driver.FindElement(by_ConfPassRegMessage);
+
+        public By by_TermsAndconditionMessage = By.Id("spnMessageConsent");
+
+        public IWebElement Web_TermsAndConditionMessage => driver.FindElement(by_TermsAndconditionMessage);
 
 
 

@@ -3,9 +3,7 @@
     public class Home_Page : WebdriverSession
     {
         public static Home_Page_Locators HomePage = new Home_Page_Locators();
-        public static ContactUs_Locators ContactUs = new ContactUs_Locators();
         
-
         public static void Validate_HomePage()
         {
             Wait.WaitTillPageLoad();
@@ -54,10 +52,7 @@
         public static void NavigateToLoginPage()
         {
             HomePage.Web_LoginSignUp_Button.Click();
-            var Windows = driver.WindowHandles;
-
-            driver.SwitchTo().Window(Windows[1]);
-            Wait.WaitTillPageLoad();
+            
         }
 
        
