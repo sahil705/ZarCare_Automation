@@ -16,7 +16,7 @@
         public static void Search_Provider()
         {
             IWebElement Category_Dropdown =  FindProvider.Web_Category_Dropdown;
-            Generic_Utils.Dropdown_Handle_With_Value(Category_Dropdown, "2");
+            Generic_Utils.Dropdown_Handle_With_Value(Category_Dropdown, "37");
             FindProvider.Web_Search_Button.Click();
             Wait.GenericWait(3000);
         }
