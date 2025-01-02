@@ -86,7 +86,7 @@
             string patientWeight = Json["Patient_Weight"].ToString();
             string patientGender = Json["Patient_Gender"].ToString();
             string patientFullAddress = Json["Patient_FullAddress"].ToString();
-            
+
             PatientProfileValidations.SubmitPatientProfileDetails();
 
             Reports.childLog.Log(Status.Info, "Step 4: Verify patient details on dashboard page");
@@ -101,7 +101,7 @@
 
             Reports.childLog.Log(Status.Info, "=================================================");
 
-
+        }
         public static void ValidateAppointmentCount()
         {
             var loginJson = Json_Reader.GetDataFromJson(LoginJson);
