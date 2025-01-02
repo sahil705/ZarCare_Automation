@@ -44,6 +44,9 @@
         public By By_Subscribe_Button = By.Id("btnSubscribe");
         public IWebElement Web_Subscribe_Button => driver.FindElement(By_Subscribe_Button);
 
+        public By By_My_Profile_Link = By.CssSelector("#liMyProfile");
+        public IWebElement Web_My_Profile_Link => driver.FindElement(By_My_Profile_Link);
+
         // Dashboard element
 
         public By By_DashboardHeader = By.XPath("//h4[@class='card-title']");
@@ -57,6 +60,10 @@
         public By By_AddMemberBtn = By.XPath("//a[@href='/Patient/FamilyMemberProfile/Add']");
 
         public IWebElement Web_AddMemberBtn => driver.FindElement(By_AddMemberBtn);
+
+        public By By_MedicalFilesTab = By.XPath("//a[@href='/Patient/MedicalFile']");
+        
+        public IWebElement Web_MedicalFilesTab => driver.FindElement(By_MedicalFilesTab);
 
         
 

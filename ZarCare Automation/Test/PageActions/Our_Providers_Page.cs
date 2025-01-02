@@ -16,7 +16,7 @@ namespace ZarCare_Automation.Test.PageActions
 
             Reports.childLog.Log(Status.Info, "Our Providers page is displayed");
             Generic_Utils.GetScreenshot("Our Providers screenshot");
-            
+
 
         }
 
@@ -38,7 +38,7 @@ namespace ZarCare_Automation.Test.PageActions
             OurProvidersPage.Web_Doctor_SearchBox.SendKeys(doctorLocation);
             Wait.GenericWait(1000);
             OurProvidersPage.Web_Doctor_SearchButton.Click();
-            
+
         }
 
         public static void Search_Category(string doctorCategory)
@@ -72,17 +72,17 @@ namespace ZarCare_Automation.Test.PageActions
         {
             Wait.WaitTillPageLoad();
             Generic_Utils.IsElementDisplayed(OurProvidersPage.By_SearchHeader);
-             
-        
+
+
             int DrList = driver.FindElements(OurProvidersPage.By_Doctor_List).Count;
 
             for (int i = 0; i < DrList; i++)
             {
                 string dr_name = (OurProvidersPage.Web_Doctor_Name)[i].Text;
-                
+
                 if (dr_name.Contains(Doctorsname))
                 {
-                   
+
                     IWebElement BookOptbtnfnl = (OurProvidersPage.BookOtpbtnList)[i];
                     IWebElement BookOptScroll = (OurProvidersPage.BookOtpbtnList)[i - 1];
                     Generic_Utils.ScrollToElement(BookOptScroll);
@@ -93,9 +93,9 @@ namespace ZarCare_Automation.Test.PageActions
 
             Reports.childLog.Log(Status.Info, "doctor Detail Page displayed");
             Generic_Utils.GetScreenshot("doctor Detail Page screenshot");
-   
+
         }
-      
+
 
         // Main method to validate slots based on the appointment date
         public static void GetSlotCountAndValidateWithTotalCount(string appointmentDate)
@@ -144,7 +144,7 @@ namespace ZarCare_Automation.Test.PageActions
         public static void ClickOnProviderSlotAndNavigateToRegisterPage(string Appoint_Date, string appointment_Time)
         {
             string TodaysDate = DoctorProfilePage.Web_BookingDateHeader_CurrentDate.Text;
-           
+
 
             if (TodaysDate.Equals(Appoint_Date))  //"Today condition"
             {
@@ -191,7 +191,7 @@ namespace ZarCare_Automation.Test.PageActions
                         }
                         break;
                     }
-                   
+
 
                 }
             }
@@ -217,12 +217,12 @@ namespace ZarCare_Automation.Test.PageActions
         {
             string DoctorSpecialty = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Specialty);
             Assert.That(Original_Text, Is.EqualTo(DoctorSpecialty));
-            
+
             Reports.childLog.Log(Status.Info, "Searched Provider Speciality List is displayed");
             Generic_Utils.GetScreenshot("Provider Speciality Screenshot");
         }
 
-      
+
         public static void Get_and_Validate_Doctor_Location(string Original_Text)
         {
             string DoctorLocation = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Location);
@@ -237,26 +237,26 @@ namespace ZarCare_Automation.Test.PageActions
         public static void Get_and_Validate_ConnectNow_Popup(string Original_Text)
         {
             string ConnectNowPopup = Generic_Utils.getText(OurProvidersPage.Web_Doctor_List);
-            Assert.That(Original_Text.Equals(ConnectNowPopup)); 
+            Assert.That(Original_Text.Equals(ConnectNowPopup));
         }
-       
 
-        public static void ValidateAllCategory_And_Click_Category(string doc_category )
+
+        public static void ValidateAllCategory_And_Click_Category(string doc_category)
         {
-           // Wait.ElementsAreClickable(OurProvidersPage.Web_AllDoctors_CategoryList, 10);
-            IList <IWebElement> doctor_category = OurProvidersPage.Web_AllDoctors_CategoryList;
-            foreach(IWebElement doctor in doctor_category)
+            // Wait.ElementsAreClickable(OurProvidersPage.Web_AllDoctors_CategoryList, 10);
+            IList<IWebElement> doctor_category = OurProvidersPage.Web_AllDoctors_CategoryList;
+            foreach (IWebElement doctor in doctor_category)
             {
                 string capture_category_text = doctor.Text.Trim();
                 if (capture_category_text.Contains(doc_category))
                 {
-                    doctor.Click(); 
+                    doctor.Click();
                     break;
                 }
             }
         }
 
-       
+
         public static void ValidateSelectedCategory(string OriginalCategoryTitle)
         {
             Assert.True(Generic_Utils.IsElementDisplayed(OurProvidersPage.By_Doctor_Specialty), OriginalCategoryTitle);
@@ -288,7 +288,7 @@ namespace ZarCare_Automation.Test.PageActions
                 }
             }
         }
-            public static void Hover_To_Appointment_Slot(string SlotDate, string SlotTime)
+        public static void Hover_To_Appointment_Slot(string SlotDate, string SlotTime)
         {
             string TodaysDate = OurProvidersPage.Web_Slot_Today.Text;
 
