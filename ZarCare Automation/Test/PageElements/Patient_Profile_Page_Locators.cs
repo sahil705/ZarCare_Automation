@@ -86,6 +86,7 @@
         public By By_Height_Validation = By.XPath("//span[@id='spnErrorHeight']");
         public IWebElement Web_Height_Validation => driver.FindElement(By_Height_Validation);
 
+
         //bankingfile
 
         public By By_BankingFile_Upload_Btn = By.XPath("//div[@class='item-input-wrap mt-3 mt-sm-0']/button");
@@ -105,8 +106,21 @@
 
         public By By_Empty_BankingFile_Validation = By.XPath("//span[@id='spnErrorBankingFile']");
         public IWebElement Web_Empty_BankingFile_Validation => driver.FindElement(By_Empty_BankingFile_Validation);
+        
+        public By By_BankDetailSection = By.CssSelector(".card-title.heading-profile-new.mb-1");
+        public IWebElement Web_BankDetailSection => driver.FindElement(By_BankDetailSection);
 
-       
+        public By By_ChooseFileTextbox = By.Id("BankingFile");
+        public IWebElement Web_ChooseFileTextbox => driver.FindElement(By_ChooseFileTextbox);
+
+        public By By_ConsentCheckBox = By.Id("chkBankingConsent");
+        public IWebElement Web_ConsentCheckBox => driver.FindElement(By_ConsentCheckBox);
+
+        public By By_UploadButton = By.XPath("//button[contains(text(),'Upload')]");
+        public IWebElement Web_UploadButton => driver.FindElement(By_UploadButton);
+
+        public By By_BankDetailSuccessMessage = By.CssSelector("#Bankingmessage");
+        public IWebElement Web_BankDetailSuccessMessage => driver.FindElement(By_BankDetailSuccessMessage);
     }
 }
 

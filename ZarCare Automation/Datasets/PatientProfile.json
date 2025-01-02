@@ -10,6 +10,8 @@
   "Province": "Western Cape",
   "PostalCode": "7430",
   "Success_Message": "Profile saved successfully",
+  "Bank_Detail_Success_Message": "Banking details uploaded successfully",
+  "Bank_Detail_File_Path": "C:\\Users\\Ajay-LNG\\Downloads\\Rob Parsen Case Study.pdf",
   "FirstName_Validation": "Enter Valid Firstname",
   "LastName_Validation": "Enter Valid Lastname",
   "Weight_Validation": "Enter value greater than 0",

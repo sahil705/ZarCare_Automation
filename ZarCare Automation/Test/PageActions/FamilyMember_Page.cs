@@ -109,7 +109,7 @@ namespace ZarCare_Automation.Test.PageActions
                     string AddedMemberFname = AddedMemFullNameSplit[0];
                    
                     Assert.AreEqual(AddedMemFirstName, AddedMemberFname);
-                    Generic_Utils.ScrollToBottom();
+                    Generic_Utils.ScrollToBottoms();
                     Reports.childLog.Log(Status.Info, "Added Family Member displyed");
                     Generic_Utils.GetScreenshot("Added Family Member displyed screenshot");
                     int relationcount = FamilyMemberPage.Web_RelationshipText.Count;

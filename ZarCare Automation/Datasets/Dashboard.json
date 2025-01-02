@@ -1,0 +1,11 @@
+﻿{
+  "AppointmentReferenceCode": "#24121721006",
+  "RateValue": "2",
+  "RatingComment": "Bad Experience.",
+  "RatingExistMessage": "Rating already exists",
+  "RatingSavedMessage": "Provider's rating saved successfully",
+  "DoctorProfileId": 5,
+  "DoctorAvaliabilityPopup": "This provider is no longer available.",
+  "PastThreeMonthAppointmentPopup": "We are unable to process a prescription after three months since your last appointment."
+
+}

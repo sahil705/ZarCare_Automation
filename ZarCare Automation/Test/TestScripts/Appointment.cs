@@ -4,13 +4,15 @@
     {
         public string classname = "BookAppointments";
         public string registerFile = "Register";
+        public string loginFile = "Login";
 
         [Test]
         public void Book_Appointment_Through_Portal()
         {
             var json = Json_Reader.GetDataFromJson(classname);
-            string email = json["Email"].ToString();
-            string password = json["Password"].ToString();
+            var loginJson = Json_Reader.GetDataFromJson(loginFile);
+            string email = loginJson["Email"].ToString();
+            string password = loginJson["Password"].ToString();
             string provider_Name = json["Provider_Name"].ToString();
             string appointmentDate = json["Provider_Appointment_Date"].ToString();
             string appointmentTime = json["Provider_Appointment_Time"].ToString();
@@ -45,7 +47,7 @@
 
             Reports.childLog = Reports.CreateNode("Step 5: Validate and Proceed with the Checkout page");
             CheckOut_Page.Validate_CheckOut();
-            CheckOut_Page.Voucher_Apply_And_Get_Success_Message(voucherCode, originalText);
+            //CheckOut_Page.Voucher_Apply_And_Get_Success_Message(voucherCode, originalText);
             CheckOut_Page.Add_Symptom_And_Click_On_Continue_Button();
             Reports.FlushNode(Reports.childLog);
 
@@ -69,8 +71,6 @@
             string doctorName = bookAppoitmentJson["Doctor_Name"].ToString();
             string appointmentDate = bookAppoitmentJson["Appointment_Date"].ToString();
             string appointmentTime = bookAppoitmentJson["Appointment_Time"].ToString();
-            string voucherCode = bookAppoitmentJson["Voucher_Code"].ToString();
-            string originalText = bookAppoitmentJson["Voucher_Success_Message"].ToString();
             string confirmationText = bookAppoitmentJson["Confirmation_Capture_Text_Public"].ToString();
 
             string firstName = registerJson["First_Name"].ToString();

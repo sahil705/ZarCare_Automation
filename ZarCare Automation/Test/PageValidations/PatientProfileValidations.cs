@@ -38,11 +38,12 @@ namespace ZarCare_Automation.Test.PageValidations
             Login_Page.Patient_Login(patientEmail, patientPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Submit Patient Profile and verify diplay in family member ");
+            Reports.childLog.Log(Status.Info, "Step 3: Submit Patient Profile Details ");
             Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
             Patient_Dashboard_Page.NavigateToPatientProfile();
             Patient_Profile_Page.ValidatePatientProfile();
             Patient_Profile_Page.SubmitPatientProfileInfo(firstName, lastName, patientWeight, patientHeight, patientGender, patientAddress, patientSuburb, patientCity, patientProvince, postalCode, successMessage);
+
 
 
             Reports.childLog.Log(Status.Info, "=================================================");
@@ -146,9 +147,37 @@ namespace ZarCare_Automation.Test.PageValidations
             Patient_Profile_Page.ValidatePatientProfile();
             Patient_Profile_Page.DownloadBankingFile();
             Patient_Profile_Page.Get_And_Validate_Downloaded_Banking_File(downloadDirectory, bankfileName);
+          
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
+
+        public static void uploadBankingDetail()
+        {
+            
+            var json = Json_Reader.GetDataFromJson(PatientProfileJson);
+            string filePath = json["Bank_Detail_File_Path"].ToString();
+            string bankDetailSuccessMessage = json["Bank_Detail_Success_Message"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Submit Banking Details in Patient Profile Page ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+            Home_Page.NavigateToLoginPage();
+            Generic_Utils.WindowHandle();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Validate Patient Dashboard and Submit Banking Details ");
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+            Patient_Dashboard_Page.NavigateToPatientProfile();
+            Patient_Profile_Page.ValidatePatientProfile();
+            Patient_Profile_Page.UploadBankDetail(filePath, bankDetailSuccessMessage);
+
 
             Reports.childLog.Log(Status.Info, "=================================================");
         }
+
 
 
         public static void ValidatePatientProfileOnDashboardAndMedicalFiles()
@@ -162,7 +191,7 @@ namespace ZarCare_Automation.Test.PageValidations
             string ptName = Json["Pt_Name"].ToString();
 
             SubmitPatientProfileDetails();
-
+          
             Reports.childLog.Log(Status.Info, "Step 4: Verify patient details on dashboard page");
             Patient_Profile_Page.NavigateToDashboard();
             Generic_Utils.GetScreenshot("Patient Dashboard screenshot");
@@ -210,7 +239,7 @@ namespace ZarCare_Automation.Test.PageValidations
             Patient_Profile_Page.ValidatePatientProfile();
             Patient_Profile_Page.UploadProfilePhoto(profilePhoto, successMessage);
            
-
+            Reports.childLog.Log(Status.Info, "=================================================");
         }
 
         public static void ValidateProfilePicMaxSize()
@@ -240,6 +269,8 @@ namespace ZarCare_Automation.Test.PageValidations
             Patient_Dashboard_Page.NavigateToPatientProfile();
             Patient_Profile_Page.ValidatePatientProfile();
             Patient_Profile_Page.Get_And_Validate_ProfilePic_Size(invalidProfilePhoto, errorMessage);
+          
+            Reports.childLog.Log(Status.Info, "=================================================");
         }
     }
 }
