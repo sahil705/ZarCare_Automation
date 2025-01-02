@@ -94,6 +94,22 @@
         public By By_Last3AppointmentSectionHeader = By.XPath("//h4[contains(text(), 'Last 3 Appointment')]/a[@class='viewall']");
         public IWebElement Web_Last3AppointmentSectionHeader =>driver.FindElement(By_Last3AppointmentSectionHeader);
 
+        public By By_RepeatRequestButton = By.Id("btnRepeatScript");
+
+        public By By_DoctorNotAvailableHeader = By.XPath("//div[@id='repeatPrescriptionSent']//h4[@id='subscribeStatusLabel']");
+
+        public By By_DoctorNotAvailablePopupText = By.CssSelector("span[id='spnSentSuccess'] div");
+        public IWebElement Web_DoctorNotAvailablePopupText => driver.FindElement(By_DoctorNotAvailablePopupText);
+
+        public By By_PastThreeMonthAppointmentPopupText = By.XPath("//span[@id='spnSentSuccess']");
+        public IWebElement Web_PastThreeMonthAppointmentPopupText => driver.FindElement(By_PastThreeMonthAppointmentPopupText);
+
+        public By By_CheckOutPageElement = By.CssSelector("div[class='bg-white p-3 rounded-4 border-gray add_patient_info mt-0'] h4[class='title_heading m-0 border-bottom pb-2']");
+
+        public By By_Repeat_Prescription_Submit_Button = By.Id("btnRepeatRequest");
+        public IWebElement Web_Repeat_Prescription_Submit_Button => driver.FindElement(By_Repeat_Prescription_Submit_Button);
+
+
 
 
 

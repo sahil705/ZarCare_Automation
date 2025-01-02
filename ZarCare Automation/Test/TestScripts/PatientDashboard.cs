@@ -42,5 +42,12 @@
             PatientDashboardValidations.PatientRateToDoctorAfterAppointment();
             Reports.FlushNode(Reports.childLog);
         }
+        [Test]
+        public void ValidateRepeatPrescriptionJourney()
+        {
+            Reports.childLog = Reports.CreateNode("Validate the Repeat Prescription Journey ");
+            PatientDashboardValidations.VerifyRepeatPrescriptionJourney();
+            Reports.FlushNode(Reports.childLog);
+        }
     }
 }
