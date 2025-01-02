@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-
+﻿
 namespace ZarCare_Automation.Test.PageValidations
 {
     public  class FamilyMemberPageValidation
@@ -12,8 +11,8 @@ namespace ZarCare_Automation.Test.PageValidations
         public static void AddFamilyMemberwithValiddata()
         {
             var Fmemebrjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "FamilyMembeDetail");
-            //var json = Json_Reader.GetDataFromJson(MemberProfileJson);
             var loginjson = Json_Reader.GetDataFromJson(LoginJson);
+
             string EmailId = loginjson["Email"].ToString();
             string PassWord = loginjson["Password"].ToString();
             string MemFirstName = Fmemebrjson[0]["First_Name"].ToString();
@@ -53,8 +52,8 @@ namespace ZarCare_Automation.Test.PageValidations
             Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
             var Fmemebrjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "MemberValiMessages");
-            //var json = Json_Reader.GetDataFromJson(MemberProfileJson);
             var loginjson = Json_Reader.GetDataFromJson(LoginJson);
+
             string EmailId = loginjson["Email"].ToString();
             string PassWord = loginjson["Password"].ToString();
             string FirstNameReqErrorMessage = Fmemebrjson[0]["Mem_First_name_Req_Error_message"].ToString();
@@ -74,48 +73,46 @@ namespace ZarCare_Automation.Test.PageValidations
 
         public static void AddedMemberDisplayInMedilcalfile()
         {
-            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+            //Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
             var Fmemberjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "FamilyMembeDetail");
             var json = Json_Reader.GetDataFromJson(MemberProfileJson);
-            var loginjson = Json_Reader.GetDataFromJson(LoginJson);
-            string EmailId = loginjson["Email"].ToString();
-            string PassWord = loginjson["Password"].ToString();
+            //var loginjson = Json_Reader.GetDataFromJson(LoginJson);
+            //string EmailId = loginjson["Email"].ToString();
+            //string PassWord = loginjson["Password"].ToString();
             string MemFirstName = Fmemberjson[0]["First_Name"].ToString();
             string MemRelationText = json["Mem_Relationship_text"].ToString();
 
-            Reports.childLog = Reports.CreateNode("Step 1: Validate Login into Application");
-            Home_Page.NavigateToLoginPage();
-            Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(EmailId, PassWord);
-            //FamilyMember_Page.Enter_Patient_login_Detail(EmailId, PassWord);
-
-            Reports.childLog = Reports.CreateNode("Step 2: Validate Added Member display in medical File");
+            //Reports.childLog = Reports.CreateNode("Step 1: Validate Login into Application");
+            //Home_Page.NavigateToLoginPage();
+            //Login_Page.Validate_LoginPage();
+            //Login_Page.Patient_Login(EmailId, PassWord);
+           
+            Reports.childLog = Reports.CreateNode("Step 1: Validate Added Member display in medical File");
             FamilyMember_Page.AddedMemberDisplayedInMedicalFile(MemFirstName, MemRelationText);
 
         }
         public  static void AddedMemberDisplayedInFamilyMemberDropDown()
         {
-            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+            //Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
             var Fmemberjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "FamilyMembeDetail");
             var json = Json_Reader.GetDataFromJson(MemberProfileJson);
-            var loginjson = Json_Reader.GetDataFromJson(LoginJson);
-            string EmailId = loginjson["Email"].ToString();
-            string PassWord = loginjson["Password"].ToString();
+            //var loginjson = Json_Reader.GetDataFromJson(LoginJson);
+            //string EmailId = loginjson["Email"].ToString();
+            //string PassWord = loginjson["Password"].ToString();
             string MemFirstName = Fmemberjson[0]["First_Name"].ToString();
             string MemLastName = Fmemberjson[1]["Last_Name"].ToString();
             string MemRelationText = json["Mem_Relationship_text"].ToString();
             string AppointMentTime = json["Appointment_Time"].ToString();
             string MemberFinal = MemFirstName + " " + MemLastName + "(" + MemRelationText + ")";
 
-            Reports.childLog = Reports.CreateNode("Step 1: Validate Login into Application");
-            Home_Page.NavigateToLoginPage();
-            Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(EmailId, PassWord);
-            //FamilyMember_Page.Enter_Patient_login_Detail(EmailId, PassWord);
-
-            Reports.childLog = Reports.CreateNode("Step 2: Validate Book optment and navigate to Opptnment page");
+            //Reports.childLog = Reports.CreateNode("Step 1: Validate Login into Application");
+            //Home_Page.NavigateToLoginPage();
+            //Login_Page.Validate_LoginPage();
+            //Login_Page.Patient_Login(EmailId, PassWord);
+           
+            Reports.childLog = Reports.CreateNode("Step 1: Validate added family member into Member's Dropdown");
             FamilyMember_Page.AddedmemberAppearInMemberDropdown(AppointMentTime, MemberFinal);
 
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ZarCare_Automation.Test.PageValidations
 {
     public class RegisterPageValidation
@@ -78,7 +73,7 @@ namespace ZarCare_Automation.Test.PageValidations
         {
             var json = Json_Reader.GetArrayFromJson(Classname, "Invalid_Patient_Detail");
             
-            string DupFirstName = json[0]["Dupicate_First_Name"].ToString();
+            string DupFirstName = json[0]["Duplicate_First_Name"].ToString();
             string DupsurName = json[1]["Duplicate_last_Name"].ToString();
             string InvalidcellNumber = json[2]["Invalid_CellPhoneNumber"].ToString();
             string InvalidemailAddress = json[3]["Invalid_Email_address"].ToString();
@@ -100,7 +95,7 @@ namespace ZarCare_Automation.Test.PageValidations
             Login_Page.Validate_LoginPage();
             Reports.FlushNode(Reports.childLog);
 
-            Reports.childLog = Reports.CreateNode("Step 3: Navigate to Register Page and validate OTP page");
+            Reports.childLog = Reports.CreateNode("Step 3: Register page invalid input validation");
             Login_Page.Navigate_To_RegisterPage();
             Register_Page.Validate_RegisterPage();
             Register_Page.Patient_Registration(DupFirstName, DupsurName, InvalidcellNumber, InvalidemailAddress, Invalidpassword, InvalidconfirmPw);
@@ -120,20 +115,20 @@ namespace ZarCare_Automation.Test.PageValidations
             string ReqConfPasswMessage = json[3]["ReqConfPassMessage"].ToString();
             string TermsAndCondMessage = json[4]["TermsAndContionMessage"].ToString();
 
-            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+            //Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
-            Reports.childLog = Reports.CreateNode("Step 1: Open Home Page and Validate the homepage");
-            Home_Page.Validate_HomePage();
-            Reports.FlushNode(Reports.childLog);
+            //Reports.childLog = Reports.CreateNode("Step 1: Open Home Page and Validate the homepage");
+            //Home_Page.Validate_HomePage();
+            //Reports.FlushNode(Reports.childLog);
 
-            Reports.childLog = Reports.CreateNode("Step 2: Navigate to Login Page and Validate the Login page ");
-            Home_Page.NavigateToLoginPage();
-            Login_Page.Validate_LoginPage();
-            Reports.FlushNode(Reports.childLog);
+            //Reports.childLog = Reports.CreateNode("Step 2: Navigate to Login Page and Validate the Login page ");
+            //Home_Page.NavigateToLoginPage();
+            //Login_Page.Validate_LoginPage();
+            //Reports.FlushNode(Reports.childLog);
 
-            Reports.childLog = Reports.CreateNode("Step 3: Navigate to Register Page and Varify Validation messages  ");
-            Login_Page.Navigate_To_RegisterPage();
-            Register_Page.Validate_RegisterPage();
+            Reports.childLog = Reports.CreateNode("Step 1: Navigate to Register Page and Varify Validation messages");
+            //Login_Page.Navigate_To_RegisterPage();
+            //Register_Page.Validate_RegisterPage();
             Register_Page.Patient_Form_fill_with_No_input_validation_message(FnameReqMessage, SuNameReqMessage, ReqValidCellNumber, ReqValidEmailAddress, ReqPasswordMessage, ReqConfPasswMessage, TermsAndCondMessage);
         }
 

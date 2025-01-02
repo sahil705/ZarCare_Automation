@@ -3,11 +3,18 @@
     public class FamilyMembers : Base
     {
         [Test]
-        public void SubmitAndVerifyFamilyMemberProfileWithValidationMessage()
+        public void Submit_AndVerify_Family_MemberProfile_Display_In_MedicalFileAnd_Memmber_DropDown()
         {
             Reports.childLog = Reports.CreateNode("Submit the Family Memeber Profile Form ");
             FamilyMemberPageValidation.AddFamilyMemberwithValiddata();
+
+            Reports.childLog = Reports.CreateNode("Validate added family member into Medical file");
+            FamilyMemberPageValidation.AddedMemberDisplayInMedilcalfile();
+
+            Reports.childLog = Reports.CreateNode("Validate added family member Displayed into member's dropdown");
+            FamilyMemberPageValidation.AddedMemberDisplayedInFamilyMemberDropDown();
             Reports.FlushNode(Reports.childLog);
+            
         }
 
         [Test]
@@ -16,22 +23,6 @@
         {
             Reports.childLog = Reports.CreateNode("Validation message for mandatory field");
             FamilyMemberPageValidation.ValidateMandatoryFielddForFamilyMember();
-        }
-
-        [Test]
-       public void VerifyAddedMemberDisplayInMedilcal_file()
-        {
-            Reports.childLog = Reports.CreateNode("Validation added family member into Medical file");
-            FamilyMemberPageValidation.AddedMemberDisplayInMedilcalfile();
-        }
-
-        [Test]
-
-        public void VerifyAddedMemberApprearInDropDown()
-        {
-            Reports.childLog = Reports.CreateNode("Validation added family member Displayed into member's dropdown");
-            FamilyMemberPageValidation.AddedMemberDisplayedInFamilyMemberDropDown();
-
         }
 
     }

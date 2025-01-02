@@ -1,5 +1,4 @@
-﻿using WebDriverManager.Clients;
-
+﻿
 namespace ZarCare_Automation.Test.PageActions
 {
     public class Register_Page:WebdriverSession
@@ -40,11 +39,13 @@ namespace ZarCare_Automation.Test.PageActions
             string InvaPassErrorText = RegisterPage.Web_InvalidPasswordError.Text;
             Assert.That(InvaPassErrorText, Is.EqualTo(InvalidPassError));
 
-            //string InvConfPassErrorText=RegisterPage.Web_InvalidConfPassError.Text;
-            //Assert.That(InvConfPassErrorText, Is.EqualTo(InvalidConfPassError));
+            Reports.childLog.Log(Status.Info, "Invalid Detail validation message displayed");
+            Generic_Utils.GetScreenshot("Invalid Detail Validation messages screenshot ");
+
         }
         public static void Patient_Form_fill_with_No_input_validation_message(string FnameReqMessage,string SuNameReqMessage,string ReqValidCellNumber,string ReqValidEmailAddress,string ReqPasswordMessage,string ReqConfPasswMessage,string TermsAndCondMessage)
         {
+            driver.Navigate().Refresh();
             RegisterPage.Web_RegisterButton.Click();
 
             string FnameValiMessageText= RegisterPage.Web_FnameReqMessage.Text;
@@ -68,6 +69,8 @@ namespace ZarCare_Automation.Test.PageActions
             string TermsAndConditiontext=RegisterPage.Web_TermsAndConditionMessage.Text;
             Assert.That(TermsAndConditiontext, Is.EqualTo(TermsAndCondMessage));
 
+            Reports.childLog.Log(Status.Info, "Required input validation message displayed");
+            Generic_Utils.GetScreenshot("Validation messages screenshot ");
 
 
         }

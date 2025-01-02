@@ -1,5 +1,4 @@
-﻿using WebDriverManager.Clients;
-
+﻿
 namespace TestScripts
 {
     public class Register : Base
@@ -19,7 +18,7 @@ namespace TestScripts
         public void RedirectTo_OTP_pageAfterRegistrationDetail()
         {
             Reports.childLog = Reports.CreateNode("Redirect to OTP page after Registration Detail");
-            RegisterPageValidation.VerifyMemeberRedirectTo_OTP_pageAfterRegistrationDetail();
+            RegisterPageValidation.VerifyMemeberRedirectTo_OTP_pageAfterRegistrationDetail();     
             Reports.FlushNode(Reports.childLog);
 
         }
@@ -29,17 +28,14 @@ namespace TestScripts
         {
             Reports.childLog = Reports.CreateNode("Validation message after Invalid registeration form detail");
             RegisterPageValidation.VerifyValidationMessageWithInvalidRegistrationFormDetail();
-            Reports.FlushNode(Reports.childLog);
 
-        }
-
-        [Test]
-
-        public void ValidationMessageForAllRequiredFieldWhenNoInput()
-        {
-            Reports.childLog = Reports.CreateNode("Validation message when no input in required registeration fileld");
+            Reports.childLog = Reports.CreateNode("Validation message when no input in required registeration field");
             RegisterPageValidation.VerifyValidationMessageForAllRequiredFieldWhenNoInput();
+
             Reports.FlushNode(Reports.childLog);
+
         }
+
+        
     }
 }
