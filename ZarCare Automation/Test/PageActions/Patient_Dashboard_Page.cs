@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using TestScripts;
 
 namespace ZarCare_Automation.Test.PageActions
 {
@@ -75,6 +76,7 @@ namespace ZarCare_Automation.Test.PageActions
             Patient_Profile_Page.NavigateToDashboard();
             ValidatePatientDashboard();
 
+
             string nameText = PatientDashboardPage.Web_PatientName.Text;
             string genderText = PatientDashboardPage.Web_Patient_Gender.Text;
             string weightText = PatientDashboardPage.Web_Patient_Weight.Text;
@@ -93,6 +95,41 @@ namespace ZarCare_Automation.Test.PageActions
             Reports.childLog.Log(Status.Info, "Patient Dashboard Information matched with Patient Profile Page");
             Generic_Utils.GetScreenshot("Profile Dashboard Personal Detail Section screenshot");
         }
+
+
+        public static void NavigateToMedicalFiles()
+        {
+            IWebElement MedicalFilesLink = Wait.ElementIsVisible(PatientDashboardPage.By_MedicalFilesTab, 10);
+            MedicalFilesLink.Click();
+        }
+
+        public static void Get_And_Validate_Patient_FullName(string Original_Text)
+        {
+            string Capture_Text = Generic_Utils.getText(PatientDashboardPage.Web_PatientName);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Text));
+        }
+        public static void Get_And_Validate_Patient_Weight(string Original_Text)
+        {
+            string Capture_Text = Generic_Utils.getText(PatientDashboardPage.Web_Patient_Weight);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Text));
+        }
+        public static void Get_And_Validate_Patient_Height(string Original_Text)
+        {
+            string Capture_Text = Generic_Utils.getText(PatientDashboardPage.Web_Patient_Height);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Text));
+        }
+        public static void Get_And_Validate_Patient_Gender(string Original_Text)
+        {
+            string Capture_Text = Generic_Utils.getText(PatientDashboardPage.Web_Patient_Gender);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Text));
+        }
+        public static void Get_And_Validate_Patient_Address(string Original_Text)
+        {
+            string Capture_Text = Generic_Utils.getText(PatientDashboardPage.Web_Patient_Address);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Text));
+        }
+        
+        
         public static void ValidateDashboardAppointmentWithActiveAppointmentPage()
         {
             Generic_Utils.ScrollToMiddle();

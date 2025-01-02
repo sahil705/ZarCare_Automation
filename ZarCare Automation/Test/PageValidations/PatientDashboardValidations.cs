@@ -76,6 +76,32 @@
             Reports.childLog.Log(Status.Info, "=================================================");
 
         }
+
+        public static void ValidatePatientProfileOnDashboard()
+        {
+            var Json = Json_Reader.GetDataFromJson(PatientProfileJson);
+
+            string patientName = Json["Patient_Name"].ToString();
+            string patientHeight = Json["Patient_Height"].ToString();
+            string patientWeight = Json["Patient_Weight"].ToString();
+            string patientGender = Json["Patient_Gender"].ToString();
+            string patientFullAddress = Json["Patient_FullAddress"].ToString();
+            
+            PatientProfileValidations.SubmitPatientProfileDetails();
+
+            Reports.childLog.Log(Status.Info, "Step 4: Verify patient details on dashboard page");
+            Patient_Profile_Page.NavigateToDashboard();
+            Generic_Utils.GetScreenshot("Patient Dashboard screenshot");
+
+            Patient_Dashboard_Page.Get_And_Validate_Patient_FullName(patientName);
+            Patient_Dashboard_Page.Get_And_Validate_Patient_Height(patientHeight);
+            Patient_Dashboard_Page.Get_And_Validate_Patient_Weight(patientWeight);
+            Patient_Dashboard_Page.Get_And_Validate_Patient_Gender(patientGender);
+            Patient_Dashboard_Page.Get_And_Validate_Patient_Address(patientFullAddress);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+
+
         public static void ValidateAppointmentCount()
         {
             var loginJson = Json_Reader.GetDataFromJson(LoginJson);
@@ -195,6 +221,7 @@
             Patient_Dashboard_Page.ValidateRepeatPrescriptionJourney(doctorId, appointmentNumber, doctorAvailablePopup, pastAppointmentPopup, voucherCode, voucherSuccessMessage);
 
             Reports.childLog.Log(Status.Info, "=================================================");
+
         }
     }
 }

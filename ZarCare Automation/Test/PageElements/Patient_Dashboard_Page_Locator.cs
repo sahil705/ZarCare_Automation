@@ -44,6 +44,9 @@
         public By By_Subscribe_Button = By.Id("btnSubscribe");
         public IWebElement Web_Subscribe_Button => driver.FindElement(By_Subscribe_Button);
 
+        public By By_My_Profile_Link = By.CssSelector("#liMyProfile");
+        public IWebElement Web_My_Profile_Link => driver.FindElement(By_My_Profile_Link);
+
         // Dashboard element
 
         public By By_DashboardHeader = By.XPath("//h4[@class='card-title']");
@@ -54,6 +57,11 @@
 
         public By By_AddMemberBtn = By.XPath("//a[@href='/Patient/FamilyMemberProfile/Add']");
         public IWebElement Web_AddMemberBtn => driver.FindElement(By_AddMemberBtn);
+
+
+        public By By_MedicalFilesTab = By.XPath("//a[@href='/Patient/MedicalFile']");
+        public IWebElement Web_MedicalFilesTab => driver.FindElement(By_MedicalFilesTab);
+
 
         public By By_UpcomingAppointmentHeader = By.XPath("//div[@class='card mb-4']//div[@class='card-body']//h4[@class='card-title']");
         public IWebElement Web_UpcomingAppointmentHeader => driver.FindElement(By_UpcomingAppointmentHeader);
@@ -84,7 +92,7 @@
         public IWebElement Web_RatingPopup => driver.FindElement(By_RatingPopup);
         public By By_StarRatings(string starValue) => By.XPath($"//ul[@id='stars']/li[@class='star' and @data-value='{starValue}']");
         public IWebElement Web_StarRatings(string starValue) => driver.FindElement(By_StarRatings(starValue));
-        
+
         public By By_RatingComment = By.Id("txtComment");
         public IWebElement Web_RatingComment => driver.FindElement(By_RatingComment);
 
@@ -108,18 +116,6 @@
 
         public By By_Repeat_Prescription_Submit_Button = By.Id("btnRepeatRequest");
         public IWebElement Web_Repeat_Prescription_Submit_Button => driver.FindElement(By_Repeat_Prescription_Submit_Button);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

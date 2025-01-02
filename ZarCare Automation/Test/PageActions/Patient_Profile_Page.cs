@@ -1,4 +1,3 @@
-﻿using WebDriverManager.Clients;
 
 namespace ZarCare_Automation.Test.PageActions
 {
@@ -121,7 +120,7 @@ namespace ZarCare_Automation.Test.PageActions
 
             PatientProfile.Web_Submit_Button.Click();
         }
-       
+
         public static void Get_And_Validate_firstName_Error(string Original_Text1)
         {
             string Capture_Text1 = Generic_Utils.getText(PatientProfile.Web_FirstName_Validation);
@@ -140,8 +139,100 @@ namespace ZarCare_Automation.Test.PageActions
         public static void Get_And_Validate_Height_Error(string Original_Text4)
         {
             string Capture_Text4 = Generic_Utils.getText(PatientProfile.Web_Height_Validation);
-            Assert.That(Original_Text4 , Is.EqualTo(Capture_Text4));
+            Assert.That(Original_Text4, Is.EqualTo(Capture_Text4));
         }
+
+        public static void SubmitEmptyBankingFile()
+        {
+            ScrollToBottoms();
+            IWebElement SubmitBankfile = Wait.ElementIsVisible(PatientProfile.By_BankingFile_Upload_Btn, 10);
+            SubmitBankfile.Click();
+        }
+        public static void Get_And_Validate_Empty_BankingFile_Error(string Original_Text)
+        {
+            string Capture_Text = Generic_Utils.getText(PatientProfile.Web_Empty_BankingFile_Validation);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Text));
+        }
+        public static void Get_And_Validate_Banking_Consent_Error(string Original_Text)
+        {
+            string Capture_Text = Generic_Utils.getText(PatientProfile.Web_Banking_Consent_Validation);
+            Assert.That(Original_Text, Is.EqualTo(Capture_Text));
+        }
+
+        public static void ScrollToBottoms()
+        {
+            try
+            {
+                long lastHeight = (long)((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+                while (true)
+                {
+                    // Scroll down
+                    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+                    Thread.Sleep(2000); // Wait for new content to load
+                                        // Check if the height has changed
+                    long newHeight = (long)((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+                    if (newHeight == lastHeight)
+                    {
+                        break; // Scrolling complete
+                    }
+                    lastHeight = newHeight;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ScrollToBottom failed: " + ex.Message);
+            }
+        }
+        public static void DownloadBankingFile()
+        {
+            Patient_Profile_Page.ScrollToBottoms();
+            IWebElement DownloadBankfile = Wait.ElementIsVisible(PatientProfile.By_Banking_Download, 20);
+            DownloadBankfile.Click();
+        }
+        public static void Get_And_Validate_Downloaded_Banking_File(string downloadDirectory, string fileName)
+        {
+            string filePath = Path.Combine(downloadDirectory, fileName);
+
+            // Check if the file exists
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine("File downloaded successfully.");
+            }
+            else
+            {
+                Console.WriteLine("File download failed.");
+            }
+
+        }
+
+        public static void UploadProfilePhoto(string ProfilePic, string successText)
+        {
+            PatientProfile.Web_UploadPhoto.SendKeys(ProfilePic);
+            PatientProfile.Web_Submit_Button.Click();
+            Wait.ElementIsVisible(PatientProfile.By_Success_Message, 10);
+
+            string successMessage = Generic_Utils.getText(PatientProfile.Web_Success_Message);
+
+            Assert.That(successMessage, Does.Contain(successText));
+
+            Wait.ElementIsVisible(PatientProfile.By_LeftMenu_ProfilePic, 10);
+
+            Reports.childLog.Log(Status.Info, "Patient Profile Submitted");
+            Generic_Utils.GetScreenshot("Patient Profile screenshot");
+        }
+
+
+        public static void Get_And_Validate_ProfilePic_Size(string InvalidProfilePic, string ErrorText)
+        {
+            PatientProfile.Web_UploadPhoto.SendKeys(InvalidProfilePic);
+            
+            Wait.ElementIsVisible(PatientProfile.By_UploadPhoto_Validation, 10);
+
+            string errorMessage = Generic_Utils.getText(PatientProfile.Web_UploadPhoto_Validation);
+
+            Assert.That(errorMessage, Does.Contain(ErrorText));
+        }
+       
 
         public static void UploadBankDetail(string filePath, string successMessage)
         {
@@ -169,10 +260,6 @@ namespace ZarCare_Automation.Test.PageActions
             
             Assert.That(getSuccessMessage, Is.EqualTo(successMessage));
         }
-        
-        
-        
-
-
+  
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Patient_Profile_Page_Locators:WebdriverSession
     {
-        
+
 
         public By By_FirstName_Textbox = By.Id("txtFirstName");
         public IWebElement Web_FirstName_Textbox => driver.FindElement(By_FirstName_Textbox);
@@ -45,8 +45,13 @@
         public IWebElement Web_ProfilePicture_Text => driver.FindElement(By_ProfilePicture_Text);
 
         public By By_UploadPhoto = By.XPath("//input[@id='file']");
-
         public IWebElement Web_UploadPhoto => driver.FindElement(By_UploadPhoto);
+
+        public By By_LeftMenu_ProfilePic = By.XPath("//div[@class='profile-info-widget']");
+        public IWebElement Web_LeftMenu_ProfilePic => driver.FindElement(By_LeftMenu_ProfilePic);
+
+        public By By_UploadPhoto_Validation = By.XPath("//span[@id='spnMsg']");
+        public IWebElement Web_UploadPhoto_Validation => driver.FindElement(By_UploadPhoto_Validation);
 
         public By By_Success_Message = By.CssSelector("#message");
         public IWebElement Web_Success_Message => driver.FindElement(By_Success_Message);
@@ -81,6 +86,27 @@
         public By By_Height_Validation = By.XPath("//span[@id='spnErrorHeight']");
         public IWebElement Web_Height_Validation => driver.FindElement(By_Height_Validation);
 
+
+        //bankingfile
+
+        public By By_BankingFile_Upload_Btn = By.XPath("//div[@class='item-input-wrap mt-3 mt-sm-0']/button");
+        public IWebElement Web_BankingFile_Upload_Btn => driver.FindElement(By_BankingFile_Upload_Btn);
+
+        public By By_BankingFile_Choose = By.XPath("//input[@id='BankingFile']");
+        public IWebElement Web_BankingFile_Choose => driver.FindElement(By_BankingFile_Choose);
+
+        public By By_Banking_CheckBox = By.XPath("//input[@id='chkBankingConsent']");
+        public IWebElement Web_Banking_CheckBox => driver.FindElement(By_Banking_CheckBox);
+
+        public By By_Banking_Download = By.XPath("//a[@class='btn btn-text']");
+        public IWebElement Web_Banking_Download => driver.FindElement(By_Banking_Download);
+
+        public By By_Banking_Consent_Validation = By.XPath("//span[@id='spnMessageBankingConsent']");
+        public IWebElement Web_Banking_Consent_Validation => driver.FindElement(By_Banking_Consent_Validation);
+
+        public By By_Empty_BankingFile_Validation = By.XPath("//span[@id='spnErrorBankingFile']");
+        public IWebElement Web_Empty_BankingFile_Validation => driver.FindElement(By_Empty_BankingFile_Validation);
+        
         public By By_BankDetailSection = By.CssSelector(".card-title.heading-profile-new.mb-1");
         public IWebElement Web_BankDetailSection => driver.FindElement(By_BankDetailSection);
 

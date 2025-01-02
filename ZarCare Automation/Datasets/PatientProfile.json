@@ -1,8 +1,8 @@
 ﻿{
   "First_Name": "Sam",
   "Last_Name": "Curran",
-  "Weight": "85",
-  "Height": "168",
+  "Weight": "85.00",
+  "Height": "168.00",
   "Gender": "Male",
   "Address": "108 MarshMellow Road",
   "Suburb": "Skyland",
@@ -15,5 +15,21 @@
   "FirstName_Validation": "Enter Valid Firstname",
   "LastName_Validation": "Enter Valid Lastname",
   "Weight_Validation": "Enter value greater than 0",
-  "Height_Validation": "Enter value greater than 0"
+  "Height_Validation": "Enter value greater than 0",
+  "Banking_Consent_Error": "Please accept the above statement of declaration",
+  "BankingFile_Error": "Pleasae select a file to upload",
+  "BankingFilePath": "C:\\Users\\madhuri\\Downloads/Bankfile.png",
+  "DownloadDirectory": "C:\\Users\\madhuri\\Downloads/",
+  "BankFileName": "133703471059373772 (13).png",
+  "Patient_Name": " James Patric",
+  "Pt_Name": "James Patric",
+  "Patient_Height": " 143.00 cm",
+  "Patient_Weight": " 82.50 kg",
+  "Patient_Gender": " Male",
+  "Patient_FullAddress": " 108 Marshmellow Road Skyland Johanesberg Western Cape 7430",
+  "Photo_Path": "C:\\Users\\madhuri\\Downloads/photo1.jpg",
+  "Photo_FileName": "Profilephoto.jpg",
+  "Invalid_Photo_Path": "C:\\Users\\madhuri\\Downloads/Patientslist.xlsx",
+  "Photo_Validation": "Please upload files having extensions: .jpeg, .jpg, .png only."
+
 }
