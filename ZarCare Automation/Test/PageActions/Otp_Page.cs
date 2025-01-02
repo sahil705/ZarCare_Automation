@@ -1,5 +1,4 @@
-﻿using TestScripts;
-
+﻿
 namespace ZarCare_Automation.Test.PageActions
 {
     public class Otp_Page:WebdriverSession

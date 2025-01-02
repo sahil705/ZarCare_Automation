@@ -117,7 +117,7 @@
 
         public IList<IWebElement> Web_MemFullName => driver.FindElements(By_MemFullName);
 
-        //Book Appointment lab locatores
+        //Book Appointment tab locatores
 
         public By By_BookOppntTab = By.XPath("//ul//li[@id='liFindDoctor']");
 
