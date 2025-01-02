@@ -20,7 +20,7 @@
 
         public static void NavigateToContactUs()
         {
-            Generic_Utils.ScrollToBottom();
+            Generic_Utils.ScrollToBottoms();
             HomePage.Web_Contact_us_link.Click();
 
         }
@@ -52,7 +52,6 @@
         public static void NavigateToLoginPage()
         {
             HomePage.Web_LoginSignUp_Button.Click();
-            
         }
 
        
@@ -92,7 +91,7 @@
         public static void ValidateNewsletterSection()
         {
             
-            Generic_Utils.ScrollToBottom(); 
+            Generic_Utils.ScrollToBottoms(); 
             Generic_Utils.IsElementDisplayed(HomePage.By_SubscribeToNewsletter_h2);
 
             Reports.childLog.Log(Status.Info, "Newsletter Section is displayed");

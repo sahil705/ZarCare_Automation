@@ -4,6 +4,8 @@
     {
         public static string PatientProfileJson = "PatientProfile";
         public static string LoginJson = "Login";
+        public static string DashboardJson = "Dashboard";
+        public static string Appointment = "BookAppointments";
 
         public static void ValidatePatientDetail()
         {
@@ -73,6 +75,126 @@
 
             Reports.childLog.Log(Status.Info, "=================================================");
 
+        }
+        public static void ValidateAppointmentCount()
+        {
+            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            string patientEmail = loginJson["Email"].ToString();
+            string patientPassword = loginJson["Password"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Validate Dashboard Active Appointment With Active Appointment Page ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Get Dashboard Active Appointment Count and Validate With Active Appointment Page ");
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+            Patient_Dashboard_Page.ValidateDashboardAppointmentWithActiveAppointmentPage();
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
+
+
+        public static void ValidateInvoiceFromDashboard()
+        {
+            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            var dashboardJson = Json_Reader.GetDataFromJson(DashboardJson);
+            string patientEmail = loginJson["Email"].ToString();
+            string patientPassword = loginJson["Password"].ToString();
+            string referneceNumber = dashboardJson["AppointmentReferenceCode"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Validate Invoice from Patient Dashboard Page");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Validate the Invoice");
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+            Patient_Dashboard_Page.ValidateInvoiceDetailsForPastAppointments(referneceNumber);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
+
+        public static void PatientRateToDoctorAfterAppointment()
+        {
+            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            var dashboardJson = Json_Reader.GetDataFromJson(DashboardJson);
+            string patientEmail = loginJson["Email"].ToString();
+            string patientPassword = loginJson["Password"].ToString();
+            string referneceNumber = dashboardJson["AppointmentReferenceCode"].ToString();
+            string starValue = dashboardJson["RateValue"].ToString();
+            string ratingComment = dashboardJson["RatingComment"].ToString();
+            string ratingExistMessage = dashboardJson["RatingExistMessage"].ToString();
+            string ratingSavedMessage = dashboardJson["RatingSavedMessage"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Verify Patient Rating to Doctor");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Validate the Ratings");
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+            Patient_Dashboard_Page.VerifyRatingsForPastAppointments(referneceNumber,starValue, ratingComment,ratingExistMessage, ratingSavedMessage);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
+
+        public static void VerifyRepeatPrescriptionJourney()
+        {
+            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            var dashboardJson = Json_Reader.GetDataFromJson(DashboardJson);
+            var appointmentJson = Json_Reader.GetDataFromJson(Appointment);
+            string patientEmail = loginJson["Email"].ToString();
+            string patientPassword = loginJson["Password"].ToString();
+            int doctorId = Convert.ToInt32(dashboardJson["DoctorProfileId"]);
+            string appointmentNumber = dashboardJson["AppointmentReferenceCode"].ToString();
+            string doctorAvailablePopup = dashboardJson["DoctorAvaliabilityPopup"].ToString();
+            string pastAppointmentPopup = dashboardJson["PastThreeMonthAppointmentPopup"].ToString();
+            string voucherCode = appointmentJson["Voucher_Code"].ToString();
+            string voucherSuccessMessage = appointmentJson["Voucher_Success_Message"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Verify Patient Repeat Prescription Journey ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Validate the Repeat Prescription Journey ");
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+            Patient_Dashboard_Page.ValidateRepeatPrescriptionJourney(doctorId, appointmentNumber, doctorAvailablePopup, pastAppointmentPopup, voucherCode, voucherSuccessMessage);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
         }
     }
 }

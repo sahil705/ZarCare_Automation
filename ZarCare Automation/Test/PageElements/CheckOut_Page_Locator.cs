@@ -29,6 +29,8 @@
         public By By_Continue_Payment_Button = By.XPath("//div[@class='mt-3 continue_button']/button");
         public IWebElement Web_Continue_Payment_Button => driver.FindElement(By_Continue_Payment_Button);
 
+        public By By_Voucher_Success_Message_Text = By.Id("spnVoucherSuccess");
+        public IWebElement Web_Voucher_Success_Message_Text => driver.FindElement(By_Voucher_Success_Message_Text);
 
 
     }

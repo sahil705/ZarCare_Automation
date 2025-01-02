@@ -52,7 +52,7 @@ namespace ZarCare_Automation.Utilities
 
         public static void Check_WorkWithUs_Table_ForMultipleEntries(string email)
         {
-            string connectionString = "Server =tcp:preprodzarcaredb.database.windows.net,1433;Database = Zarcare;User = PreProdSqlAdmin;Password =NDH&u3ur\\/C[Y{7txpZ; ";
+            string connectionString = "Server=tcp:devzarcaredb.database.windows.net;Database=Zarcare;User Id=DevSqlAdmin;Password=NDH&u3ur\\/C[Y{7txpZ;";
 
             try
             {
@@ -99,5 +99,67 @@ namespace ZarCare_Automation.Utilities
             }
         }
 
+        public static bool GetDoctorAndAppointmentDetail(int doctorId, string appointmentNumber, out DateTime? dateCreated)
+        {
+            dateCreated = null;
+            string connectionString = "Server=tcp:devzarcaredb.database.windows.net;Database=Zarcare;User Id=DevSqlAdmin;Password=NDH&u3ur\\/C[Y{7txpZ;";
+
+
+            if (appointmentNumber.StartsWith("#"))
+            {
+                appointmentNumber = appointmentNumber.Substring(1);
+            }
+
+            string query = @"SELECT d.status, d.isprofileverified, a.datecreated 
+                     FROM doctorprofile d 
+                     INNER JOIN appointment a ON d.id = a.doctorprofileid
+                     WHERE d.id = @DoctorId AND a.appointmentreferencecode = @AppointmentReferenceCode";
+
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+
+
+                        command.Parameters.AddWithValue("@DoctorId", doctorId);
+                        command.Parameters.AddWithValue("@AppointmentReferenceCode", appointmentNumber);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+
+                                while (reader.Read())
+                                {
+                                    bool status = reader.GetBoolean(reader.GetOrdinal("status"));
+                                    bool isProfileVerified = reader.GetBoolean(reader.GetOrdinal("isprofileverified"));
+                                    dateCreated = reader.IsDBNull(reader.GetOrdinal("datecreated"))
+                                        ? (DateTime?)null
+                                        : reader.GetDateTime(reader.GetOrdinal("datecreated"));
+
+
+                                    return status && isProfileVerified;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("No matching records found.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+
+            return false;
+        }
     }
 }

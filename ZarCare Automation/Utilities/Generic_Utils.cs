@@ -1,7 +1,4 @@
-﻿using AngleSharp.Dom;
-using OpenQA.Selenium.Interactions;
-
-namespace ZarCare_Automation.Utilities
+﻿namespace ZarCare_Automation.Utilities
 {
     public class Generic_Utils : WebdriverSession
     {
@@ -181,6 +178,34 @@ namespace ZarCare_Automation.Utilities
             ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
         }
 
+        public static void ScrollToBottoms()
+        {
+            try
+            {
+                long lastHeight = (long)((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+
+                while (true)
+                {
+                    // Scroll down
+                    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+                    Wait.GenericWait(2000); 
+
+                    // Check if the height has changed
+                    long newHeight = (long)((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
+                    if (newHeight == lastHeight)
+                    {
+                        break; // Scrolling complete
+                    }
+                    lastHeight = newHeight;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ScrollToBottom failed: " + ex.Message);
+            }
+        }
+    
+
         public static void ScrollToElement(IWebElement element)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView()", element);
@@ -205,17 +230,23 @@ namespace ZarCare_Automation.Utilities
 
         public static void WindowHandle()
         {
-            var current_window = driver.CurrentWindowHandle;
-            var all_windows = driver.WindowHandles;
-            foreach (string window in all_windows)
+            string current_window = driver.CurrentWindowHandle;
+            ICollection<string> windowHandles = driver.WindowHandles;
+            foreach (string window in windowHandles)
             {
                 if (window != current_window)
                 {
                     driver.SwitchTo().Window(window);
-                    break;
+
+                    if (driver.Url.Contains("PrintInvoice"))
+                    {
+                        Console.WriteLine("Switched to the invoice window.");
+                        break;
+                    }
                 }
             }
         }
+
 
         public static void getUrl()
         {
@@ -342,6 +373,12 @@ namespace ZarCare_Automation.Utilities
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
                 return wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            }
+
+            public static IWebElement ElementExist(By locator , int second)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                return wait.Until(ExpectedConditions.ElementExists(locator));   
             }
         }
     }

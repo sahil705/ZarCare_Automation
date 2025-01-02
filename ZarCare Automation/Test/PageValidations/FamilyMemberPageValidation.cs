@@ -1,4 +1,5 @@
 ﻿
+
 namespace ZarCare_Automation.Test.PageValidations
 {
     public  class FamilyMemberPageValidation
@@ -35,8 +36,8 @@ namespace ZarCare_Automation.Test.PageValidations
             Reports.childLog = Reports.CreateNode("Step 1: Validate Home Page and Navigate to Login Page");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(EmailId,PassWord);
-           
+            Login_Page.Patient_Login(EmailId, PassWord);
+
             Reports.FlushNode(Reports.childLog);
 
             Reports.childLog = Reports.CreateNode("Step 2: Validate add family member detail");
