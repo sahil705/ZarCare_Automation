@@ -57,5 +57,13 @@
             PatientDashboardValidations.ValidatePrescriptionForPastAppointments();
             Reports.FlushNode(Reports.childLog);
         }
+
+        [Test]
+        public void ValidateDoctorSickNoteInPatientDashboard()
+        {
+            Reports.childLog = Reports.CreateNode("Validate the Sick Note Journey for Past Appointments ");
+            PatientDashboardValidations.ValidateSickNoteForPastAppointments();
+            Reports.FlushNode(Reports.childLog);
+        }
     }
 }
