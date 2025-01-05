@@ -308,6 +308,8 @@
                     {
                         // Handle the case where the button is not found
                         Console.WriteLine("Repeat request button is not found for the respective appointment.");
+                        Reports.childLog.Log(Status.Info, "Repeat Prescription Button is not Available as Doctor doesn't Prescribe the Prescription ");
+                        Generic_Utils.GetScreenshot("Appointment History Screenshot");
                     }
                 }
             }
@@ -371,6 +373,51 @@
                 }
             }
            
+        }
+        public static void ValidateSickNote(string appointmentNumber, string filePath, string[] acceptableExtensions, string sickNotePopupText)
+        {
+            Generic_Utils.ScrollToBottoms();
+            IList<IWebElement> getAppointmentRecords = PatientDashboardPage.Web_AppointmentRecords;
+            bool isProcessed = false;
+            DateTime downloadStartTime = DateTime.Now;
+            foreach (IWebElement appointment in getAppointmentRecords)
+            {
+                IWebElement appointmentReferenceNumber = appointment.FindElement(PatientDashboardPage.By_ReferenceNumber);
+                string refNumber = appointmentReferenceNumber.Text;
+
+                if (refNumber.Equals(appointmentNumber))
+                {
+                    IWebElement downloadSicknoteButton = appointment.FindElement(PatientDashboardPage.By_Download_Sick_Note);
+                    Wait.ElementIsClickable(downloadSicknoteButton, 5).Click();
+                    isProcessed = true; 
+                    break;
+                }
+            }
+            if (isProcessed)
+            {
+                Wait.WaitForFile(filePath, 10, acceptableExtensions, downloadStartTime);
+                var downloadedFile = GetLatestFile(filePath, acceptableExtensions, downloadStartTime);
+
+                if (downloadedFile != null)
+                {
+                    Assert.That(downloadedFile.Length > 0, "Downloaded file is empty.");
+                    Console.WriteLine($"Sick Note downloaded successfully: {downloadedFile.Name}");
+                }
+                else
+                {
+                    try
+                    {
+                        Console.WriteLine("Sick Note is not found for the respective appointment");
+                        Wait.ElementIsVisible(PatientDashboardPage.By_SickNote_Popup_Header, 5);
+                        string popupText = PatientDashboardPage.Web_SickNote_Popup_Text.Text;
+                        Assert.That(sickNotePopupText, Is.EqualTo(popupText));
+                    }
+                    catch (WebDriverTimeoutException)
+                    {
+                        Console.WriteLine("No popup appeared; sick note might not be available.");
+                    }
+                }
+            }
         }
     }
 

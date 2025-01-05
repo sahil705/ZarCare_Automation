@@ -124,7 +124,16 @@
         public IWebElement Web_Prescription_Popup_Header => driver.FindElement(By_Prescription_Popup_Header);
 
         public By By_Prescription_Popup_Text = By.CssSelector("div[id='sendPrescriptionPending'] div[class='modal-body'] span");
-        public IWebElement Web_Prescription_Popup_Text => driver.FindElement(By_Prescription_Popup_Text); 
+        public IWebElement Web_Prescription_Popup_Text => driver.FindElement(By_Prescription_Popup_Text);
+
+        public By By_Download_Sick_Note = By.XPath(".//a[contains(@onclick, 'sendSickNotePendingMsg')]");
+        public IWebElement Web_Download_Sick_Note => driver.FindElement(By_Download_Sick_Note);
+        
+        public By By_SickNote_Popup_Header = By.XPath("//div[@id='sendSickNotePending']//h4[@class='modal-title' and @id='myModalLabel']");
+        public IWebElement Web_SickNote_Popup_Header => driver.FindElement(By_SickNote_Popup_Header);
+
+        public By By_SickNote_Popup_Text = By.XPath("//div[@id='sendSickNotePending']//div[@class='form-group mb-0 text-center']/span");
+        public IWebElement Web_SickNote_Popup_Text => driver.FindElement(By_SickNote_Popup_Text);
 
     }
 

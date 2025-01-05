@@ -7,6 +7,7 @@
   "DoctorProfileId": 5,
   "Download_Path": "C:\\Users\\Ajay-LNG\\Downloads",
   "Prescription_Popup_Text": "Prescription is not generated yet.",
+  "SickNote_Popup_Text": "Sick note is not uploaded by the provider yet.",
   "Acceptable_Format": [ ".jpg", ".jpeg", ".png", ".pdf" ],
   "DoctorAvaliabilityPopup": "This provider is no longer available.",
   "PastThreeMonthAppointmentPopup": "We are unable to process a prescription after three months since your last appointment."
