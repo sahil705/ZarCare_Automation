@@ -117,7 +117,14 @@
         public By By_Repeat_Prescription_Submit_Button = By.Id("btnRepeatRequest");
         public IWebElement Web_Repeat_Prescription_Submit_Button => driver.FindElement(By_Repeat_Prescription_Submit_Button);
 
+        public By By_Download_Prescription_Button = By.XPath(".//a[starts-with(@id, 'downloadOriginalPrescription')]");
+        public IWebElement Web_Download_Prescription_Button => driver.FindElement(By_Download_Prescription_Button);
+        
+        public By By_Prescription_Popup_Header = By.XPath("//div[@id='sendPrescriptionPending']//h4[@id='myModalLabel']");
+        public IWebElement Web_Prescription_Popup_Header => driver.FindElement(By_Prescription_Popup_Header);
 
+        public By By_Prescription_Popup_Text = By.CssSelector("div[id='sendPrescriptionPending'] div[class='modal-body'] span");
+        public IWebElement Web_Prescription_Popup_Text => driver.FindElement(By_Prescription_Popup_Text); 
 
     }
 

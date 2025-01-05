@@ -2,7 +2,7 @@
 {
     public class PatientDashboard:Base
     {
-        public string classname = "PatientProfile";
+     
         [Test]
         public void ValidatePatientDetailsInDashboard()
         {
@@ -47,6 +47,14 @@
         {
             Reports.childLog = Reports.CreateNode("Validate the Repeat Prescription Journey ");
             PatientDashboardValidations.VerifyRepeatPrescriptionJourney();
+            Reports.FlushNode(Reports.childLog);
+        }
+        
+        [Test]
+        public void ValidateDoctorPrescriptionInPatientDashboard()
+        {
+            Reports.childLog = Reports.CreateNode("Validate the Prescription Journey for Past Appointments ");
+            PatientDashboardValidations.ValidatePrescriptionForPastAppointments();
             Reports.FlushNode(Reports.childLog);
         }
     }

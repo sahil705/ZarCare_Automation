@@ -223,5 +223,36 @@
             Reports.childLog.Log(Status.Info, "=================================================");
 
         }
+        public static void ValidatePrescriptionForPastAppointments()
+        {
+            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            var dashboardJson = Json_Reader.GetDataFromJson(DashboardJson);
+            var dashboardJsonArray = Json_Reader.GetArrayFromJson(DashboardJson,"Acceptable_Format");
+            string patientEmail = loginJson["Email"].ToString();
+            string patientPassword = loginJson["Password"].ToString();
+            string appointmentNumber = dashboardJson["AppointmentReferenceCode"].ToString();
+            string filePath = dashboardJson["Download_Path"].ToString();
+            string prescriptionPopupMessage = dashboardJson["Prescription_Popup_Text"].ToString();
+            string[] acceptableExtensions = dashboardJsonArray.ToObject<string[]>();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Verify the Prescription Functionality for the Past Appointments ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Click on the Download Prescription Button and Validate the Prescription ");
+            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+            Patient_Dashboard_Page.ValidatePrescription(appointmentNumber, filePath, acceptableExtensions, prescriptionPopupMessage);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
     }
 }

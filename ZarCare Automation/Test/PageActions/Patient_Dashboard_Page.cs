@@ -1,9 +1,6 @@
-﻿using System.Xml.Linq;
-using TestScripts;
-
-namespace ZarCare_Automation.Test.PageActions
+﻿namespace ZarCare_Automation.Test.PageActions
 {
-    public class Patient_Dashboard_Page:WebdriverSession
+    public class Patient_Dashboard_Page : WebdriverSession
     {
         public static Patient_Dashboard_Page_Locator PatientDashboardPage = new Patient_Dashboard_Page_Locator();
         public static Active_Appointment_Locator ActiveAppointmentPage = new Active_Appointment_Locator();
@@ -24,25 +21,25 @@ namespace ZarCare_Automation.Test.PageActions
             try
             {
                 Wait.ElementIsVisible(PatientDashboardPage.By_Notification_Popup, 5);
-                
+
                 IWebElement laterButton = Wait.ElementIsClickable(PatientDashboardPage.Web_Later_Button, 10);
-                Generic_Utils.JavaScriptElementClick(laterButton);  
+                Generic_Utils.JavaScriptElementClick(laterButton);
 
                 Wait.InvisibleOfElement(PatientDashboardPage.By_Notification_Popup, 10);
 
                 Console.WriteLine("Popup closed successfully.");
             }
-            
+
             catch (WebDriverTimeoutException)
             {
-                
+
                 Console.WriteLine("No popup displayed.");
             }
         }
 
         public static void NavigateToFindProviderPage()
         {
-            IWebElement providerLink =  Wait.ElementIsClickable(PatientDashboardPage.Web_Find_Provider_Link, 10);
+            IWebElement providerLink = Wait.ElementIsClickable(PatientDashboardPage.Web_Find_Provider_Link, 10);
             providerLink.Click();
         }
 
@@ -50,28 +47,28 @@ namespace ZarCare_Automation.Test.PageActions
         {
             Generic_Utils.ScrollToMiddle();
             Generic_Utils.ScrollToElement(PatientDashboardPage.Web_Active_Appointment_View_All_Link);
-            PatientDashboardPage.Web_Active_Appointment_View_All_Link.Click();    
+            PatientDashboardPage.Web_Active_Appointment_View_All_Link.Click();
         }
 
         public static void NavigateToPatientProfile()
         {
-            IWebElement patientProfileLink = Wait.ElementIsVisible(PatientDashboardPage.By_Update_Icon,10);
-            patientProfileLink.Click(); 
+            IWebElement patientProfileLink = Wait.ElementIsVisible(PatientDashboardPage.By_Update_Icon, 10);
+            patientProfileLink.Click();
         }
 
         public static void NavigateToPatientProfileThroughProfilePicIcon()
         {
-            PatientDashboardPage.Web_ProfilePic_Icon.Click();   
+            PatientDashboardPage.Web_ProfilePic_Icon.Click();
         }
 
         public static void ValidatePatientDetailInPatientDashboard(string fName, string lName, string weight, string height, string gender, string address, string suburb, string city, string province, string postalCode, string successText)
         {
             Patient_Profile_Page.SubmitPatientProfileInfo(fName, lName, weight, height, gender, address, suburb, city, province, postalCode, successText);
             string getProfileFullName = Patient_Profile_Page.GetFullName();
-            string getProfileGender = Patient_Profile_Page.GetGender(); 
-            string getProfileWeight = Patient_Profile_Page.GetWeight(); 
-            string getProfileHeight = Patient_Profile_Page.GetHeight(); 
-            string getProfileAddress = Patient_Profile_Page.GetFullAddress();   
+            string getProfileGender = Patient_Profile_Page.GetGender();
+            string getProfileWeight = Patient_Profile_Page.GetWeight();
+            string getProfileHeight = Patient_Profile_Page.GetHeight();
+            string getProfileAddress = Patient_Profile_Page.GetFullAddress();
 
             Patient_Profile_Page.NavigateToDashboard();
             ValidatePatientDashboard();
@@ -128,14 +125,14 @@ namespace ZarCare_Automation.Test.PageActions
             string Capture_Text = Generic_Utils.getText(PatientDashboardPage.Web_Patient_Address);
             Assert.That(Original_Text, Is.EqualTo(Capture_Text));
         }
-        
-        
+
+
         public static void ValidateDashboardAppointmentWithActiveAppointmentPage()
         {
             Generic_Utils.ScrollToMiddle();
             Generic_Utils.ScrollToElement(PatientDashboardPage.Web_UpcomingAppointmentHeader);
             var dashboardAppointmentList = PatientDashboardPage.Web_DashboardAppointmentList.Count;
-            
+
             Reports.childLog.Log(Status.Info, "Getting Appointment Count From Patient Dashboard Page");
             Generic_Utils.GetScreenshot("Patient Dashboard Page Active Appointment Section Screenshot");
 
@@ -147,7 +144,7 @@ namespace ZarCare_Automation.Test.PageActions
             {
                 Console.WriteLine("Active appointments are found");
                 IWebElement dashboardViewAllLink = PatientDashboardPage.Web_Active_Appointment_View_All_Link;
-                ScrollToElement(dashboardViewAllLink);  
+                ScrollToElement(dashboardViewAllLink);
                 dashboardViewAllLink.Click();
 
                 Wait.ElementExist(ActiveAppointmentPage.By_Book_Appointment_Button, 10);
@@ -162,57 +159,55 @@ namespace ZarCare_Automation.Test.PageActions
         public static void ValidateInvoiceDetailsForPastAppointments(string ReferenceNumber)
         {
             Generic_Utils.ScrollToBottoms();
-            
+
             IList<IWebElement> getAppointmentRecords = PatientDashboardPage.Web_AppointmentRecords;
 
-            foreach(IWebElement appointment in getAppointmentRecords)
+            foreach (IWebElement appointment in getAppointmentRecords)
             {
                 IWebElement appointmentReferenceNumber = appointment.FindElement(PatientDashboardPage.By_ReferenceNumber);
-                string refNumber = appointmentReferenceNumber.Text;   
+                string refNumber = appointmentReferenceNumber.Text;
                 Console.WriteLine(refNumber);
 
                 if (refNumber.Equals(ReferenceNumber))
                 {
                     IWebElement viewInvoice = appointment.FindElement(PatientDashboardPage.By_ViewInvoiceButton);
-                    Wait.ElementIsClickable(viewInvoice, 10);   
+                    Wait.ElementIsClickable(viewInvoice, 10);
                     viewInvoice.Click();
                     break;
-                }   
+                }
             }
-            Generic_Utils.WindowHandle();   
+            Generic_Utils.WindowHandle();
             Wait.ElementExist(PatientDashboardPage.By_InvoiceHeaderText, 10);
             IWebElement getInvoiceNumber = PatientDashboardPage.Web_InvoiceNumber;
             string invoiceNumberText = getInvoiceNumber.Text;
             string invoiceNumber = invoiceNumberText.Substring(invoiceNumberText.IndexOf('#'));
-            Console.WriteLine(invoiceNumber);   
+            Console.WriteLine(invoiceNumber);
             Assert.That(ReferenceNumber, Is.EqualTo(invoiceNumber));
 
             Reports.childLog.Log(Status.Info, "Invoice page is displayed");
             Generic_Utils.GetScreenshot("Invoice Page Screenshot");
         }
 
-        public static void VerifyRatingsForPastAppointments(string ReferenceNumber, string rateValue, string ratingComment, string ratingExistMessage,string ratingSavedMessage)
+        public static void VerifyRatingsForPastAppointments(string ReferenceNumber, string rateValue, string ratingComment, string ratingExistMessage, string ratingSavedMessage)
         {
             Generic_Utils.ScrollToBottoms();
-            
-            
-            IList<IWebElement> getAppointmentRecords = PatientDashboardPage.Web_AppointmentRecords;
 
+            IList<IWebElement> getAppointmentRecords = PatientDashboardPage.Web_AppointmentRecords;
 
             foreach (IWebElement appointment in getAppointmentRecords)
             {
                 IWebElement appointmentReferenceNumber = appointment.FindElement(PatientDashboardPage.By_ReferenceNumber);
                 string refNumber = appointmentReferenceNumber.Text;
-                
 
-                if(refNumber.Equals(ReferenceNumber))
+
+                if (refNumber.Equals(ReferenceNumber))
                 {
                     IWebElement ratingButton = appointment.FindElement(PatientDashboardPage.By_RatingButton);
                     ratingButton.Click();
                 }
             }
             Wait.GenericWait(3000);
-            
+
             string getRatingAlreadyExistText = PatientDashboardPage.Web_RatingExistText.Text;
 
             if (getRatingAlreadyExistText.Equals(ratingExistMessage))
@@ -238,8 +233,8 @@ namespace ZarCare_Automation.Test.PageActions
             }
         }
 
-       public static void ValidateRepeatPrescriptionJourney(int doctorId, string appointmentNumber, string doctorPopupText, string appointmentPopupText,string voucherCode, string voucherSuccessMessage)
-       {
+        public static void ValidateRepeatPrescriptionJourney(int doctorId, string appointmentNumber, string doctorPopupText, string appointmentPopupText, string voucherCode, string voucherSuccessMessage)
+        {
             DateTime? dateCreated;
             ScrollToBottoms();
 
@@ -279,7 +274,7 @@ namespace ZarCare_Automation.Test.PageActions
                                 Console.WriteLine("Appointment is older than 3 months.");
                                 Wait.ElementIsVisible(PatientDashboardPage.By_DoctorNotAvailableHeader, 5);
                                 string getPopupText = PatientDashboardPage.Web_PastThreeMonthAppointmentPopupText.Text;
-                                Assert.That(getPopupText,Is.EqualTo(appointmentPopupText));
+                                Assert.That(getPopupText, Is.EqualTo(appointmentPopupText));
 
                                 Reports.childLog.Log(Status.Info, "Past Three Month Appointment popup is displayed ");
                                 Generic_Utils.GetScreenshot("Past Three Month Appointment Screenshot");
@@ -299,13 +294,13 @@ namespace ZarCare_Automation.Test.PageActions
 
                                 ScrollToBottoms();
                                 PatientDashboardPage.Web_Repeat_Prescription_Submit_Button.Click();
-                                
+
                                 Reports.childLog.Log(Status.Info, "Repeat Prescription Journey is Completed ");
                                 Generic_Utils.GetScreenshot("Repeat Prescription Journey Confirmation Page Screenshot");
 
                             }
                         }
-                        isActionCompleted = true; 
+                        isActionCompleted = true;
                         break;
 
                     }
@@ -317,7 +312,66 @@ namespace ZarCare_Automation.Test.PageActions
                 }
             }
         }
+        public static FileInfo GetLatestFile(string folderPath, string[] fileExtensions, DateTime downloadStartTime)
+        {
+            DirectoryInfo directory = new DirectoryInfo(folderPath);
+
+            // Fetch files matching the extensions and created after the download started
+            var files = directory.GetFiles()
+                                 .Where(f => fileExtensions.Contains(f.Extension.ToLower()) &&
+                                             f.LastWriteTime >= downloadStartTime)
+                                 .OrderByDescending(f => f.LastWriteTime)
+                                 .ToList();
+
+            return files.FirstOrDefault();
+        }
+
+        public static void ValidatePrescription(string appointmentNumber, string filePath, string[] acceptableExtensions, string prescriptionPopupText)
+        {
+            Generic_Utils.ScrollToBottoms();
+            IList<IWebElement> getAppointmentRecords = PatientDashboardPage.Web_AppointmentRecords;
+            bool isProcessed = false;
+            DateTime downloadStartTime = DateTime.Now;
+            foreach (IWebElement appointment in getAppointmentRecords)
+            {
+                IWebElement appointmentReferenceNumber = appointment.FindElement(PatientDashboardPage.By_ReferenceNumber);
+                string refNumber = appointmentReferenceNumber.Text;
+
+                if (refNumber.Equals(appointmentNumber))
+                {
+                    IWebElement prescriptionButton = appointment.FindElement(PatientDashboardPage.By_Download_Prescription_Button);
+                    Wait.ElementIsClickable(prescriptionButton,5).Click();
+                    isProcessed = true;
+                    break;
+                }
+            }
+            if (isProcessed)
+            {
+                Wait.WaitForFile(filePath, 10, acceptableExtensions, downloadStartTime);
+                var downloadedFile = GetLatestFile(filePath, acceptableExtensions, downloadStartTime);
+
+                if (downloadedFile != null)
+                {
+                    Assert.That(downloadedFile.Length > 0, "Downloaded file is empty.");
+                    Console.WriteLine($"Prescription downloaded successfully: {downloadedFile.Name}");
+                }
+                else
+                {
+                    try
+                    {
+                        Console.WriteLine("Prescription is not found for the respective appointment");
+                        Wait.ElementIsVisible(PatientDashboardPage.By_Prescription_Popup_Header, 5);
+                        string popupText = PatientDashboardPage.Web_Prescription_Popup_Text.Text;
+                        Assert.That(prescriptionPopupText, Is.EqualTo(popupText));
+                    }
+                    catch (WebDriverTimeoutException)
+                    {
+                        Console.WriteLine("No popup appeared; prescription might not be available.");
+                    }
+                }
+            }
+           
+        }
     }
 
 }
-

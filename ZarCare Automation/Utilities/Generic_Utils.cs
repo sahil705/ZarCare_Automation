@@ -358,6 +358,11 @@
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
                 return wait.Until(ExpectedConditions.ElementToBeClickable(element));
             }
+            public static IWebElement ElementIsClickable(By element, int second)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                return wait.Until(ExpectedConditions.ElementToBeClickable(element));
+            }
 
             public static void ElementsAreClickable(IList<IWebElement> elements, int timeoutInSeconds)
             {
@@ -380,6 +385,33 @@
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
                 return wait.Until(ExpectedConditions.ElementExists(locator));   
             }
+
+            public static bool WaitForFile(string filePath, int second, string[] acceptableExtensions, DateTime downloadStartTime)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(second));
+                DirectoryInfo directory = new DirectoryInfo(filePath);
+                DateTime timeout = DateTime.Now.AddSeconds(second);
+
+                while (DateTime.Now < timeout)
+                {
+                    var files = directory.GetFiles()
+                                         .Where(f => acceptableExtensions.Contains(f.Extension.ToLower()) &&
+                                                     f.LastWriteTime >= downloadStartTime)
+                                         .OrderByDescending(f => f.LastWriteTime)
+                                         .ToList();
+
+                    if (files.Any())
+                    {
+                        return true; 
+                    }
+
+                    Wait.GenericWait(3000);
+                }
+
+                return false;
+            }
+
+          
         }
     }
 }
