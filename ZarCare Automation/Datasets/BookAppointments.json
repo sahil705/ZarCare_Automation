@@ -8,6 +8,9 @@
   "Provider_Appointment_Date": "Tomorrow",
   "Provider_Appointment_Time": "12:00",
   "Voucher_Code": "Voucher50",
+  "Appointment_Reference_Code": "#24121721006",
+  "Patient_Name": "Devon Conway",
+  "Incomplete_Medical_File_Popup_Text": "Please complete your medical file before entering the call",
   "Voucher_Success_Message": "Voucher applied successfully",
   "Confirmation_Capture_Text_Public": "Appointment booked Successfully!",
   "Confirmation_Capture_Text": "Appointment Booked Successfully!"

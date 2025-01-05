@@ -5,6 +5,9 @@
   "RatingExistMessage": "Rating already exists",
   "RatingSavedMessage": "Provider's rating saved successfully",
   "DoctorProfileId": 5,
+  "Download_Path": "C:\\Users\\Ajay-LNG\\Downloads",
+  "Prescription_Popup_Text": "Prescription is not generated yet.",
+  "Acceptable_Format": [ ".jpg", ".jpeg", ".png", ".pdf" ],
   "DoctorAvaliabilityPopup": "This provider is no longer available.",
   "PastThreeMonthAppointmentPopup": "We are unable to process a prescription after three months since your last appointment."
 
