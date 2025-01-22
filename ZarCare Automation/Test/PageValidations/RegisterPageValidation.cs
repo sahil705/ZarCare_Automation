@@ -114,21 +114,9 @@ namespace ZarCare_Automation.Test.PageValidations
             string ReqPasswordMessage = json[2]["ReqPassErrorMessage"].ToString();
             string ReqConfPasswMessage = json[3]["ReqConfPassMessage"].ToString();
             string TermsAndCondMessage = json[4]["TermsAndContionMessage"].ToString();
-
-            //Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
-
-            //Reports.childLog = Reports.CreateNode("Step 1: Open Home Page and Validate the homepage");
-            //Home_Page.Validate_HomePage();
-            //Reports.FlushNode(Reports.childLog);
-
-            //Reports.childLog = Reports.CreateNode("Step 2: Navigate to Login Page and Validate the Login page ");
-            //Home_Page.NavigateToLoginPage();
-            //Login_Page.Validate_LoginPage();
-            //Reports.FlushNode(Reports.childLog);
-
+           
             Reports.childLog = Reports.CreateNode("Step 1: Navigate to Register Page and Varify Validation messages");
-            //Login_Page.Navigate_To_RegisterPage();
-            //Register_Page.Validate_RegisterPage();
+            
             Register_Page.Patient_Form_fill_with_No_input_validation_message(FnameReqMessage, SuNameReqMessage, ReqValidCellNumber, ReqValidEmailAddress, ReqPasswordMessage, ReqConfPasswMessage, TermsAndCondMessage);
         }
 

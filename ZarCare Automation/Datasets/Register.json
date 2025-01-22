@@ -8,10 +8,10 @@
       "Sur_Name": "Zampa"
     },
     {
-      "CellPhone_Number": "350451552"
+      "CellPhone_Number": "461562663"
     },
     {
-      "Email_Address": "adamzampa24092223@gmail.com"
+      "Email_Address": "adamzampa09011746@gmail.com"
     },
     {
       "Pass_Word": "Test@2405"
@@ -22,7 +22,7 @@
   ],
   "Invalid_Patient_Detail": [
     {
-      "Dupicate_First_Name": "Adams"
+      "Duplicate_First_Name": "Adams"
     },
     {
       "Duplicate_last_Name": "Zampa"
@@ -73,24 +73,4 @@
 
 
 
-  //"First_Name": "Adams",
-  //"Sur_Name": "Zampa",
-  //"CellPhone_Number": "350451552",
-  //"Email_Address": "adamzampa24092223@gmail.com",
-  //"Pass_Word": "Test@2405",
-  //"Confirm_Password": "Test@2405",
-  //"Dupicate_First_Name": "Adams",
-  //"Duplicate_last_Name": "Zampa",
-  //"Invalid_CellPhoneNumber": "35045155235",
-  //"Invalid_Email_address": "Test@.com",
-  //"Invalidpassword": "abcd1234",
-  //"Invalid_confirm_password": "abcd1234",
-  //"InvalidCellPhoneError": "Enter valid cellphone number",
-  //"InvalidEmailError": "Enter valid email",
-  //"InvalidPassError": "Please use a stronger password",
-  //"FnameReqValiMessage": "First Name is required",
-  //"SurNameReqMessage": "Surname is required",
-  //"ReqPassErrorMessage": "Password is required",
-  //ReqConfPassMessage": "Confirm password is required",
-  //"TermsAndContionMessage": "Please accept terms and conditions"
-
+ 

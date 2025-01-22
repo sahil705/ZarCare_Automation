@@ -34,7 +34,7 @@
       "Mem_Address": "43 Andrew black K-Building round point"
     },
     {
-      "Mem_PhotoPath": "D:\\Zarcare_automation\\DoughterPhoto.png"
+      "Mem_PhotoPath": "C:\\Screenshot_5.png"
     },
     {
       "Mem_Add_Succ_Message": "Profile saved successfully"
@@ -60,27 +60,5 @@
   ],
   "Mem_Relationship_text": "Daughter",
   "Appointment_Time": "15:00"
-
-
-
-  //"First_Name": "Monalisa",
-  //"Last_Name": "Newton",
-  //"Mem_Weight": "42.00",
-  //"Mem_Height": "162.00",
-  //"Mem_Gender": "Male",
-  //"Mem_Relation": "5",
-  //"Mem_Country": "SA",
-  //"Mem_Province": "Weston cape",
-  //"Mem_City": "cape town",
-  //"Mem_PinCode": "4321",
-  //"Mem_Address": "43 Andrew black K-Building round canel",
-  //"Mem_Add_Succ_Message": "Profile saved successfully",
-  //"Added_Mem_Relation": "Daughter",
-  //"Mem_PhotoPath": "D:\\Zarcare_automation\\DoughterPhoto.png",
-  //"Mem_First_name_Req_Error_message": "First Name is required",
-  //"Mem_Last_name_Req_Error_message": "Last Name is required",
-  //"Mem_Weight_RequiredErrorMessage": "Enter value greater than 0",
-  //"Mem_Height_ReqErrorMessage": "Enter value greater than 0"
-
 
 }

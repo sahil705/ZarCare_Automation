@@ -20,7 +20,7 @@
         public static void ValidateMedicalFileStatusAndNavigateToViewDetail(string appointmentNumber, string patientName, string incompleteMedicalFileText)
         {
             bool status = MedicalFiles_Page.Get_Medical_File_Status(patientName);
-
+            Patient_Dashboard_Page.NavigateToDashboard();
             Patient_Dashboard_Page.NavigateToActiveAppointment();
             IList<IWebElement> appointmentRecords = driver.FindElements(ActiveAppointment.By_Get_Appointment_Count);
 

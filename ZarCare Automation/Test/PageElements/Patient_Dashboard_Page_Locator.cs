@@ -135,6 +135,14 @@
         public By By_SickNote_Popup_Text = By.XPath("//div[@id='sendSickNotePending']//div[@class='form-group mb-0 text-center']/span");
         public IWebElement Web_SickNote_Popup_Text => driver.FindElement(By_SickNote_Popup_Text);
 
+        public By By_Logout_Icon = By.CssSelector(".logout_text");
+        public IWebElement Web_Logout_Icon => driver.FindElement(By_Logout_Icon);
+
+        public By By_Unverified_Dashboard_Element = By.CssSelector("a[href='/contact-us']");
+        public IWebElement Web_Unverified_Dashboard_Element => driver.FindElement(By_Unverified_Dashboard_Element);
+
+        public By By_Dashboard_Link = By.CssSelector("li[id='liDashboard'] a");
+        public IWebElement Web_Dashboard_Link => driver.FindElement(By_Dashboard_Link);
     }
 
 }

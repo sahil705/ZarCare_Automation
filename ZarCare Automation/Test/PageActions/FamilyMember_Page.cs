@@ -79,11 +79,13 @@ namespace ZarCare_Automation.Test.PageActions
 
             }
 
-            //FamilyMemberPage.Web_SubmitBtn.Click();
+            FamilyMemberPage.Web_SubmitBtn.Click();
             
-            //string actualAddMemberMessage = FamilyMemberPage.Web_ActualSuccessMessage.Text;
+            string actualAddMemberMessage = FamilyMemberPage.Web_ActualSuccessMessage.Text;
 
-            //Assert.AreEqual(MemAddSuccMessage, actualAddMemberMessage);
+            Assert.AreEqual(MemAddSuccMessage, actualAddMemberMessage);
+
+            Wait.GenericWait(5000);
 
             Reports.childLog.Log(Status.Info, "Family Member added");
             Generic_Utils.GetScreenshot("Family Member screenshot");

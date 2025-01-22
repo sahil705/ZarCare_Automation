@@ -1,6 +1,4 @@
-﻿using AventStack.ExtentReports.Core;
-
-namespace TestScripts
+﻿namespace TestScripts
 {
     public class PatientProfile:Base
     {

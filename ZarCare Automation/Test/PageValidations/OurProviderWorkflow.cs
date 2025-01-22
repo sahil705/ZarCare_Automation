@@ -1,9 +1,12 @@
-﻿namespace ZarCare_Automation.Test.PageValidations
+﻿using TestScripts;
+
+namespace ZarCare_Automation.Test.PageValidations
 {
     public class OurProviderWorkflow
     {
         public static string classname = "OurProvider";
         public static string appointmentDetail = "BookAppointments";
+        public static string Login = "LoginData";
 
         public static void Search_Provider_By_Name()
         {
@@ -151,8 +154,10 @@
         public static void Verify_Slot_Visible_On_OurProvider_Page_After_Cancellation()
         {
             var appointment = Json_Reader.GetDataFromJson(appointmentDetail);
-            string email = appointment["Email"].ToString();
-            string password = appointment["Password"].ToString();
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string providerName = appointment["Doctor_Name"].ToString();
             string appointmentDate = appointment["Appointment_Date"].ToString();
             string appointmentTime = appointment["Appointment_Time"].ToString();
@@ -167,29 +172,42 @@
 
             Reports.childLog.Log(Status.Info, "Step 2: Validate the login page and Patient Login into the website");
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(email, password);
-           
-            Reports.childLog.Log(Status.Info, "Step 3: Navigate the Patient Profile page and Validate the page");
-            Patient_Dashboard_Page.ValidatePatientDashboard();
-            Patient_Dashboard_Page.NavigateToActiveAppointment();
+            Login_Page.Patient_Login(userEmail, userPassword);
 
-            Reports.childLog.Log(Status.Info, "Step 4: Navigate the Active Appointment page and Validate the page");
-            ActiveAppointment_Page.Validate_Active_Appointment_Page();
-            ActiveAppointment_Page.NavigateToViewDetailPage();
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
 
-            Reports.childLog.Log(Status.Info, "Step 5: Navigate the View Detail page and Appointment Cancellation");
-            ViewDetail_Page.Validate_ViewDetailPage();
-            ViewDetail_Page.CancelAppointment();
- 
-            Reports.childLog.Log(Status.Info, "Step 6: Navigate the Our Provider page and Search Provider");
-            Our_Providers_Page.Validate_OurProviderPage();
-            Our_Providers_Page.Search_Doctor(providerName);
-            Our_Providers_Page.FetchDoctorFromList(providerName);
-            
-            Reports.childLog.Log(Status.Info, "Step 7: Navigate the Doctor Profile page and check slot visible");
-            Doctor_Profile_Page.ValidateDoctorProfile();
-            Doctor_Profile_Page.Verify_Slot_Availability_On_Doctor_Profile(appointmentDate, appointmentTime);
-   
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Navigate the Patient Profile page and Validate the page");
+                Patient_Dashboard_Page.ValidatePatientDashboard();
+                Patient_Dashboard_Page.NavigateToActiveAppointment();
+
+                Reports.childLog.Log(Status.Info, "Step 5: Navigate the Active Appointment page and Validate the page");
+                ActiveAppointment_Page.Validate_Active_Appointment_Page();
+                ActiveAppointment_Page.NavigateToViewDetailPage();
+
+                Reports.childLog.Log(Status.Info, "Step 6: Navigate the View Detail page and Appointment Cancellation");
+                ViewDetail_Page.Validate_ViewDetailPage();
+                ViewDetail_Page.CancelAppointment();
+
+                Reports.childLog.Log(Status.Info, "Step 7: Navigate the Our Provider page and Search Provider");
+                Our_Providers_Page.Validate_OurProviderPage();
+                Our_Providers_Page.Search_Doctor(providerName);
+                Our_Providers_Page.FetchDoctorFromList(providerName);
+
+                Reports.childLog.Log(Status.Info, "Step 8: Navigate the Doctor Profile page and check slot visible");
+                Doctor_Profile_Page.ValidateDoctorProfile();
+                Doctor_Profile_Page.Verify_Slot_Availability_On_Doctor_Profile(appointmentDate, appointmentTime);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
+
+
             Reports.childLog.Log(Status.Info, "=================================================");
 
         }

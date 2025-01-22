@@ -4,7 +4,7 @@ namespace ZarCare_Automation.Test.PageValidations
     public class MedicalFileValidations 
     {
         public static string PatientProfileJson = "PatientProfile";
-        public static string LoginJson = "Login";
+        
         
         public static void ValidatePatientProfileOnMedicalFiles()
         {

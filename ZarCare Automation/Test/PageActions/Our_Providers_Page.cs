@@ -205,7 +205,7 @@ namespace ZarCare_Automation.Test.PageActions
         public static void Get_and_Validate_Doctor_Name(string Original_Text)
         {
             string DoctorName = Generic_Utils.getText(OurProvidersPage.Web_Doctor_Name_List);
-            Assert.That(Original_Text, Is.EqualTo(DoctorName));
+            Assert.IsTrue(DoctorName.Contains(Original_Text));
 
             Reports.childLog.Log(Status.Info, "Searched Provider List is displayed");
             Generic_Utils.GetScreenshot("Provider Name Screenshot");

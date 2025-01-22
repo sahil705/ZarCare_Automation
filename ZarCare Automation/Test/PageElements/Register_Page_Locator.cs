@@ -35,6 +35,9 @@
         public By By_RegisterButton = By.Id("btnSubmit");
         public IWebElement Web_RegisterButton => driver.FindElement(By_RegisterButton);
 
+        public By By_Back_To_Login_Link = By.XPath("(//p[@class='small'] /a)[1]");
+        public IWebElement Web_Back_To_Login_Link => driver.FindElement(By_Back_To_Login_Link); 
+
         //Invalid registration detail error messages
 
         public By By_InvalidCellPhoneError = By.Id("phoneNoError");
@@ -66,10 +69,6 @@
         public By by_CellPhoneReqMessage = By.Id("phoneNoError");
 
         public IWebElement Web_CellPhoneReqMessage => driver.FindElement(by_CellPhoneReqMessage);
-
-        //public By by_PassReMessage = By.Id("newpasswordval");
-
-        //public IWebElement Web_PassReqMessage=>driver.FindElement(by_PassReMessage);
 
         public By by_ConfPassRegMessage = By.Id("confirmpasswordval");
 
