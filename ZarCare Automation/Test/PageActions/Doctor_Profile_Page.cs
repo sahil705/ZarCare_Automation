@@ -48,7 +48,7 @@
                     break;
                 }
             }
-
+            Reports.childLog.Log(Status.Info, "Appointment Date and Time displayed");
             Generic_Utils.GetScreenshot("Appointment Date and Time Selected");
 
         }
@@ -91,6 +91,122 @@
 
             Generic_Utils.GetScreenshot("Slot is visible on the Doctor Profile page ");
 
+        }
+        public static void ValidateEditSlotTimePage()
+        {
+            Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(DoctorProfilePage.By_EditSlotPage_cancelPolicyText);
+            Console.WriteLine("Edit slot page validated");
+
+            Reports.childLog.Log(Status.Info, "Edit slot time page is displayed");
+            Generic_Utils.GetScreenshot("Edit slot time page screenshot");
+        }
+        public static void ValidateNewSlotSelectionAndPaymentPage(string NewSlotTime, string Symtoms)
+        {
+            DoctorProfilePage.Web_EditSlotTimeBtn.Click();
+            Wait.WaitTillPageLoad();
+
+            int TotalSlotAvaialble= DoctorProfilePage.Web_EditSlotPageAvailableSlot.Count;
+
+            Console.WriteLine("Total slot are = "+ TotalSlotAvaialble);
+
+            for (int a = 0; a < TotalSlotAvaialble; a++)
+            {
+                string NewSlotToselect = (DoctorProfilePage.Web_EditSlotPageAvailableSlot)[a].Text;
+
+                if (NewSlotToselect.Equals(NewSlotTime))
+                {
+                    IWebElement NewSlotSelected = (DoctorProfilePage.Web_EditSlotPageAvailableSlot)[a];
+                    NewSlotSelected.Click();
+                    Wait.WaitTillPageLoad();
+                    DoctorProfilePage.Web_EditSlotPageSubmitBtn.Click();
+                    Wait.WaitTillPageLoad();
+                    Console.WriteLine("Clicked on new slot and submit");
+                    break;
+                }
+            }
+             DoctorProfilePage.Web_SymtomsDropDownArrow.Click();
+             Wait.WaitTillPageLoad();
+
+            int SymtomsCount= DoctorProfilePage.Web_SymtomsList.Count();
+            Console.WriteLine("sytoms count =" + SymtomsCount);
+
+            for (int c = 0; c < SymtomsCount; c++)
+            {
+                string SymtomsToSelect = DoctorProfilePage.Web_SymtomsList[c].Text;
+
+                if (SymtomsToSelect.Contains(Symtoms))
+                {
+                    DoctorProfilePage.Web_SymtomsCheckBoxes[c].Click();
+                    Wait.WaitTillPageLoad();
+                    Console.WriteLine("Required Symtoms selected");
+                    break;
+                }
+            }
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("document.body.click();");
+           
+            DoctorProfilePage.Web_GotoPayBtn.Click();        
+            Wait.WaitTillPageLoad();
+
+        }
+        public static void ValidateSelectedSlotPage()
+        {
+            Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(DoctorProfilePage.By_EditSlotTimeButton);
+
+            Console.WriteLine("Validated selected slot page");
+
+            Reports.childLog.Log(Status.Info, "Selected slot page is displayed");
+            Generic_Utils.GetScreenshot("selected Slot page screenshot");
+
+        }
+
+        public static void ValidateSelectSymtomsAndNavigateToPaymentPage(string Symtoms)
+        {
+            DoctorProfilePage.Web_SymtomsDropDownArrow.Click();
+            Wait.WaitTillPageLoad();
+
+            int SymtomsCount = DoctorProfilePage.Web_SymtomsList.Count();
+            Console.WriteLine("sytoms count =" + SymtomsCount);
+
+            for (int c = 0; c < SymtomsCount; c++)
+            {
+                string SymtomsToSelect = DoctorProfilePage.Web_SymtomsList[c].Text;
+
+                if (SymtomsToSelect.Contains(Symtoms))
+                {
+                    DoctorProfilePage.Web_SymtomsCheckBoxes[c].Click();
+                    
+                    Console.WriteLine("Required Symtoms selected");
+                    break;
+                }
+            }
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("document.body.click();");
+
+            Wait.WaitTillPageLoad();
+            Reports.childLog.Log(Status.Info, "Appointment Slot and symtoms selected");
+            Generic_Utils.GetScreenshot("Appointment Slot and symtoms selected screenshot");
+
+            DoctorProfilePage.Web_GotoPayBtn.Click();
+            Wait.WaitTillPageLoad();
+            
+
+        }
+        public static void ValidatePaymentCancelSuccessMessageandSlotAvailable(string PaymentCancelMessage, string AppointmentTime)
+        {
+            string PaymentCancelActualMessage=DoctorProfilePage.Web_CancelPaymentMessage.Text;
+
+            Assert.That(PaymentCancelActualMessage, Is.EqualTo(PaymentCancelMessage));
+
+            
+            string AvailableSlotText = DoctorProfilePage.Web_SelectedSlotTime.Text;
+
+            StringAssert.Contains(AppointmentTime, AvailableSlotText, "The slot text does not contain the specified appointmrnt time.");
+
+            Reports.childLog.Log(Status.Info, "Paymnet cancelled message and Slot available");
+            Generic_Utils.GetScreenshot("Paymnet cancelled message and Slot available screenshot");
         }
     }
 }

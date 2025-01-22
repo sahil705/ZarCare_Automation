@@ -16,7 +16,7 @@
       "Mem_Gender": "Male"
     },
     {
-      "Mem_Relation": "5"
+      "Mem_Relation": "Brother"
     },
     {
       "Mem_Country": "SA"
@@ -34,7 +34,7 @@
       "Mem_Address": "43 Andrew black K-Building round point"
     },
     {
-      "Mem_PhotoPath": "D:\\Zarcare_automation\\DoughterPhoto.png"
+      "Mem_PhotoPath": "D:\\Zarcare_automation\\ManDummy.png"
     },
     {
       "Mem_Add_Succ_Message": "Profile saved successfully"
@@ -42,7 +42,7 @@
     {
       "Added_Mem_Relation": "Daughter"
     },
-    
+
   ],
   "MemberValiMessages": [
     {

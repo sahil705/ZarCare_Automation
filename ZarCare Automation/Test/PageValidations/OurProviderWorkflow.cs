@@ -4,6 +4,7 @@
     {
         public static string classname = "OurProvider";
         public static string appointmentDetail = "BookAppointments";
+        public static string loginjson = "Login";
 
         public static void Search_Provider_By_Name()
         {
@@ -243,6 +244,107 @@
 
         }
 
+        public static void ValidateDoctorSearchByPaginationOnOurProviderPage()
+        {
+            var json = Json_Reader.GetDataFromJson(classname);
+            string DoctorName = json["Doctor_Name"].ToString();
 
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Naviagte and validate our provider page");
+            Home_Page.NavigateToOurProvider();
+            Our_Providers_Page.Validate_OurProviderPage();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Validate pagination on Our provider with doctor name Search ");
+            Our_Providers_Page.Pagination_work_on_OurProviderPageForDrSearch(DoctorName);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+
+        }
+        public static void ValidatePatientCancelSlotDuringAppointmentBookingAndThatSlotAvailable()
+        {
+            var login = Json_Reader.GetDataFromJson(loginjson);
+            var jsonOP = Json_Reader.GetDataFromJson(classname);
+                       
+            string PatientEmail = login["Email"].ToString();
+            string PatientPassword = login["Password"].ToString();
+            string doctorName = jsonOP["Doctor_Name"].ToString();
+            string OurProviderURL = jsonOP["OurProviderUrl"].ToString();
+            string appointmentDate = jsonOP["Slot_Date"].ToString();
+            string appointmentTime = jsonOP["Slot_Time"].ToString();
+            string NewSlotTime = jsonOP["NewAppointmentTime"].ToString();
+            string Symtoms = jsonOP["Patient_Symtoms"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Validate Patient cancel appointment slot during booking and slot get available");
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(PatientEmail, PatientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Go to our provider page and book appointment");
+            Generic_Utils.NavigateToURL(OurProviderURL);
+            Wait.WaitTillPageLoad();
+            Our_Providers_Page.Validate_OurProviderPage();
+            Our_Providers_Page.ClickOnBookAppointmentButton(doctorName);
+            Doctor_Profile_Page.BookAppointment(appointmentDate, appointmentTime);
+
+            Reports.childLog.Log(Status.Info, "Step 4: Go to Edit Appointment Page and change slot");
+            Doctor_Profile_Page.ValidateEditSlotTimePage();
+            Doctor_Profile_Page.ValidateNewSlotSelectionAndPaymentPage(NewSlotTime,Symtoms);
+            Payment_Page.Validate_Payment();
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
+        public static void ValidatePatientCancelSelectedSlotAndSelectedSlotAvailable()
+        {
+            var login = Json_Reader.GetDataFromJson(loginjson);
+            var jsonOP = Json_Reader.GetDataFromJson(classname);
+
+            string PatientEmail = login["Email"].ToString();
+            string PatientPassword = login["Password"].ToString();
+
+            string doctorName2 = jsonOP["Doctor_Name"].ToString();
+            string appointmentDate = jsonOP["Slot_Date"].ToString();
+            string appointmentTime = jsonOP["Slot_Time"].ToString();
+            string OurProviderURL = jsonOP["OurProviderUrl"].ToString();
+            string Symtom = jsonOP["Patient_Symtoms"].ToString();
+            string PaymentCancelMessage = jsonOP["PaymentCancelMessage"].ToString();
+
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Validate Patient cancel appointment slot during booking and slot get available");
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(PatientEmail, PatientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Go to our provider page and book appointment");
+            Generic_Utils.NavigateToURL(OurProviderURL);
+            Wait.WaitTillPageLoad();
+            Our_Providers_Page.Validate_OurProviderPage();
+            Our_Providers_Page.ClickOnBookAppointmentButton(doctorName2);
+            Doctor_Profile_Page.BookAppointment(appointmentDate, appointmentTime);
+            Doctor_Profile_Page.ValidateSelectSymtomsAndNavigateToPaymentPage(Symtom);
+
+            Reports.childLog.Log(Status.Info, "Step 4: Validate cancel Payement and cancelled slot available");
+            Payment_Page.Validate_Payment();
+            Payment_Page.CancelPaymentOnPaymentPage();
+            Doctor_Profile_Page.ValidatePaymentCancelSuccessMessageandSlotAvailable(PaymentCancelMessage, appointmentTime);
+
+            Reports.childLog.Log(Status.Info, "=================================================");
+        }
     }
 }

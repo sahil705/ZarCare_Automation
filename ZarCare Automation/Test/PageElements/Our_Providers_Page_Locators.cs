@@ -77,6 +77,14 @@
         public By By_Provider_Name = By.XPath("//div[@class='card mb-4 history-list']/div //h4[@class='doc-name']/a");
         public IWebElement Web_Provider_Name => driver.FindElement(By_Provider_Name);
 
+        public By By_NextPageArrow = By.XPath("//div[@class='nextPage']");
+        public IWebElement Web_NextPageArrow=>driver.FindElement(By_NextPageArrow);
+
+        public By By_PageNumberCount = By.XPath("//*[@id='lstPageNumbers']/a");
+
+        public IList<IWebElement> Web_PageNumberCount=> driver.FindElements(By_PageNumberCount);
+
+             
     }
 
 }

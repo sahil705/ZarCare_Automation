@@ -3,7 +3,7 @@
     public class FamilyMembers : Base
     {
         [Test]
-        public void Submit_AndVerify_Family_MemberProfile_Display_In_MedicalFileAnd_Memmber_DropDown()
+        public void Submit_AndVerify_Family_MemberProfile_Display_In_MedicalFileAnd_Member_DropDown()
         {
             Reports.childLog = Reports.CreateNode("Submit the Family Member Profile Form ");
             FamilyMemberPageValidation.AddFamilyMemberwithValiddata();
@@ -22,7 +22,7 @@
         public void VerifyValidationMessageForMandatoryField()
         {
             Reports.childLog = Reports.CreateNode("Validation message for mandatory field");
-            FamilyMemberPageValidation.ValidateMandatoryFielddForFamilyMember();
+            FamilyMemberPageValidation.ValidateMandatoryFieldForFamilyMember();
         }
 
     }

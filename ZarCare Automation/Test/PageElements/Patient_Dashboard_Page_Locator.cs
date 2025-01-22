@@ -69,13 +69,15 @@
         public By By_DashboardAppointmentList = By.CssSelector("table tr td:nth-child(1)");
         public IList <IWebElement> Web_DashboardAppointmentList =>driver.FindElements(By_DashboardAppointmentList);
 
-        public By By_AppointmentRecords = By.CssSelector(".patient-widget.mb-4.position-relative");
+        public By By_AppointmentRecords = By.CssSelector(".patient-widget.mb-4.position-relative"); 
         public IList<IWebElement> Web_AppointmentRecords => driver.FindElements(By_AppointmentRecords);
 
         public By By_ReferenceNumber = By.XPath(".//div[@class='history-info']/span[last()]");
        
         public By By_ViewInvoiceButton = By.XPath(".//a[text()='View Invoice']");
-       
+
+        public IList<IWebElement> Web_ViewInvoiceButtons=>driver.FindElements(By_ViewInvoiceButton);
+
         public By By_InvoiceHeaderText = By.CssSelector("section.container h3");
         public IWebElement Web_InvoiceHeaderText => driver.FindElement(By_InvoiceHeaderText);
 
@@ -99,9 +101,6 @@
         public By By_RatingSaveButton = By.Id("btnSaveRating");
         public IWebElement Web_RatingSaveButton => driver.FindElement(By_RatingSaveButton);
 
-        public By By_Last3AppointmentSectionHeader = By.XPath("//h4[contains(text(), 'Last 3 Appointment')]/a[@class='viewall']");
-        public IWebElement Web_Last3AppointmentSectionHeader =>driver.FindElement(By_Last3AppointmentSectionHeader);
-
         public By By_RepeatRequestButton = By.Id("btnRepeatScript");
 
         public By By_DoctorNotAvailableHeader = By.XPath("//div[@id='repeatPrescriptionSent']//h4[@id='subscribeStatusLabel']");
@@ -117,7 +116,34 @@
         public By By_Repeat_Prescription_Submit_Button = By.Id("btnRepeatRequest");
         public IWebElement Web_Repeat_Prescription_Submit_Button => driver.FindElement(By_Repeat_Prescription_Submit_Button);
 
+        public By By_ViewAllHistoryBtn = By.XPath("//a[normalize-space()='View all history']");
+        public IWebElement Web_ViewHistoryButton=> driver.FindElement(By_ViewAllHistoryBtn);
 
+        public By By_AppointmentStatus = By.XPath("//span[6]"); 
+        public IWebElement  Web_AppointmentStatus=>driver.FindElement(By_AppointmentStatus);
+        
+        public By By_Last30DaysAppointmentCount = By.XPath("//strong[contains(text(),'APPOINTMENT')]");
+        public IWebElement Web_Last30DaysAppointmentCount=>driver.FindElement(By_Last30DaysAppointmentCount);
+        
+        public By By_TotalAppointment = By.XPath("//*[@id='items-section']/div");
+        public IList<IWebElement> Web_TotalAppointments => driver.FindElements(By_TotalAppointment);
+        
+        public By By_CancelAppointment = By.XPath("//h5[contains(text(),' Cancelled')]");
+        public IList<IWebElement> Web_CancelAppointment => driver.FindElements(By_CancelAppointment);
+        
+        public By By_SearchButton = By.Id("btnSearchSubmit");
+        public IWebElement Web_SearchButton =>driver.FindElement(By_SearchButton);
+
+        public By By_AppointmentHistoryInfo = By.XPath("//div[@class='history-info']");
+
+        public IList<IWebElement> Web_AppointmentHistoryInfo=>driver.FindElements(By_AppointmentHistoryInfo);
+
+        public By By_DashboardTab = By.Id("liDashboard");
+        public IWebElement Web_DashboardTab=>driver.FindElement(By_DashboardTab);
+
+        public By By_DownloadPrescriptionBtn = By.XPath("//*[@id='downloadOriginalPrescription']");
+
+        public IList<IWebElement> Web_DownloadPrescriptionBtns=>driver.FindElements(By_DownloadPrescriptionBtn);
 
     }
 

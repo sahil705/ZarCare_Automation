@@ -49,5 +49,18 @@
             PatientDashboardValidations.VerifyRepeatPrescriptionJourney();
             Reports.FlushNode(Reports.childLog);
         }
+
+        [Test]
+
+        public void ValidatePastAppointmentCountInLast_3_AppointmentAndDisableButtons()
+        {
+            Reports.childLog = Reports.CreateNode("Validate last 3 month past appointment count");
+            PatientDashboardValidations.VerifyLast3MonthPastAppointmentCount();
+
+            Reports.childLog = Reports.CreateNode("Validate cancelled appointment button disabled");
+            PatientDashboardValidations.VerifyCancelAppointmentButtonDisabled();
+            Reports.FlushNode(Reports.childLog);
+        }
+
     }
 }

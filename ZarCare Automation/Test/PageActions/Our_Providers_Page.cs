@@ -84,11 +84,11 @@ namespace ZarCare_Automation.Test.PageActions
                 {
 
                     IWebElement BookOptbtnfnl = (OurProvidersPage.BookOtpbtnList)[i];
-                    IWebElement BookOptScroll = (OurProvidersPage.BookOtpbtnList)[i - 1];
+                    IWebElement BookOptScroll = (OurProvidersPage.BookOtpbtnList)[i-1];
                     Generic_Utils.ScrollToElement(BookOptScroll);
                     BookOptbtnfnl.Click();
                     break;
-                }
+                }               
             }
 
             Reports.childLog.Log(Status.Info, "doctor Detail Page displayed");
@@ -342,8 +342,54 @@ namespace ZarCare_Automation.Test.PageActions
             Generic_Utils.GetScreenshot("Slot rate displayed.");
         }
 
+       public static void Pagination_work_on_OurProviderPageForDrSearch(string DoctorName)
+       {
 
+            Generic_Utils.IsElementDisplayed(OurProvidersPage.By_SearchHeader);
+
+            int DrList = driver.FindElements(OurProvidersPage.By_Doctor_List).Count;
+
+            bool doctorFound = false;
+
+            while (!doctorFound) 
+            {
+                for (int i = 0; i < DrList; i++)
+                {
+                    string dr_name = (OurProvidersPage.Web_Doctor_Name)[i].Text;
+
+                    if (dr_name.Contains(DoctorName))
+                    {
+
+                        IWebElement BookOptbtnfnl = (OurProvidersPage.BookOtpbtnList)[i];
+                        IWebElement BookOptScroll = (OurProvidersPage.BookOtpbtnList)[i - 1];
+                        Generic_Utils.ScrollToElement(BookOptScroll);
+                        BookOptbtnfnl.Click();
+                        doctorFound = true;
+                        
+                        Reports.childLog.Log(Status.Info, "Pagination worked with doctor name search");
+                        Generic_Utils.GetScreenshot("Pagination worked with docter name search screenshot");
+
+                        Console.WriteLine($"Doctor {DoctorName} found and Appointment button clicked.");
+                        break;
+                    }
+
+                }
+                if (!doctorFound)
+                {
+                    if (OurProvidersPage.Web_NextPageArrow != null && OurProvidersPage.Web_NextPageArrow.Displayed && OurProvidersPage.Web_NextPageArrow.Enabled) 
+                    {
+                        OurProvidersPage.Web_NextPageArrow.Click();
+                    } 
+                    else 
+                    { 
+                        Assert.Fail("Required doctor not found and no more pages to navigate."); 
+                    }
+                }
+            }
+            Assert.IsTrue(doctorFound, $"Doctor {DoctorName} was not found in the list.");
+
+        }
+        
     }
 }
 
-        

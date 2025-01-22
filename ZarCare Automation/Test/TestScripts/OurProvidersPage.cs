@@ -58,6 +58,30 @@
             OurProviderWorkflow.Verify_Doctor_Slot_Fee_Tooltip_On_Hover();
             Reports.FlushNode(Reports.childLog);
         }
+        [Test]
 
+        public void Verfiry_OurProvider_For_DrName_Search_Pagination()
+        {
+            Reports.childLog = Reports.CreateNode("Validate pagination on our provider page with Dr. name Search");
+            OurProviderWorkflow.ValidateDoctorSearchByPaginationOnOurProviderPage();
+            Reports.FlushNode(Reports.childLog);
+
+        }
+        [Test]
+
+        public void Verify_Patient_changes_selected_slot_during_Appointment_and_canceled_slot_get_available()
+        {
+            Reports.childLog = Reports.CreateNode("Validate patient changes selected slot during appointment process");
+            OurProviderWorkflow.ValidatePatientCancelSlotDuringAppointmentBookingAndThatSlotAvailable();            
+            Reports.FlushNode(Reports.childLog);
+        }
+
+        [Test]
+        public void Validate_PatientCancelSelectedSlotAndSelectedSlotAvailable()
+        {
+            Reports.childLog = Reports.CreateNode("Validate patient Cancel Selected slot and selected slot is available ");
+            OurProviderWorkflow.ValidatePatientCancelSelectedSlotAndSelectedSlotAvailable();
+            Reports.FlushNode(Reports.childLog);
+        }
     }
 }

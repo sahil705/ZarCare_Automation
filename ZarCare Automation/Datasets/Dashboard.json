@@ -6,6 +6,6 @@
   "RatingSavedMessage": "Provider's rating saved successfully",
   "DoctorProfileId": 5,
   "DoctorAvaliabilityPopup": "This provider is no longer available.",
-  "PastThreeMonthAppointmentPopup": "We are unable to process a prescription after three months since your last appointment."
-
+  "PastThreeMonthAppointmentPopup": "We are unable to process a prescription after three months since your last appointment.",
+  "CancelAppointText": "Cancelled"
 }

@@ -86,7 +86,7 @@
             string patientWeight = Json["Patient_Weight"].ToString();
             string patientGender = Json["Patient_Gender"].ToString();
             string patientFullAddress = Json["Patient_FullAddress"].ToString();
-            
+
             PatientProfileValidations.SubmitPatientProfileDetails();
 
             Reports.childLog.Log(Status.Info, "Step 4: Verify patient details on dashboard page");
@@ -100,7 +100,7 @@
             Patient_Dashboard_Page.Get_And_Validate_Patient_Address(patientFullAddress);
 
             Reports.childLog.Log(Status.Info, "=================================================");
-
+        }
 
         public static void ValidateAppointmentCount()
         {
@@ -223,5 +223,40 @@
             Reports.childLog.Log(Status.Info, "=================================================");
 
         }
+        public static void VerifyLast3MonthPastAppointmentCount()
+        {
+            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            
+            string patientEmail = loginJson["Email"].ToString();
+            string patientPassword = loginJson["Password"].ToString();
+            
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+
+            Reports.childLog.Log(Status.Info, "Verify last three month past appointmnt count ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
+            Home_Page.NavigateToLoginPage();
+            Login_Page.Validate_LoginPage();
+            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Patient_Dashboard_Page.ValidatePatientDashboard();
+
+            Reports.childLog.Log(Status.Info, "Step 3: Validate last 30 days past appoinment count on dashboard page ");
+            Patient_Dashboard_Page.ValidateLast3MonthsPastAppointmentCount();
+
+        }
+
+        public static void VerifyCancelAppointmentButtonDisabled()
+        {
+            var dashboardJson = Json_Reader.GetDataFromJson(DashboardJson);
+            string CancelAppint= dashboardJson["CancelAppointText"].ToString();
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate canceled appointment buttons disablled ");
+            Patient_Dashboard_Page.ValidateCancleAppointmentDisabledButton(CancelAppint);
+
+        }
+
     }
 }

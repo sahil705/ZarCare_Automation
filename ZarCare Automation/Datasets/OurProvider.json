@@ -8,6 +8,9 @@
   "Slot_Date": "05-09-2024",
   "doc_category": "Dermatologist",
   "Doctor_Top_Category": "Alternative Healer",
-  "OriginalCategoryTitle": "Dermatologist"
-
+  "OriginalCategoryTitle": "Dermatologist",
+  "OurProviderUrl": "https://zarcaredev.azurewebsites.net/our-health-practitioners",
+  "NewAppointmentTime": "16:15",
+  "Patient_Symtoms": "Back Pain",
+  "PaymentCancelMessage": "Payment has been cancelled"
 }

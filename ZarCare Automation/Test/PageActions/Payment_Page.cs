@@ -19,5 +19,16 @@
             PaymentPage.Web_Payment_Button.Click();
             Wait.GenericWait(20000);   
         }
+
+        public static void CancelPaymentOnPaymentPage()
+        {
+            PaymentPage.Web_PaymentCancelButton.Click();
+            Wait.WaitTillPageLoad();
+            PaymentPage.Web_CancelPaymentPopUp.Click();
+            Wait.WaitTillPageLoad();
+
+            Reports.childLog.Log(Status.Info, "Payment cancelled and popup on payment page");
+            Generic_Utils.GetScreenshot("Payment cancelled and popup on payment screenshot");
+        }
     }
 }

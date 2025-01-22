@@ -275,7 +275,7 @@
         public static void Dropdown_Handle_With_Text(IWebElement element, string text)
         {
             SelectElement selectElement = new SelectElement(element);
-            selectElement.SelectByValue(text);
+            selectElement.SelectByText(text);
         }
 
         public static void Action_For_Double_Click(IWebElement element)
@@ -309,6 +309,12 @@
             Wait.GenericWait(2000);
         }
 
+        public static bool VerifyButtonIsDisabled(IWebElement Button)
+        {  
+
+            bool isNotClickable = !Button.Enabled;
+            return isNotClickable;
+        }
 
         public class Wait : WebdriverSession
         {
