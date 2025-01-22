@@ -1,0 +1,60 @@
+﻿{
+  "errorMessages": [
+    {
+      "Login_Email_Error": "Please enter your Email Address"
+    },
+    {
+      "Login_Password_Error": "Please enter your password"
+    },
+    {
+      "Login_Unregistered_Error": "We can't seem to find your account"
+    },
+    {
+      "Login_Invalid_Email": "Please enter a valid email address."
+    },
+    {
+      "Login_Invalid_Password": "Your password is incorrect"
+    }
+  ],
+  "ValidLoginData": [
+    {
+      "Login_Patient_Email": "sahil.raina@lng-consultancy.com",
+      "Login_Patient_Password": "Sahil@1993",
+      "Patient_CellPhone": "+27180120231"
+
+    },
+    {
+      "Login_Doctor_Email": "rajkumar@email.com",
+      "Login_Doctor_Password": "Raj@1234"
+    }
+  ],
+  "LoginInvalidData": [
+    {
+      "Login_Invalid_Patient_Email": "sahil.rainalng-consultancy.com",
+      "Login_Invalid_Patient_Password": "Sahil@1993"
+    },
+    {
+      "Login_Invalid_Patient_Email": "sahil.raina@lng-consultancy.com",
+      "Login_Invalid_Patient_Password": "Ten@123"
+    }
+  ],
+  "UnregisteredUser": [
+    {
+      "Login_Unregistered_Email": "kpmt@kjmail.com",
+      "Login_Unregistered_Password": "Test@1234"
+    }
+  ],
+  "RequiredData": [
+    {
+      "Login_Email": "",
+      "Login_Password": ""
+    }
+  ],
+  "UnverifiedUserEmail": [
+    {
+      "Unverified_Login_Email": "validateemail1@gmail.com",
+      "Unverified_Login_Password" :  "Test@123"
+
+    }
+  ]
+}

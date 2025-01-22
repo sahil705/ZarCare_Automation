@@ -21,7 +21,7 @@
             ViewDetail.Web_Confirmation_Popup_Yes_Button.Click();
             IWebElement CancellationConfirmation = Wait.ElementIsClickable(ViewDetail.Web_Confirmation_Popup_Ok_Button, 10);
             CancellationConfirmation.Click();
-            driver.Navigate().GoToUrl("https://zarcare-preprod.azurewebsites.net/our-health-practitioners");
+            driver.Navigate().GoToUrl("https://zarcaredev.azurewebsites.net/our-health-practitioners");
             Wait.WaitTillPageLoad();
         }
     }

@@ -194,7 +194,7 @@
                     long newHeight = (long)((IJavaScriptExecutor)driver).ExecuteScript("return document.body.scrollHeight");
                     if (newHeight == lastHeight)
                     {
-                        break; // Scrolling complete
+                        break; 
                     }
                     lastHeight = newHeight;
                 }

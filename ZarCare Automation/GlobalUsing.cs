@@ -17,12 +17,6 @@ global using ZarCare_Automation.TestResources;
 global using OpenQA.Selenium.Interactions;
 global using static ZarCare_Automation.Utilities.Generic_Utils;
 global using ZarCare_Automation.Test.PageValidations;
-using WebDriverManager.Clients;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics.Metrics;
+global using System.Data.SqlClient;
 
 

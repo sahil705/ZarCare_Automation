@@ -1,4 +1,4 @@
-﻿using System.Data.SqlClient;
+﻿using MongoDB.Driver.Core.Configuration;
 
 namespace ZarCare_Automation.Utilities
 {
@@ -160,6 +160,47 @@ namespace ZarCare_Automation.Utilities
             }
 
             return false;
+        }
+        public static bool getEmailAndCellVerificationStatus(string email, string cellPhone)
+        {
+            string connectionString = "Server=tcp:devzarcaredb.database.windows.net;Database=Zarcare;User Id=DevSqlAdmin;Password=NDH&u3ur\\/C[Y{7txpZ;";
+            string query = "SELECT isemailconfirmed, isphonenumberconfirmed FROM customer WHERE email = @Email";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Add email parameter to prevent SQL injection
+                        command.Parameters.AddWithValue("@Email", email);
+                        command.Parameters.AddWithValue("@Cell", cellPhone);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Fetch values from the database
+                                bool isEmailConfirmed = reader.GetBoolean(reader.GetOrdinal("isemailconfirmed"));
+                                bool isPhoneNumberConfirmed = reader.GetBoolean(reader.GetOrdinal("isphonenumberconfirmed"));
+
+                                // Return true if both fields are confirmed
+                                return isEmailConfirmed && isPhoneNumberConfirmed;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Database error: {ex.Message}");
+                
+            }
+
+            // Return false if no records are found or in case of an error
+            return false;
+
         }
     }
 }

@@ -1,21 +1,18 @@
-﻿
-
-namespace ZarCare_Automation.Test.PageValidations
+﻿namespace ZarCare_Automation.Test.PageValidations
 {
     public  class FamilyMemberPageValidation
     {
         public static string MemberProfileJson = "FamilyMember";
-        public static string LoginJson = "Login";
+        public static string Login = "LoginData";
 
-         
-
-        public static void AddFamilyMemberwithValiddata()
+        public static void SubmitFamilyMember()
         {
             var Fmemebrjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "FamilyMembeDetail");
-            var loginjson = Json_Reader.GetDataFromJson(LoginJson);
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
 
-            string EmailId = loginjson["Email"].ToString();
-            string PassWord = loginjson["Password"].ToString();
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string MemFirstName = Fmemebrjson[0]["First_Name"].ToString();
             string MemLastName = Fmemebrjson[1]["Last_Name"].ToString();
             string MemWeight = Fmemebrjson[2]["Mem_Weight"].ToString();
@@ -33,86 +30,106 @@ namespace ZarCare_Automation.Test.PageValidations
 
             Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
-            Reports.childLog = Reports.CreateNode("Step 1: Validate Home Page and Navigate to Login Page");
+            Reports.childLog.Log(Status.Info, " Family Member Form Submission ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Validate the Login Page and Patient Login ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(EmailId, PassWord);
+            Login_Page.Patient_Login(userEmail, userPassword);
 
-            Reports.FlushNode(Reports.childLog);
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 3: Submit Family Member Detail and Validate the Added Member in Family Member Page ");
+                Patient_Dashboard_Page.ValidatePatientDashboard();
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                FamilyMember_Page.AddfamilyMemberDetail(MemFirstName, MemLastName, MemWeight, MemHeight, MemGender, MemRelation, MemCountry, MemProvince, MemCity, MemPinCode, MemAddress, MemPhotoPath, MemAddSuccMessage);
+                FamilyMember_Page.AddedMemberDisplyInMembersPage(MemFirstName, AddedMemRelation);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
 
-            Reports.childLog = Reports.CreateNode("Step 2: Validate add family member detail");
-            FamilyMember_Page.AddfamilyMemberDetail(MemFirstName, MemLastName, MemWeight, MemHeight,MemGender, MemRelation, MemCountry, MemProvince, MemCity, MemPinCode, MemAddress, MemPhotoPath, MemAddSuccMessage);
-            Reports.FlushNode(Reports.childLog);
+            Reports.childLog.Log(Status.Info, "=================================================");
 
-            Reports.childLog = Reports.CreateNode("Step 3: Validate added member display in family member page");
-            FamilyMember_Page.AddedMemberDisplyInMembersPage(MemFirstName, AddedMemRelation);
-            Reports.FlushNode(Reports.childLog);
         }
-        public static void ValidateMandatoryFielddForFamilyMember()
+        public static void ValidateMandatoryFieldForFamilyMember()
         {
-            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
+           
 
             var Fmemebrjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "MemberValiMessages");
-            var loginjson = Json_Reader.GetDataFromJson(LoginJson);
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
 
-            string EmailId = loginjson["Email"].ToString();
-            string PassWord = loginjson["Password"].ToString();
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string FirstNameReqErrorMessage = Fmemebrjson[0]["Mem_First_name_Req_Error_message"].ToString();
             string LastNameReqErrorMessage = Fmemebrjson[1]["Mem_Last_name_Req_Error_message"].ToString();
             string MemWeightReqErrorMessage = Fmemebrjson[2]["Mem_Weight_RequiredErrorMessage"].ToString();
             string MemHeightReqErrorMessage = Fmemebrjson[3]["Mem_Height_ReqErrorMessage"].ToString();
 
+            Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
-            Reports.childLog = Reports.CreateNode("Step 1: Validate Home Page and Navigate to Login Page");
+            Reports.childLog.Log(Status.Info, " Validate the Mandatory Fields in Family Member Form ");
+
+            Reports.childLog.Log(Status.Info, "Step 1: Validate the HomePage");
+            Home_Page.Validate_HomePage();
+
+            Reports.childLog.Log(Status.Info, "Step 2: Validate the Login Page and Patient Login ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(EmailId, PassWord);
-           
-            Reports.childLog = Reports.CreateNode("Step 2: Validate Mandatory field Required for family member ");
-            FamilyMember_Page.AddFamilyMemberWithoutMandatoryField(FirstNameReqErrorMessage, LastNameReqErrorMessage, MemWeightReqErrorMessage, MemHeightReqErrorMessage);
+            Login_Page.Patient_Login(userEmail, userPassword);
+
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Validate the Required Fields ");
+                Patient_Dashboard_Page.ValidatePatientDashboard();
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                FamilyMember_Page.AddFamilyMemberWithoutMandatoryField(FirstNameReqErrorMessage, LastNameReqErrorMessage, MemWeightReqErrorMessage, MemHeightReqErrorMessage);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
+
+            Reports.childLog.Log(Status.Info, "=================================================");
         }
 
-        public static void AddedMemberDisplayInMedilcalfile()
+        public static void AddedMemberDisplayInMedicalFile()
         {
-            //Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
-
+     
             var Fmemberjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "FamilyMembeDetail");
-            var json = Json_Reader.GetDataFromJson(MemberProfileJson);
-            //var loginjson = Json_Reader.GetDataFromJson(LoginJson);
-            //string EmailId = loginjson["Email"].ToString();
-            //string PassWord = loginjson["Password"].ToString();
+            var json = Json_Reader.GetDataFromJson(MemberProfileJson);  
             string MemFirstName = Fmemberjson[0]["First_Name"].ToString();
             string MemRelationText = json["Mem_Relationship_text"].ToString();
 
-            //Reports.childLog = Reports.CreateNode("Step 1: Validate Login into Application");
-            //Home_Page.NavigateToLoginPage();
-            //Login_Page.Validate_LoginPage();
-            //Login_Page.Patient_Login(EmailId, PassWord);
-           
             Reports.childLog = Reports.CreateNode("Step 1: Validate Added Member display in medical File");
             FamilyMember_Page.AddedMemberDisplayedInMedicalFile(MemFirstName, MemRelationText);
 
         }
         public  static void AddedMemberDisplayedInFamilyMemberDropDown()
         {
-            //Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
-
+ 
             var Fmemberjson = Json_Reader.GetArrayFromJson(MemberProfileJson, "FamilyMembeDetail");
             var json = Json_Reader.GetDataFromJson(MemberProfileJson);
-            //var loginjson = Json_Reader.GetDataFromJson(LoginJson);
-            //string EmailId = loginjson["Email"].ToString();
-            //string PassWord = loginjson["Password"].ToString();
+            
             string MemFirstName = Fmemberjson[0]["First_Name"].ToString();
             string MemLastName = Fmemberjson[1]["Last_Name"].ToString();
             string MemRelationText = json["Mem_Relationship_text"].ToString();
             string AppointMentTime = json["Appointment_Time"].ToString();
             string MemberFinal = MemFirstName + " " + MemLastName + "(" + MemRelationText + ")";
-
-            //Reports.childLog = Reports.CreateNode("Step 1: Validate Login into Application");
-            //Home_Page.NavigateToLoginPage();
-            //Login_Page.Validate_LoginPage();
-            //Login_Page.Patient_Login(EmailId, PassWord);
-           
+ 
             Reports.childLog = Reports.CreateNode("Step 1: Validate added family member into Member's Dropdown");
             FamilyMember_Page.AddedmemberAppearInMemberDropdown(AppointMentTime, MemberFinal);
 

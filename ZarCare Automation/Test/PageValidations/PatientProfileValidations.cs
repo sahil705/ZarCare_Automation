@@ -5,12 +5,15 @@ namespace ZarCare_Automation.Test.PageValidations
     public class PatientProfileValidations
     {
         public static string PatientProfileJson = "PatientProfile";
-        public static string LoginJson = "Login";
+        public static string Login = "LoginData";
 
         public static void SubmitPatientProfileDetails()
         {
             var json = Json_Reader.GetDataFromJson(PatientProfileJson);
-            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string firstName = json["First_Name"].ToString();
             string lastName = json["Last_Name"].ToString();
             string patientWeight = json["Weight"].ToString();
@@ -22,8 +25,7 @@ namespace ZarCare_Automation.Test.PageValidations
             string patientProvince = json["Province"].ToString();
             string postalCode = json["PostalCode"].ToString();
             string successMessage = json["Success_Message"].ToString();
-            string patientEmail = loginJson["Email"].ToString();
-            string patientPassword = loginJson["Password"].ToString();
+            
 
             Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
@@ -35,16 +37,26 @@ namespace ZarCare_Automation.Test.PageValidations
             Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Login_Page.Patient_Login(userEmail, userPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Submit Patient Profile Details ");
-            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
-            Patient_Dashboard_Page.NavigateToPatientProfile();
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.SubmitPatientProfileInfo(firstName, lastName, patientWeight, patientHeight, patientGender, patientAddress, patientSuburb, patientCity, patientProvince, postalCode, successMessage);
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
 
-
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Submit Patient Profile Details ");
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                Patient_Dashboard_Page.NavigateToPatientProfile();
+                Patient_Profile_Page.ValidatePatientProfile();
+                Patient_Profile_Page.SubmitPatientProfileInfo(firstName, lastName, patientWeight, patientHeight, patientGender, patientAddress, patientSuburb, patientCity, patientProvince, postalCode, successMessage);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
 
             Reports.childLog.Log(Status.Info, "=================================================");
         }
@@ -52,13 +64,14 @@ namespace ZarCare_Automation.Test.PageValidations
         public static void ValidateRequiredFieldsPatientProfile()
         {
             var json = Json_Reader.GetDataFromJson(PatientProfileJson);
-            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string firstName_error = json["FirstName_Validation"].ToString();
             string lastName_error = json["LastName_Validation"].ToString();
             string patientWeight_error = json["Weight_Validation"].ToString();
-            string patientHeight_error = json["Height_Validation"].ToString();
-            string patientEmail = loginJson["Email"].ToString();
-            string patientPassword = loginJson["Password"].ToString();
+            string patientHeight_error = json["Height_Validation"].ToString();    
 
             Generic_Utils.Initilize_URL(Properties.environment.ToLower(), "Platform");
 
@@ -70,18 +83,31 @@ namespace ZarCare_Automation.Test.PageValidations
             Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Login_Page.Patient_Login(userEmail, userPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Submit Patient Profile ");
-            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
-            Patient_Dashboard_Page.NavigateToPatientProfile();
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.SubmitPatientProfileEmptyInfo();
-            Patient_Profile_Page.Get_And_Validate_firstName_Error(firstName_error);
-            Patient_Profile_Page.Get_And_Validate_lastName_Error(lastName_error);
-            Patient_Profile_Page.Get_And_Validate_Weight_Error(patientWeight_error);
-            Patient_Profile_Page.Get_And_Validate_Height_Error(patientHeight_error);
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
+
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Submit Patient Profile with Invalid Data ");
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                Patient_Dashboard_Page.NavigateToPatientProfile();
+                Patient_Profile_Page.ValidatePatientProfile();
+                Patient_Profile_Page.SubmitPatientProfileEmptyInfo();
+                Patient_Profile_Page.Get_And_Validate_firstName_Error(firstName_error);
+                Patient_Profile_Page.Get_And_Validate_lastName_Error(lastName_error);
+                Patient_Profile_Page.Get_And_Validate_Weight_Error(patientWeight_error);
+                Patient_Profile_Page.Get_And_Validate_Height_Error(patientHeight_error);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
+
 
             Reports.childLog.Log(Status.Info, "=================================================");
         }
@@ -89,9 +115,10 @@ namespace ZarCare_Automation.Test.PageValidations
         public static void ValidateEmptyBankingFileUpload()
         {
             var json = Json_Reader.GetDataFromJson(PatientProfileJson);
-            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
-            string patientEmail = loginJson["Email"].ToString();
-            string patientPassword = loginJson["Password"].ToString();
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string bankingConsent_Error = json["Banking_Consent_Error"].ToString();
             string banking_Error = json["BankingFile_Error"].ToString();
 
@@ -105,16 +132,30 @@ namespace ZarCare_Automation.Test.PageValidations
             Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Login_Page.Patient_Login(userEmail, userPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Validate empty bank account details on patient profile");
-            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
-            Patient_Dashboard_Page.NavigateToPatientProfile();
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.SubmitEmptyBankingFile();
-            Patient_Profile_Page.Get_And_Validate_Empty_BankingFile_Error(banking_Error);
-            Patient_Profile_Page.Get_And_Validate_Banking_Consent_Error(bankingConsent_Error);
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
+
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Validate empty bank account details on patient profile");
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                Patient_Dashboard_Page.NavigateToPatientProfile();
+                Patient_Profile_Page.ValidatePatientProfile();
+                Patient_Profile_Page.SubmitEmptyBankingFile();
+                Patient_Profile_Page.Get_And_Validate_Empty_BankingFile_Error(banking_Error);
+                Patient_Profile_Page.Get_And_Validate_Banking_Consent_Error(bankingConsent_Error);
+
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
+
 
             Reports.childLog.Log(Status.Info, "=================================================");
         }
@@ -122,9 +163,10 @@ namespace ZarCare_Automation.Test.PageValidations
         public static void DownloadAndvalidateBankingFile()
         {
             var json = Json_Reader.GetDataFromJson(PatientProfileJson);
-            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
-            string patientEmail = loginJson["Email"].ToString();
-            string patientPassword = loginJson["Password"].ToString();
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string downloadDirectory = json["DownloadDirectory"].ToString();
             string bankfileName = json["BankFileName"].ToString();
 
@@ -138,16 +180,29 @@ namespace ZarCare_Automation.Test.PageValidations
             Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Login_Page.Patient_Login(userEmail, userPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Download bank account details on patient profile");
-            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
-            Patient_Dashboard_Page.NavigateToPatientProfile();
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.DownloadBankingFile();
-            Patient_Profile_Page.Get_And_Validate_Downloaded_Banking_File(downloadDirectory, bankfileName);
-          
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
+
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Download bank account details on patient profile");
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                Patient_Dashboard_Page.NavigateToPatientProfile();
+                Patient_Profile_Page.ValidatePatientProfile();
+                Patient_Profile_Page.DownloadBankingFile();
+                Patient_Profile_Page.Get_And_Validate_Downloaded_Banking_File(downloadDirectory, bankfileName);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
+
+
             Reports.childLog.Log(Status.Info, "=================================================");
         }
 
@@ -213,9 +268,10 @@ namespace ZarCare_Automation.Test.PageValidations
         public static void UploadProfilePic()
         {
             var json = Json_Reader.GetDataFromJson(PatientProfileJson);
-            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
-            string patientEmail = loginJson["Email"].ToString();
-            string patientPassword = loginJson["Password"].ToString();
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString(); 
             string profilePhoto = json["Photo_Path"].ToString();
             string successMessage = json["Success_Message"].ToString();
            
@@ -230,24 +286,38 @@ namespace ZarCare_Automation.Test.PageValidations
             Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Login_Page.Patient_Login(userEmail, userPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Upload profile photo and validate success message");
-            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
-            Patient_Dashboard_Page.NavigateToPatientProfile();
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.UploadProfilePhoto(profilePhoto, successMessage);
-           
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
+
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Upload profile photo and validate success message");
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                Patient_Dashboard_Page.NavigateToPatientProfile();
+                Patient_Profile_Page.ValidatePatientProfile();
+                Patient_Profile_Page.UploadProfilePhoto(profilePhoto, successMessage);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
+
+
             Reports.childLog.Log(Status.Info, "=================================================");
         }
 
         public static void ValidateProfilePicMaxSize()
         {
             var json = Json_Reader.GetDataFromJson(PatientProfileJson);
-            var loginJson = Json_Reader.GetDataFromJson(LoginJson);
-            string patientEmail = loginJson["Email"].ToString();
-            string patientPassword = loginJson["Password"].ToString();
+            var loginJson = Json_Reader.GetArrayFromJson(Login, "ValidLoginData");
+            string userEmail = loginJson[0]["Login_Patient_Email"].ToString();
+            string userPassword = loginJson[0]["Login_Patient_Password"].ToString();
+            string userCell = loginJson[0]["Patient_CellPhone"].ToString();
             string invalidProfilePhoto = json["Invalid_Photo_Path"].ToString();
             string errorMessage = json["Photo_Validation"].ToString();
 
@@ -261,15 +331,29 @@ namespace ZarCare_Automation.Test.PageValidations
             Reports.childLog.Log(Status.Info, "Step 2: Login as a Patient and Validate the Patient Dashboard ");
             Home_Page.NavigateToLoginPage();
             Login_Page.Validate_LoginPage();
-            Login_Page.Patient_Login(patientEmail, patientPassword);
+            Login_Page.Patient_Login(userEmail, userPassword);
             Patient_Dashboard_Page.ValidatePatientDashboard();
 
-            Reports.childLog.Log(Status.Info, "Step 3: Upload profile photo and validate max file size message");
-            Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
-            Patient_Dashboard_Page.NavigateToPatientProfile();
-            Patient_Profile_Page.ValidatePatientProfile();
-            Patient_Profile_Page.Get_And_Validate_ProfilePic_Size(invalidProfilePhoto, errorMessage);
-          
+
+            Reports.childLog.Log(Status.Info, "Step 3: Check the Email and Cellphone Status ");
+            bool status = Login_Page.Get_EmailAndCellPhone_Status(userEmail, userCell);
+
+            if (status == true)
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Upload profile photo and validate max file size message");
+                Patient_Dashboard_Page.HandleNotificationPopupOnDashboard();
+                Patient_Dashboard_Page.NavigateToPatientProfile();
+                Patient_Profile_Page.ValidatePatientProfile();
+                Patient_Profile_Page.Get_And_Validate_ProfilePic_Size(invalidProfilePhoto, errorMessage);
+            }
+            else
+            {
+                Reports.childLog.Log(Status.Info, "Step 4: Redirects to Email and Cellphone Verification Page");
+                Patient_Dashboard_Page.ValidateUnverifiedDashboard();
+                Patient_Dashboard_Page.userLogout();
+            }
+
+
             Reports.childLog.Log(Status.Info, "=================================================");
         }
     }

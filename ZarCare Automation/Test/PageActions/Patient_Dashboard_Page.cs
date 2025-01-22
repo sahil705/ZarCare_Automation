@@ -16,6 +16,19 @@
             Generic_Utils.GetScreenshot("Patient Dashboard screenshot");
         }
 
+        public static void ValidateUnverifiedDashboard()
+        {
+            Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(PatientDashboardPage.By_Unverified_Dashboard_Element);
+
+            Reports.childLog.Log(Status.Info, "Unverified Patient Dashboard page is displayed");
+            Generic_Utils.GetScreenshot("Unverified Patient Dashboard screenshot");
+
+        }
+        public static void NavigateToDashboard()
+        {
+            PatientDashboardPage.Web_Dashboard_Link.Click();
+        }
         public static void HandleNotificationPopupOnDashboard()
         {
             try
@@ -59,6 +72,11 @@
         public static void NavigateToPatientProfileThroughProfilePicIcon()
         {
             PatientDashboardPage.Web_ProfilePic_Icon.Click();
+        }
+
+        public static void userLogout()
+        {
+            PatientDashboardPage.Web_Logout_Icon.Click();   
         }
 
         public static void ValidatePatientDetailInPatientDashboard(string fName, string lName, string weight, string height, string gender, string address, string suburb, string city, string province, string postalCode, string successText)

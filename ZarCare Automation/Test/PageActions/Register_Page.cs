@@ -14,6 +14,11 @@ namespace ZarCare_Automation.Test.PageActions
             Generic_Utils.GetScreenshot("Register page screenshot ");
         }
 
+        public static void Navigate_To_Login_Page()
+        {
+            RegisterPage.Web_Back_To_Login_Link.Click();
+        }
+
         public static void Patient_Registration(string firstName,string surName,string cellNumber,string emailAddress, string password,string confirmPassword)
         {
             RegisterPage.Web_FirstName.SendKeys(firstName);
@@ -74,5 +79,6 @@ namespace ZarCare_Automation.Test.PageActions
 
 
         }
+       
     }
 }
